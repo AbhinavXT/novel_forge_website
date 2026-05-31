@@ -4,10 +4,9 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>NovelForge — A reading app for people who love reading</title>
-		<!-- Description unified across <meta name=description> and og:description (issue G) -->
 		<meta
 			name="description"
-			content="A privacy-respecting Android reader for novels and EPUBs. Eight reading fonts, eleven themes, neural text-to-speech. Free, open source, no accounts."
+			content="A privacy-respecting Android EPUB reader. Eight reading fonts, eleven themes, neural text-to-speech. Free on Google Play, open source, no accounts."
 		/>
 		<meta
 			property="og:title"
@@ -15,7 +14,7 @@
 		/>
 		<meta
 			property="og:description"
-			content="A privacy-respecting Android reader for novels and EPUBs. Eight reading fonts, eleven themes, neural text-to-speech. Free, open source, no accounts."
+			content="A privacy-respecting Android EPUB reader. Eight reading fonts, eleven themes, neural text-to-speech. Free on Google Play, open source, no accounts."
 		/>
 		<meta property="og:type" content="website" />
 
@@ -420,11 +419,10 @@
 				margin-bottom: 0;
 			}
 
-			/* Drop-cap moved off ::first-letter to a real <span> for cross-browser
-   reliability (issue A). The pseudo-element approach is flaky on Safari
-   when the first character has any leading whitespace from indentation,
-   and Firefox sometimes ignores font-style overrides on it. The span
-   approach renders identically everywhere. */
+			/* Drop-cap uses a real <span> for cross-browser reliability — the
+   ::first-letter pseudo-element is flaky on Safari when the first
+   character has leading whitespace, and Firefox sometimes ignores
+   font-style overrides on it. The span renders identically everywhere. */
 			.drop-initial {
 				font-size: 5em;
 				float: left;
@@ -1004,9 +1002,8 @@
    cascade to every element that references them. Switching themes is
    one attribute mutation and the whole reader recolors itself.
 
-   Default theme switched from "paper" to "dark" (issue H) so the
-   preview phone reads as a clearly distinct surface against the
-   #F5F0F7 page background instead of camouflaging into it. */
+   Default theme is "dark" so the preview phone reads as a clearly distinct
+   surface against the #F5F0F7 page background instead of camouflaging. */
 			.preview {
 				padding: 120px 0;
 				background: var(--bg);
@@ -1255,7 +1252,7 @@
 			.preview-phone[data-font="lora"] .pr-body {
 				--reader-font: "Lora";
 			}
-			.preview-phone[data-font="merriweather"].pr-body {
+			.preview-phone[data-font="merriweather"] .pr-body {
 				--reader-font: "Merriweather";
 			}
 			.preview-phone[data-font="crimson"] .pr-body {
@@ -1330,10 +1327,9 @@
 				margin-top: 16px;
 			}
 
-			/* Theme picker — now a 4-column grid for the dark group (issue E) so
-   8 dark themes lay out as 2 rows of 4 instead of 3 ragged rows. The
-   light group has only 3, so its picker stays flex-wrap.
-   Each theme button takes one grid cell in the dark variant. */
+			/* Theme picker — the dark group uses a 4-column grid so 8 dark themes
+   lay out as 2 rows of 4. The light group has only 3, so its picker
+   stays flex-wrap. */
 			.theme-picker {
 				display: flex;
 				flex-wrap: wrap;
@@ -1567,8 +1563,6 @@
 			.tour-intro .section-mark {
 				justify-content: center;
 			}
-			/* Bumped tour grid from 2 columns × 3 rows (6 cards) to 2 columns × 4 rows
-   (8 cards) (issue D) — the auto-scroll feature now has its own card. */
 			.tour-grid {
 				display: grid;
 				grid-template-columns: repeat(2, 1fr);
@@ -1632,7 +1626,7 @@
 				margin: 0;
 			}
 
-			/* ─── Sideload, download, FAQ, footer ─── */
+			/* ─── Promise, download, FAQ, footer ─── */
 			.sideload {
 				padding: 120px 0;
 			}
@@ -1741,44 +1735,6 @@
 			}
 			.download-meta a:hover {
 				border-color: var(--accent);
-			}
-			.install-steps {
-				margin-top: 64px;
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 16px;
-				max-width: 720px;
-				margin-left: auto;
-				margin-right: auto;
-				text-align: left;
-			}
-			.install-step {
-				background: var(--bg);
-				border-radius: 14px;
-				padding: 20px;
-				border: 1px solid var(--rule);
-			}
-			.install-step .num {
-				font-family: var(--serif);
-				font-style: italic;
-				font-weight: 600;
-				font-size: 24px;
-				color: var(--accent);
-				display: block;
-				margin-bottom: 6px;
-			}
-			.install-step h5 {
-				font-family: var(--sans);
-				font-size: 14px;
-				font-weight: 600;
-				margin: 0 0 4px;
-			}
-			.install-step p {
-				font-family: var(--sans);
-				font-size: 13px;
-				line-height: 1.5;
-				color: var(--ink-soft);
-				margin: 0;
 			}
 
 			.faq {
@@ -1917,11 +1873,11 @@
 			}
 
 			/* ─── Mobile ───────────────────────────────────────────────────
-   Breakpoint raised from 920px → 1024px (issue B). The hero phone
-   stack overlaps the right edge of the container between ~920 and
-   ~1080px because the two stacked phones (280px wide each, with
-   one offset 60px from right) need at least ~340px of horizontal
-   room, which the 1.1fr/1fr grid only gives at >1024px viewports. */
+   Breakpoint at 1024px. The hero phone stack overlaps the right edge
+   of the container between ~920 and ~1080px because the two stacked
+   phones (280px wide each, one offset 60px from right) need at least
+   ~340px of horizontal room, which the 1.1fr/1fr grid only gives at
+   >1024px viewports. */
 			@media (max-width: 1024px) {
 				.hero-grid {
 					grid-template-columns: 1fr;
@@ -1955,9 +1911,6 @@
 				.sideload-grid {
 					grid-template-columns: 1fr;
 					gap: 40px;
-				}
-				.install-steps {
-					grid-template-columns: 1fr;
 				}
 				.footer-grid {
 					grid-template-columns: 1fr;
@@ -2059,25 +2012,25 @@
 					<a href="#preview" class="nav-link">Try it</a>
 					<a href="#faq" class="nav-link">FAQ</a>
 					<a href="#download" class="nav-cta">
-						Download
+						Get the app
 						<svg
 							width="14"
 							height="14"
 							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2.5"
+							fill="currentColor"
 						>
-							<path d="M12 5v14M19 12l-7 7-7-7" />
+							<path
+								d="M4 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 4 3.5z"
+							/>
 						</svg>
 					</a>
 				</nav>
 			</div>
 		</header>
 
-		<!-- HERO — book references replaced with a generic placeholder novel
-     ("The Long Quiet" by A. Margolis) to avoid anchoring the site to
-     any specific real book. The chapter excerpt is original prose. -->
+		<!-- HERO — the sample novel ("The Long Quiet" by A. Margolis) is a
+     generic placeholder so the site isn't anchored to any real book.
+     The chapter excerpt is original prose. -->
 		<section class="hero">
 			<div class="container-wide">
 				<div class="hero-grid">
@@ -2096,16 +2049,14 @@
 							serif you like.
 						</p>
 						<div class="hero-cta">
-							<a href="#download" class="btn-primary">
-								Download APK
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-								>
+							<a
+								href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
+								class="btn-primary"
+							>
+								Get it on Google Play
+								<svg viewBox="0 0 24 24" fill="currentColor">
 									<path
-										d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"
+										d="M4 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 4 3.5z"
 									/>
 								</svg>
 							</a>
@@ -2113,10 +2064,7 @@
 								>Try the reader →</a
 							>
 						</div>
-						<!-- Hero meta unified to inventory shape (issue C): all three
-             items are now things-you-can-count, not a mix of inventory
-             plus privacy boast. The privacy claim moves to the eyebrow
-             chip above and the No-Tracking section below. -->
+						<!-- Hero meta: all three items are things you can count. -->
 						<div class="hero-meta">
 							<div class="hero-meta-item">
 								<strong>8</strong>Reading fonts
@@ -2168,7 +2116,6 @@
 								</div>
 								<div class="nav-bar">
 									<div class="nav-item active">Home</div>
-									<div class="nav-item">Search</div>
 									<div class="nav-item">Library</div>
 									<div class="nav-item">Audio</div>
 									<div class="nav-item">Settings</div>
@@ -2211,9 +2158,8 @@
 			</div>
 		</section>
 
-		<!-- MANIFESTO — drop cap now uses a real <span class="drop-initial">
-     instead of ::first-letter (issue A). Same visual result, works
-     reliably across Safari, Firefox, and Chrome. -->
+		<!-- MANIFESTO — drop cap uses a real <span class="drop-initial">
+     for cross-browser reliability. -->
 		<section class="manifesto">
 			<div class="container">
 				<div class="section-mark">The premise</div>
@@ -2378,10 +2324,7 @@
 										<span class="small">⏭</span>
 									</div>
 									<div class="tts-voice">
-										<span
-											>🔊 United States · Blake ♂
-											(Online)</span
-										>
+										<span>🔊 United States · Blake ♂</span>
 									</div>
 								</div>
 							</div>
@@ -2534,10 +2477,9 @@
 			</div>
 		</section>
 
-		<!-- INTERACTIVE PREVIEW — phone now defaults to data-theme="dark"
-     (issue H), and "Dark" is the active theme button on first load.
-     Dark theme picker switched to a 4-column grid (issue E) so 8
-     dark themes lay out cleanly as 2 rows of 4. -->
+		<!-- INTERACTIVE PREVIEW — phone defaults to data-theme="dark", and
+     "Dark" is the active theme button on first load. The dark theme
+     picker is a 4-column grid so 8 dark themes lay out as 2 rows of 4. -->
 		<section class="preview" id="preview">
 			<div class="container-wide">
 				<div class="preview-intro">
@@ -2722,9 +2664,8 @@
 			</div>
 		</section>
 
-		<!-- TOUR — now 8 cards in a 2×4 grid (issue D). Auto-scroll added as
-     card 06 between Bookmarks and EPUB import; "Quiet update checks"
-     bumped to position 08. -->
+		<!-- TOUR — 8 cards in a 2×4 grid. Card 06 is auto-scroll; card 08 is
+     backup & restore. -->
 		<section class="tour">
 			<div class="container">
 				<div class="tour-intro">
@@ -2752,10 +2693,9 @@
 						</div>
 						<h4>Works without signal.</h4>
 						<p>
-							Download chapters in batches and they're yours.
-							EPUBs import in seconds. Reading state syncs back to
-							the library on every page. Subway, flight, family
-							dinner — same app.
+							EPUBs import in seconds and they're yours. Reading
+							state syncs back to the library on every page.
+							Subway, flight, family dinner — same app.
 						</p>
 					</div>
 					<div class="tour-card">
@@ -2845,8 +2785,9 @@
 						<h4>EPUB import.</h4>
 						<p>
 							Drag any .epub into the app. Cover, chapters,
-							metadata — extracted automatically. Local books and
-							online novels live side by side in the same library.
+							metadata — extracted automatically. Your whole
+							library lives in one place, organized and
+							searchable.
 						</p>
 					</div>
 					<div class="tour-card">
@@ -2906,17 +2847,17 @@
 								stroke-width="2"
 							>
 								<path
-									d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+									d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
 								/>
-								<path d="M12 7v5l3 3" />
+								<polyline points="7 10 12 15 17 10" />
+								<line x1="12" y1="15" x2="12" y2="3" />
 							</svg>
 						</div>
-						<h4>Quiet update checks.</h4>
+						<h4>Backup &amp; restore.</h4>
 						<p>
-							The app checks for new chapters in the background
-							when you're on wifi, then surfaces them the next
-							time you open it. Off by default — turn it on if you
-							want it.
+							Export everything — library, reading history,
+							bookmarks, highlights, settings — as a single ZIP.
+							Move to a new phone and restore it all in one step.
 						</p>
 					</div>
 				</div>
@@ -2925,19 +2866,18 @@
 
 		<section class="sideload">
 			<div class="container">
-				<div class="section-mark">About installing</div>
-				<h2>Not on the Play Store.</h2>
+				<div class="section-mark">No catch</div>
+				<h2>Free, and it stays that way.</h2>
 				<div class="sideload-grid" style="margin-top: 40px">
 					<div>
 						<p>
-							The app ships as an APK you install yourself. Going
-							through the Play Store would require an account
-							integration, a developer fee, and ad SDK compliance,
-							none of which fit a project like this.
+							NovelForge is free on Google Play. There's no paid
+							tier, no subscription, and no ads — now or later.
 						</p>
 						<p>
-							Sideloading takes about thirty seconds. The
-							trade-off is worth it.
+							You don't make an account, and nothing you read
+							leaves your phone. The source is open if you'd like
+							to read it.
 						</p>
 					</div>
 					<ul class="sideload-list">
@@ -3027,9 +2967,6 @@
 			</div>
 		</section>
 
-		<!-- DOWNLOAD — button text unified to "Download APK" matching the
-     hero CTA (issue I). The brand context is already obvious from
-     the heading and surrounding page. -->
 		<section class="download-section" id="download">
 			<div class="container">
 				<div class="section-mark" style="justify-content: center">
@@ -3037,90 +2974,45 @@
 				</div>
 				<h2>Free. Open. <em>Yours.</em></h2>
 				<p class="lede">
-					Android 8.0 or later. No iOS — Apple's sideloading rules
-					don't allow a project like this.
+					Android 8.0 or later. Android only for now — an iOS build
+					isn't planned.
 				</p>
 				<div class="download-button">
 					<a
-						href="https://github.com/abhinavxt/novelforge/releases/latest"
+						href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
 						class="btn-primary"
 					>
-						<svg
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
+						<svg viewBox="0 0 24 24" fill="currentColor">
 							<path
-								d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"
+								d="M4 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 4 3.5z"
 							/>
 						</svg>
-						Download APK
+						Get it on Google Play
 					</a>
 					<p class="download-meta">
 						<span>Android 8.0+</span>
 						<span class="dot">·</span>
-						<span>~67 MB</span>
+						<span>Free</span>
 						<span class="dot">·</span>
-						<a
-							href="https://github.com/abhinavxt/novelforge/releases"
-							>Older versions</a
-						>
+						<span>No ads or in-app purchases</span>
 					</p>
-				</div>
-				<div class="install-steps">
-					<div class="install-step">
-						<span class="num">01</span>
-						<h5>Download the APK</h5>
-						<p>
-							Tap the button above. Your browser saves the file to
-							Downloads.
-						</p>
-					</div>
-					<div class="install-step">
-						<span class="num">02</span>
-						<h5>Allow install</h5>
-						<p>
-							Tap the file. Android asks once for permission to
-							install. Grant it.
-						</p>
-					</div>
-					<div class="install-step">
-						<span class="num">03</span>
-						<h5>Open and read</h5>
-						<p>
-							That's it. The app's on your home screen. No setup,
-							no signup.
-						</p>
-					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- FAQ — first question rephrased from "Are the web novels legal?"
-     to "Where does the chapter content come from?" (issue F). The
-     answer was already good; just the question needed fixing so it
-     doesn't sound like a guilty admission. -->
 		<section class="faq" id="faq">
 			<div class="container">
 				<div class="section-mark">Questions</div>
 				<h2>The honest <em>FAQ.</em></h2>
 				<div class="faq-list">
 					<details class="faq-item">
-						<summary>Is it safe to install?</summary>
+						<summary>Is it really free?</summary>
 						<div class="answer">
 							<p>
-								The APK is built from the open-source code on
-								GitHub and signed with a stable key. If you want
-								to verify it, every release page lists a SHA-256
-								— compare it against your downloaded file before
-								installing.
-							</p>
-							<p>
-								Android shows a warning the first time you
-								install anything from outside the Play Store.
-								That warning shows for every sideloaded APK on
-								the planet, not just this one.
+								Yes. Free to download on Google Play, with no
+								subscription, no ads, and no in-app purchases.
+								The source is open on GitHub if you want to see
+								exactly what it does.
 							</p>
 						</div>
 					</details>
@@ -3128,34 +3020,24 @@
 						<summary>What about updates?</summary>
 						<div class="answer">
 							<p>
-								The app checks the GitHub releases page once a
-								day in the background and shows you a
-								non-intrusive prompt when a new version is
-								available. Updates are manual — tap, the APK
-								downloads, you install. Same flow as the first
-								install.
-							</p>
-							<p>
-								Don't want the prompt? Turn it off in Settings.
+								Google Play updates the app automatically in the
+								background, the same as any other app. There's
+								nothing to do on your end.
 							</p>
 						</div>
 					</details>
 					<details class="faq-item">
-						<summary>
-							Where does the chapter content come from?
-						</summary>
+						<summary>What books can I read in it?</summary>
 						<div class="answer">
 							<p>
-								NovelForge connects to publicly-accessible sites
-								you'd otherwise visit in a browser. The app
-								fetches the page and displays it in a cleaner
-								format. No content is hosted by NovelForge.
+								Anything you have as an EPUB file. Import it and
+								NovelForge pulls out the cover, chapters, and
+								metadata automatically.
 							</p>
 							<p>
-								If a site asks readers to support authors via
-								Patreon or a paid tier, please do. Web novelists
-								rely on it. The app is a reading tool, not a
-								piracy tool.
+								Everything stays on your device — the app
+								doesn't host, fetch, or sell content. It's a
+								reader for the files you already own.
 							</p>
 						</div>
 					</details>
@@ -3163,16 +3045,10 @@
 						<summary>Will there ever be an iOS version?</summary>
 						<div class="answer">
 							<p>
-								Probably not. iOS doesn't allow apps like this
-								to be installed without going through the App
-								Store, and the App Store's rules around content
-								scraping and indie distribution conflict with
-								how the app works.
-							</p>
-							<p>
-								If Apple's EU-style sideloading expands
-								worldwide, the calculation changes. For now,
-								Android only.
+								Not planned. An iOS version would mean a
+								separate codebase and a different distribution
+								path, and right now the focus is on making the
+								Android app as good as it can be.
 							</p>
 						</div>
 					</details>
@@ -3187,22 +3063,9 @@
 							</p>
 							<p>
 								There's no donation page on principle. If you're
-								feeling generous, support a web novelist whose
-								story you've enjoyed — they need it more than
-								this project does.
-							</p>
-						</div>
-					</details>
-					<details class="faq-item">
-						<summary>What sources are supported?</summary>
-						<div class="answer">
-							<p>
-								Currently: RoyalRoad, ReadNovelFull,
-								FreeWebNovel, LibRead, NovelFullNet, PawRead,
-								and PrimordialTranslation. Plus EPUB import for
-								any other novel you have as a file. New sources
-								get added when users ask and when their scrapers
-								prove stable.
+								feeling generous, support an author whose work
+								you've enjoyed — they need it more than this
+								project does.
 							</p>
 						</div>
 					</details>
@@ -3212,9 +3075,9 @@
 							<p>
 								Locally, in the app's private storage on your
 								device. Reading history, bookmarks, highlights,
-								downloads, settings — all of it. The app never
-								sends your reading data to a server because
-								there is no NovelForge server.
+								settings — all of it. The app never sends your
+								reading data to a server because there is no
+								NovelForge server.
 							</p>
 							<p>
 								For backups, Settings has an "Export backup"
@@ -3228,9 +3091,6 @@
 			</div>
 		</section>
 
-		<!-- FOOTER — Changelog link removed from the Project column per request.
-     The remaining 3 links (GitHub repo, All releases, Report a bug) are
-     enough; the column is slightly shorter than the others, which is fine. -->
 		<footer class="footer">
 			<div class="container-wide">
 				<div class="footer-grid">
@@ -3245,14 +3105,14 @@
 						<ul>
 							<li>
 								<a
-									href="https://github.com/abhinavxt/novelforge"
-									>GitHub repository</a
+									href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
+									>Google Play</a
 								>
 							</li>
 							<li>
 								<a
-									href="https://github.com/abhinavxt/novelforge/releases"
-									>All releases</a
+									href="https://github.com/abhinavxt/novelforge"
+									>GitHub repository</a
 								>
 							</li>
 							<li>
@@ -3280,16 +3140,16 @@
 				</div>
 				<div class="footer-bottom">
 					<span>Open source · MIT licensed</span>
-					<span>Android 8.0+ · No iOS planned</span>
+					<span>Android 8.0+ · On Google Play</span>
 				</div>
 			</div>
 		</footer>
 
 		<script>
-			/* Reader preview controller — same vanilla JS pattern as before. The
-   logic doesn't change because we use data attributes throughout: the
-   button's data-font / data-theme value gets mirrored to the phone,
-   which triggers the CSS variable swap and the right family loads. */
+			/* Reader preview controller. The logic uses data attributes
+   throughout: the button's data-font / data-theme value gets mirrored
+   to the phone, which triggers the CSS variable swap and the right
+   family loads. */
 			;(function () {
 				const phone = document.getElementById("previewPhone")
 				const body = phone.querySelector(".pr-body")
@@ -3334,11 +3194,10 @@
 				})
 			})()
 
-			/* Title-bar updater for hash navigation (issue J). When the user
-   clicks an anchor link in the topbar, mirror the section name into
-   document.title so the browser tab and any bookmark made from the
-   page reflect the section. Resets to the base title when the hash
-   is empty (e.g. user clicks the wordmark to scroll to top). */
+			/* Title-bar updater for hash navigation. When the user clicks an
+   anchor link in the topbar, mirror the section name into document.title
+   so the browser tab and any bookmark made from the page reflect the
+   section. Resets to the base title when the hash is empty. */
 			;(function () {
 				const baseTitle =
 					"NovelForge — A reading app for people who love reading"
