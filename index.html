@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="paper">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,46 +17,197 @@
 			content="A privacy-respecting Android EPUB reader. Eight reading fonts, eleven themes, neural text-to-speech. Free on Google Play, open source, no accounts."
 		/>
 		<meta property="og:type" content="website" />
+		<meta name="theme-color" id="metaTheme" content="#faf6ee" />
 
-		<!-- All eight reader fonts loaded from Google Fonts plus Open Dyslexic from a CDN.
-     We need every font available so the interactive preview can switch between
-     them without re-fetching anything mid-interaction. The display=swap directive
-     ensures the page renders even if a font is slow to load. -->
+		<!-- Every face on this page ships inside the app. Literata carries the
+     display and body; JetBrains Mono carries labels and numbers; the
+     rest exist so the live reader demo can switch without re-fetching. -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Noto+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Noto+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap"
 			rel="stylesheet"
 		/>
-
-		<!-- Open Dyslexic isn't on Google Fonts. We pull it from a public CDN that
-     hosts the font with permission from the original creator. -->
+		<!-- Open Dyslexic isn't on Google Fonts; pulled from a CDN hosting it
+     with the creator's permission. -->
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/gh/antijingoist/open-dyslexic@master/web/open-dyslexic.css"
 		/>
 
 		<style>
-			:root {
-				--bg: #f5f0f7;
-				--bg-elev: #ffffff;
-				--bg-warm: #f2ead8;
-				--ink: #1a1a1f;
-				--ink-soft: #6b6b72;
-				--ink-faint: #9c9ca3;
-				--rule: #e5dcea;
-				--accent: #0f766e;
-				--accent-soft: #14b8a6;
-				--chip: #e8e0f5;
-				--chip-text: #5b3f8e;
-
-				--serif: "Literata", Georgia, "Times New Roman", serif;
-				--sans: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
-
-				--container: 720px;
-				--container-wide: 1180px;
+			/* ════════════════════════════════════════════════════════════════
+   THEME SYSTEM — the same eleven palettes the app ships.
+   Any element carrying [data-theme] resolves these variables, so the
+   page root and the demo phone share one source of truth.
+   ════════════════════════════════════════════════════════════════ */
+			html[data-theme="paper"],
+			.phone[data-theme="paper"] {
+				--bg: #faf6ee;
+				--elev: #fffdf8;
+				--sunken: #f1ead9;
+				--ink: #211d18;
+				--soft: #6e675a;
+				--faint: #a39a89;
+				--rule: #e7dfcd;
+				--accent: #0d7268;
+				--accent-ink: #ffffff;
+				--accent-dim: #0d726822;
+				--scheme: light;
+			}
+			html[data-theme="sepia"],
+			.phone[data-theme="sepia"] {
+				--bg: #f3e7d3;
+				--elev: #faf0df;
+				--sunken: #e9d9bd;
+				--ink: #402e1c;
+				--soft: #83694a;
+				--faint: #ab9573;
+				--rule: #e0cfb1;
+				--accent: #8f5f22;
+				--accent-ink: #fff8ec;
+				--accent-dim: #8f5f2226;
+				--scheme: light;
+			}
+			html[data-theme="solari"],
+			.phone[data-theme="solari"] {
+				--bg: #fdf6e3;
+				--elev: #fffdf2;
+				--sunken: #f3ecd6;
+				--ink: #073642;
+				--soft: #657b83;
+				--faint: #93a1a1;
+				--rule: #e9e2ca;
+				--accent: #b58900;
+				--accent-ink: #fdf6e3;
+				--accent-dim: #b5890022;
+				--scheme: light;
+			}
+			html[data-theme="dark"],
+			.phone[data-theme="dark"] {
+				--bg: #16171b;
+				--elev: #1e2026;
+				--sunken: #111216;
+				--ink: #e8e8ec;
+				--soft: #a2a3ad;
+				--faint: #6c6d78;
+				--rule: #2b2d35;
+				--accent: #2dd4bf;
+				--accent-ink: #04211d;
+				--accent-dim: #2dd4bf1f;
+				--scheme: dark;
+			}
+			html[data-theme="amoled"],
+			.phone[data-theme="amoled"] {
+				--bg: #000000;
+				--elev: #0e0e11;
+				--sunken: #000000;
+				--ink: #ececee;
+				--soft: #9d9da6;
+				--faint: #63636c;
+				--rule: #1e1e23;
+				--accent: #2dd4bf;
+				--accent-ink: #04211d;
+				--accent-dim: #2dd4bf1c;
+				--scheme: dark;
+			}
+			html[data-theme="nord"],
+			.phone[data-theme="nord"] {
+				--bg: #2e3440;
+				--elev: #3b4252;
+				--sunken: #272c36;
+				--ink: #eceff4;
+				--soft: #aeb8cc;
+				--faint: #7b869c;
+				--rule: #434c5e;
+				--accent: #88c0d0;
+				--accent-ink: #20262f;
+				--accent-dim: #88c0d024;
+				--scheme: dark;
+			}
+			html[data-theme="dracula"],
+			.phone[data-theme="dracula"] {
+				--bg: #282a36;
+				--elev: #313342;
+				--sunken: #21222c;
+				--ink: #f8f8f2;
+				--soft: #b0b3ce;
+				--faint: #6272a4;
+				--rule: #44475a;
+				--accent: #bd93f9;
+				--accent-ink: #1e1428;
+				--accent-dim: #bd93f924;
+				--scheme: dark;
+			}
+			html[data-theme="gruvbox"],
+			.phone[data-theme="gruvbox"] {
+				--bg: #282828;
+				--elev: #32302f;
+				--sunken: #1f1f1f;
+				--ink: #ebdbb2;
+				--soft: #bdae93;
+				--faint: #7c6f64;
+				--rule: #3c3836;
+				--accent: #fe8019;
+				--accent-ink: #241202;
+				--accent-dim: #fe801922;
+				--scheme: dark;
+			}
+			html[data-theme="catppuccin"],
+			.phone[data-theme="catppuccin"] {
+				--bg: #1e1e2e;
+				--elev: #2a2a3d;
+				--sunken: #181825;
+				--ink: #cdd6f4;
+				--soft: #a6adc8;
+				--faint: #6c7086;
+				--rule: #3b3b54;
+				--accent: #cba6f7;
+				--accent-ink: #221733;
+				--accent-dim: #cba6f722;
+				--scheme: dark;
+			}
+			html[data-theme="navy"],
+			.phone[data-theme="navy"] {
+				--bg: #0f1a2b;
+				--elev: #16233a;
+				--sunken: #0a1320;
+				--ink: #dde7f5;
+				--soft: #9cb0cc;
+				--faint: #5f7594;
+				--rule: #223451;
+				--accent: #5ea7ee;
+				--accent-ink: #06121f;
+				--accent-dim: #5ea7ee22;
+				--scheme: dark;
+			}
+			html[data-theme="grey"],
+			.phone[data-theme="grey"] {
+				--bg: #26282b;
+				--elev: #303336;
+				--sunken: #1d1f21;
+				--ink: #e5e6e8;
+				--soft: #a8abb0;
+				--faint: #6f7379;
+				--rule: #3b3e43;
+				--accent: #8fb4d9;
+				--accent-ink: #131a21;
+				--accent-dim: #8fb4d922;
+				--scheme: dark;
 			}
 
+			/* ════════════════════════════════════════════════════════════════
+   BASE
+   ════════════════════════════════════════════════════════════════ */
+			:root {
+				--serif: "Literata", Georgia, "Times New Roman", serif;
+				--mono:
+					"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+				--container: 70ch;
+				--wide: 1140px;
+				--dur: 0.55s;
+				--ease: cubic-bezier(0.22, 0.75, 0.3, 1);
+			}
 			*,
 			*::before,
 			*::after {
@@ -64,20 +215,33 @@
 			}
 			html {
 				scroll-behavior: smooth;
+				color-scheme: var(--scheme);
 			}
 			body {
 				margin: 0;
 				font-family: var(--serif);
 				font-size: 18px;
-				line-height: 1.65;
+				line-height: 1.68;
 				color: var(--ink);
 				background: var(--bg);
 				-webkit-font-smoothing: antialiased;
 				text-rendering: optimizeLegibility;
+				transition:
+					background-color 0.35s ease,
+					color 0.35s ease;
 			}
 			a {
 				color: inherit;
 				text-decoration: none;
+			}
+			::selection {
+				background: var(--accent);
+				color: var(--accent-ink);
+			}
+			:focus-visible {
+				outline: 2px solid var(--accent);
+				outline-offset: 3px;
+				border-radius: 2px;
 			}
 
 			.container {
@@ -85,2072 +249,1296 @@
 				margin: 0 auto;
 				padding: 0 24px;
 			}
-			.container-wide {
-				max-width: var(--container-wide);
+			.wide {
+				max-width: var(--wide);
 				margin: 0 auto;
 				padding: 0 24px;
 			}
 
-			section {
-				position: relative;
-			}
-
-			/* ─── Top bar ────────────────────────────────────────────────── */
-			.topbar {
-				padding: 24px 0;
-				border-bottom: 1px solid var(--rule);
-			}
-			.topbar .container-wide {
+			/* Running-header eyebrow: mono, like the reader's own chrome. */
+			.eyebrow {
+				font-family: var(--mono);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--accent);
 				display: flex;
 				align-items: center;
-				justify-content: space-between;
+				gap: 12px;
+			}
+			.eyebrow::after {
+				content: "";
+				height: 1px;
+				flex: 0 0 42px;
+				background: var(--rule);
+			}
+			.eyebrow .rt {
+				color: var(--faint);
+				letter-spacing: 0.08em;
+				text-transform: none;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-family: var(--serif);
+				font-optical-sizing: auto;
+				font-variation-settings: "opsz" 60;
+				font-weight: 600;
+				line-height: 1.14;
+				margin: 0;
+				letter-spacing: -0.015em;
+				text-wrap: balance;
+			}
+			h2 {
+				font-size: clamp(30px, 4.4vw, 42px);
+				margin: 14px 0 18px;
+			}
+			h3 {
+				font-size: 23px;
+				font-weight: 600;
+				margin: 10px 0 12px;
+			}
+			p {
+				margin: 0 0 1.2em;
+			}
+			.lede {
+				font-size: 20px;
+				color: var(--soft);
+			}
+			.soft {
+				color: var(--soft);
+			}
+
+			/* ── Reading-progress bar (the reader's own progress line) ──── */
+			#progress {
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 3px;
+				width: 0%;
+				background: var(--accent);
+				z-index: 60;
+				transition: background-color 0.35s ease;
+			}
+
+			/* ── Topbar ─────────────────────────────────────────────────── */
+			.topbar {
+				position: sticky;
+				top: 0;
+				z-index: 50;
+				background: var(
+					--bg
+				); /* fallback where color-mix is unsupported */
+				background: color-mix(in srgb, var(--bg) 86%, transparent);
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
+				border-bottom: 1px solid var(--rule);
+				transition:
+					background-color 0.35s ease,
+					border-color 0.35s ease;
+			}
+			.topbar-inner {
+				max-width: var(--wide);
+				margin: 0 auto;
+				padding: 14px 24px;
+				display: flex;
+				align-items: center;
+				gap: 26px;
 			}
 			.wordmark {
-				font-family: var(--sans);
-				font-weight: 800;
-				font-size: 18px;
-				letter-spacing: -0.02em;
+				font-family: var(--serif);
+				font-weight: 700;
+				font-size: 20px;
+				letter-spacing: -0.01em;
+				display: flex;
+				align-items: baseline;
+				gap: 2px;
 			}
-			.wordmark span {
+			.wordmark em {
+				font-style: italic;
+				font-weight: 600;
 				color: var(--accent);
 			}
-			.topbar nav {
-				font-family: var(--sans);
-				font-size: 14px;
+			.topnav {
+				display: flex;
+				gap: 22px;
+				margin-left: auto;
+			}
+			.topnav a {
+				font-family: var(--mono);
+				font-size: 12.5px;
 				font-weight: 500;
-				color: var(--ink-soft);
+				letter-spacing: 0.04em;
+				color: var(--soft);
+				padding: 6px 2px;
+				border-bottom: 1px solid transparent;
 			}
-			.topbar nav a {
-				margin-left: 32px;
-				transition: color 200ms;
+			.topnav a:hover {
+				color: var(--ink);
+				border-bottom-color: var(--accent);
 			}
-			.topbar nav a:hover {
-				color: var(--accent);
-			}
-			.topbar .nav-cta {
+			.btn {
 				display: inline-flex;
 				align-items: center;
-				gap: 6px;
-				background: var(--ink);
-				color: var(--bg);
-				padding: 10px 18px;
-				border-radius: 100px;
-				font-weight: 500;
-				margin-left: 32px;
-				transition: background 200ms;
-			}
-			.topbar .nav-cta:hover {
+				gap: 9px;
+				font-family: var(--mono);
+				font-size: 13.5px;
+				font-weight: 600;
+				letter-spacing: 0.02em;
+				padding: 11px 20px;
+				border-radius: 10px;
 				background: var(--accent);
-				color: var(--bg-elev);
+				color: var(--accent-ink);
+				border: 1px solid transparent;
+				transition:
+					transform 0.18s var(--ease),
+					background-color 0.35s ease,
+					color 0.35s ease;
+				cursor: pointer;
+			}
+			.btn:hover {
+				transform: translateY(-1px);
+			}
+			.btn:active {
+				transform: translateY(0);
+			}
+			.btn.ghost {
+				background: transparent;
+				color: var(--ink);
+				border-color: var(--rule);
+			}
+			.btn.ghost:hover {
+				border-color: var(--accent);
+				color: var(--accent);
+			}
+			.btn.small {
+				padding: 8px 15px;
+				font-size: 12.5px;
 			}
 
-			/* ─── Hero ───────────────────────────────────────────────────── */
-			.hero {
-				padding: 100px 0 80px;
-				position: relative;
-				overflow: hidden;
-			}
-			.hero::before {
-				content: "";
-				position: absolute;
-				top: -300px;
-				right: -200px;
-				width: 700px;
-				height: 700px;
-				background: radial-gradient(
-					circle,
-					rgba(15, 118, 110, 0.06) 0%,
-					transparent 60%
-				);
-				pointer-events: none;
-			}
-			.hero::after {
-				content: "";
-				position: absolute;
-				bottom: -200px;
-				left: -100px;
-				width: 500px;
-				height: 500px;
-				background: radial-gradient(
-					circle,
-					rgba(91, 63, 142, 0.05) 0%,
-					transparent 60%
-				);
-				pointer-events: none;
-			}
-			.hero .container-wide {
+			/* ── Theme switcher popover ─────────────────────────────────── */
+			.theme-pop {
 				position: relative;
 			}
-
-			.hero-grid {
-				display: grid;
-				grid-template-columns: 1.1fr 1fr;
-				gap: 80px;
-				align-items: center;
-			}
-
-			.eyebrow {
+			.theme-pop > summary {
+				list-style: none;
+				cursor: pointer;
 				display: inline-flex;
 				align-items: center;
 				gap: 8px;
-				font-family: var(--sans);
-				font-size: 13px;
+				font-family: var(--mono);
+				font-size: 12.5px;
 				font-weight: 500;
-				background: var(--chip);
-				color: var(--chip-text);
-				padding: 6px 14px;
-				border-radius: 100px;
-				margin-bottom: 28px;
+				color: var(--soft);
+				padding: 8px 12px;
+				border: 1px solid var(--rule);
+				border-radius: 10px;
+				transition:
+					border-color 0.2s ease,
+					color 0.2s ease;
 			}
-			.eyebrow .dot {
-				width: 6px;
-				height: 6px;
-				background: var(--accent);
+			.theme-pop > summary:hover {
+				border-color: var(--accent);
+				color: var(--ink);
+			}
+			.theme-pop > summary::-webkit-details-marker {
+				display: none;
+			}
+			.theme-pop .dot {
+				width: 13px;
+				height: 13px;
 				border-radius: 50%;
-				animation: pulse 2s ease-in-out infinite;
+				background: var(--accent);
+				border: 1.5px solid var(--rule);
 			}
-			@keyframes pulse {
-				0%,
-				100% {
-					opacity: 0.4;
-				}
-				50% {
-					opacity: 1;
-				}
+			.theme-menu {
+				position: absolute;
+				right: 0;
+				top: calc(100% + 10px);
+				background: var(--elev);
+				border: 1px solid var(--rule);
+				border-radius: 14px;
+				box-shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.35);
+				padding: 8px;
+				width: 230px;
+				z-index: 70;
 			}
-
-			h1 {
-				font-family: var(--serif);
-				font-weight: 500;
-				font-size: clamp(40px, 5.5vw, 68px);
-				line-height: 1.05;
-				letter-spacing: -0.025em;
-				margin: 0 0 28px;
-				text-wrap: balance;
+			.theme-menu .tm-label {
+				font-family: var(--mono);
+				font-size: 10.5px;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--faint);
+				padding: 8px 10px 4px;
 			}
-			h1 em {
-				font-style: italic;
-				color: var(--accent);
-				font-weight: 400;
-			}
-
-			.hero .lede {
-				font-size: 19px;
-				line-height: 1.55;
-				color: var(--ink-soft);
-				margin: 0 0 40px;
-				text-wrap: pretty;
-				max-width: 520px;
-			}
-			.hero-cta {
+			.theme-menu button {
 				display: flex;
 				align-items: center;
-				gap: 12px;
+				gap: 10px;
+				width: 100%;
+				font-family: var(--mono);
+				font-size: 13px;
+				text-align: left;
+				padding: 8px 10px;
+				border: 0;
+				border-radius: 9px;
+				background: transparent;
+				color: var(--ink);
+				cursor: pointer;
+			}
+			.theme-menu button {
+				color: var(--ink);
+			} /* identifier data-theme must not restyle rows */
+			.theme-menu button:hover {
+				background: var(--accent-dim);
+			}
+			.theme-menu button[aria-pressed="true"] {
+				background: var(--accent-dim);
+				color: var(--accent);
+				font-weight: 600;
+			}
+			.theme-menu .sw {
+				width: 16px;
+				height: 16px;
+				border-radius: 5px;
+				flex: none;
+				border: 1px solid rgba(128, 128, 128, 0.35);
+			}
+			.theme-note {
+				font-family: var(--mono);
+				font-size: 10.5px;
+				color: var(--faint);
+				padding: 6px 10px 8px;
+				line-height: 1.5;
+			}
+
+			/* ── Hero ───────────────────────────────────────────────────── */
+			.hero {
+				padding: 78px 0 30px;
+				overflow: hidden;
+			}
+			.hero-grid {
+				max-width: var(--wide);
+				margin: 0 auto;
+				padding: 0 24px;
+				display: grid;
+				grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+				gap: 56px;
+				align-items: center;
+			}
+			.hero h1 {
+				font-size: clamp(42px, 6vw, 66px);
+				font-weight: 700;
+				font-variation-settings: "opsz" 72;
+				margin: 18px 0 22px;
+			}
+			.hero h1 .amp {
+				font-style: italic;
+				font-weight: 600;
+				color: var(--accent);
+			}
+			.hero .lede {
+				max-width: 46ch;
+			}
+			.hero-ctas {
+				display: flex;
+				gap: 14px;
+				margin: 30px 0 26px;
 				flex-wrap: wrap;
 			}
-			.btn-primary {
-				display: inline-flex;
-				align-items: center;
-				gap: 10px;
-				font-family: var(--sans);
-				font-size: 15px;
+
+			/* colophon-style stat line instead of stat cards */
+			.hero-colophon {
+				font-family: var(--mono);
+				font-size: 13px;
+				color: var(--soft);
+				display: flex;
+				flex-wrap: wrap;
+				gap: 6px 0;
+				align-items: baseline;
+			}
+			.hero-colophon b {
+				color: var(--ink);
 				font-weight: 600;
-				padding: 16px 28px;
-				background: var(--accent);
-				color: #fff;
-				border: none;
-				border-radius: 100px;
-				cursor: pointer;
+			}
+			.hero-colophon .sep {
+				color: var(--faint);
+				margin: 0 12px;
+			}
+
+			/* staged entrance */
+			.rise {
+				opacity: 0;
+				transform: translateY(16px);
+			}
+			.loaded .rise {
+				opacity: 1;
+				transform: none;
 				transition:
-					background 200ms,
-					transform 200ms,
-					box-shadow 200ms;
-				box-shadow: 0 4px 16px -4px rgba(15, 118, 110, 0.4);
+					opacity 0.7s var(--ease),
+					transform 0.7s var(--ease);
 			}
-			.btn-primary:hover {
-				background: #0c5a54;
-				transform: translateY(-2px);
-				box-shadow: 0 8px 24px -4px rgba(15, 118, 110, 0.5);
+			.loaded .rise.d1 {
+				transition-delay: 0.06s;
 			}
-			.btn-primary svg {
-				width: 18px;
-				height: 18px;
+			.loaded .rise.d2 {
+				transition-delay: 0.14s;
 			}
-			.btn-secondary {
-				display: inline-flex;
-				align-items: center;
-				gap: 6px;
-				font-family: var(--sans);
-				font-size: 14px;
-				font-weight: 500;
-				color: var(--ink-soft);
-				padding: 16px 8px;
-				transition: color 200ms;
+			.loaded .rise.d3 {
+				transition-delay: 0.22s;
 			}
-			.btn-secondary:hover {
-				color: var(--accent);
+			.loaded .rise.d4 {
+				transition-delay: 0.32s;
 			}
 
-			.hero-meta {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 24px;
-				margin-top: 56px;
-				padding-top: 36px;
-				border-top: 1px solid var(--rule);
-				max-width: 480px;
+			/* scroll reveals */
+			.reveal {
+				opacity: 0;
+				transform: translateY(22px);
 			}
-			.hero-meta-item {
-				font-family: var(--sans);
-				font-size: 12px;
-				color: var(--ink-soft);
-				letter-spacing: 0.04em;
-			}
-			.hero-meta-item strong {
-				display: block;
-				font-family: var(--serif);
-				font-weight: 600;
-				font-size: 32px;
-				color: var(--ink);
-				margin-bottom: 2px;
-				letter-spacing: -0.01em;
-				line-height: 1;
+			.reveal.in {
+				opacity: 1;
+				transform: none;
+				transition:
+					opacity 0.75s var(--ease),
+					transform 0.75s var(--ease);
 			}
 
-			.hero-phone {
-				position: relative;
-				height: 600px;
-			}
-			.hero-phone .phone {
-				position: absolute;
-				width: 280px;
-				aspect-ratio: 9 / 19.5;
-				background: var(--bg-elev);
-				border-radius: 36px;
+			/* ════════════════════════════════════════════════════════════════
+   PHONE MOCKUPS — themed by the nearest [data-theme] ancestor,
+   which is the page root everywhere except the live demo.
+   ════════════════════════════════════════════════════════════════ */
+			.phone {
+				width: 100%;
+				max-width: 330px;
+				margin: 0 auto;
+				background: var(--sunken);
 				border: 1px solid var(--rule);
-				overflow: hidden;
-				box-shadow:
-					0 0 0 8px var(--bg),
-					0 0 0 9px var(--rule),
-					0 30px 60px -20px rgba(15, 118, 110, 0.15),
-					0 10px 30px -10px rgba(0, 0, 0, 0.1);
+				border-radius: 34px;
+				padding: 10px;
+				box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.4);
+				transition:
+					background-color 0.35s ease,
+					border-color 0.35s ease;
 			}
-			.hero-phone .phone-1 {
-				top: 0;
-				right: 60px;
-				z-index: 2;
-				animation: float 6s ease-in-out infinite;
-			}
-			.hero-phone .phone-2 {
-				bottom: 20px;
-				left: 0;
-				transform: rotate(-4deg);
-				z-index: 1;
-				animation: float-tilt 6s ease-in-out infinite 1s;
-			}
-			@keyframes float {
-				0%,
-				100% {
-					transform: translateY(0);
-				}
-				50% {
-					transform: translateY(-8px);
-				}
-			}
-			@keyframes float-tilt {
-				0%,
-				100% {
-					transform: translateY(0) rotate(-4deg);
-				}
-				50% {
-					transform: translateY(-6px) rotate(-4deg);
-				}
-			}
-
-			.section-mark {
-				font-family: var(--sans);
-				font-size: 12px;
-				font-weight: 600;
-				letter-spacing: 0.18em;
-				text-transform: uppercase;
-				color: var(--accent);
-				margin-bottom: 20px;
-				display: flex;
-				align-items: center;
-				gap: 12px;
-			}
-			.section-mark::before {
-				content: "";
-				width: 24px;
-				height: 1px;
-				background: var(--accent);
-			}
-
-			h2 {
-				font-family: var(--serif);
-				font-weight: 500;
-				font-size: clamp(32px, 4vw, 44px);
-				line-height: 1.2;
-				letter-spacing: -0.02em;
-				margin: 0 0 24px;
-				text-wrap: balance;
-			}
-			h2 em {
-				font-style: italic;
-				color: var(--accent);
-				font-weight: 400;
-			}
-
-			.manifesto {
-				padding: 100px 0;
-			}
-			.manifesto .container {
-				max-width: 760px;
-			}
-			.manifesto p {
-				font-size: 20px;
-				line-height: 1.6;
-				margin: 0 0 24px;
-				color: var(--ink);
-				text-wrap: pretty;
-			}
-			.manifesto p:last-child {
-				color: var(--ink-soft);
-				margin-bottom: 0;
-			}
-
-			/* Drop-cap uses a real <span> for cross-browser reliability — the
-   ::first-letter pseudo-element is flaky on Safari when the first
-   character has leading whitespace, and Firefox sometimes ignores
-   font-style overrides on it. The span renders identically everywhere. */
-			.drop-initial {
-				font-size: 5em;
-				float: left;
-				line-height: 0.85;
-				margin: 8px 14px 0 0;
-				font-style: italic;
-				color: var(--accent);
-				font-weight: 500;
-				font-family: var(--serif);
-			}
-
-			.showcase {
-				padding: 120px 0;
-				background: var(--bg-elev);
-				border-top: 1px solid var(--rule);
-				border-bottom: 1px solid var(--rule);
-			}
-			.showcase-intro {
-				max-width: 720px;
-				margin: 0 auto 100px;
-				padding: 0 24px;
-				text-align: center;
-			}
-			.showcase-intro .section-mark {
-				justify-content: center;
-			}
-			.showcase-intro p {
-				font-size: 19px;
-				color: var(--ink-soft);
-				margin: 0;
-				line-height: 1.55;
-			}
-
-			.feature-block {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 80px;
-				align-items: center;
-				margin-bottom: 140px;
-			}
-			.feature-block:last-child {
-				margin-bottom: 0;
-			}
-			.feature-block.reverse {
-				direction: rtl;
-			}
-			.feature-block.reverse > * {
-				direction: ltr;
-			}
-
-			.feature-text .feature-tag {
-				display: inline-block;
-				font-family: var(--sans);
-				font-size: 12px;
-				font-weight: 600;
-				letter-spacing: 0.1em;
-				text-transform: uppercase;
-				color: var(--accent);
-				margin-bottom: 20px;
-			}
-			.feature-text h3 {
-				font-family: var(--serif);
-				font-size: clamp(28px, 3vw, 36px);
-				font-weight: 500;
-				line-height: 1.2;
-				letter-spacing: -0.015em;
-				margin: 0 0 20px;
-				text-wrap: balance;
-			}
-			.feature-text p {
-				font-size: 17px;
-				line-height: 1.65;
-				color: var(--ink-soft);
-				margin: 0 0 16px;
-				text-wrap: pretty;
-			}
-			.feature-text ul {
-				margin: 24px 0 0;
-				padding: 0;
-				list-style: none;
-				font-family: var(--sans);
-				font-size: 14px;
-			}
-			.feature-text ul li {
-				padding: 8px 0;
-				color: var(--ink);
-				display: flex;
-				align-items: center;
-				gap: 12px;
-			}
-			.feature-text ul li::before {
-				content: "";
-				width: 18px;
-				height: 18px;
-				background: var(--chip);
-				border-radius: 50%;
-				flex-shrink: 0;
-				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8l3 3 7-7' stroke='%230F766E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-				background-size: 12px;
-				background-repeat: no-repeat;
-				background-position: center;
-			}
-
-			.feature-phone {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				padding: 20px 0;
-			}
-			.feature-phone .phone {
-				width: 320px;
-				aspect-ratio: 9 / 19.5;
+			.screen {
 				background: var(--bg);
-				border-radius: 36px;
+				border-radius: 26px;
+				overflow: hidden;
 				border: 1px solid var(--rule);
-				overflow: hidden;
-				box-shadow:
-					0 0 0 8px var(--bg-elev),
-					0 0 0 9px var(--rule),
-					0 30px 80px -20px rgba(0, 0, 0, 0.15);
+				transition:
+					background-color 0.35s ease,
+					border-color 0.35s ease;
 			}
-
-			.phone-content {
-				height: 100%;
-				padding: 22px 18px 16px;
-				display: flex;
-				flex-direction: column;
-				background: var(--bg);
-				overflow: hidden;
-			}
-			.phone-statusbar {
-				font-family: var(--sans);
-				font-size: 11px;
-				font-weight: 600;
+			.statusbar {
 				display: flex;
 				justify-content: space-between;
-				margin-bottom: 16px;
-				color: var(--ink);
+				align-items: center;
+				padding: 10px 18px 6px;
+				font-family: var(--mono);
+				font-size: 10.5px;
+				color: var(--faint);
+			}
+			.app-pad {
+				padding: 6px 16px 16px;
 			}
 
-			/* Mock screens for the static feature blocks (home, reader, TTS, stats) */
-			.mock-home .greeting {
+			.greet {
 				font-family: var(--serif);
-				font-size: 28px;
-				font-weight: 700;
-				margin: 4px 0 4px;
-				letter-spacing: -0.01em;
-				line-height: 1.1;
-			}
-			.mock-home .greeting-sub {
-				font-family: var(--sans);
-				font-size: 11px;
-				color: var(--ink-soft);
-				margin-bottom: 6px;
-			}
-			.mock-home .stats {
-				font-family: var(--sans);
-				font-size: 10px;
-				color: var(--accent);
-				font-weight: 500;
-				margin-bottom: 18px;
-			}
-			.mock-home .section-h {
-				font-family: var(--serif);
-				font-size: 14px;
 				font-weight: 600;
-				margin: 0 0 10px;
+				font-size: 19px;
+				margin: 6px 0 2px;
 			}
-			.mock-home .continue-card {
-				background: var(--bg-elev);
-				border-radius: 14px;
-				padding: 10px;
-				display: flex;
-				gap: 10px;
-				margin-bottom: 16px;
-				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-			}
-			.mock-home .cc-cover {
-				width: 50px;
-				height: 70px;
-				border-radius: 4px;
-				background: linear-gradient(135deg, #6b7fb8 0%, #2d3e6b 100%);
-				flex-shrink: 0;
-			}
-			.mock-home .cc-info {
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-			}
-			.mock-home .cc-title {
-				font-family: var(--serif);
-				font-weight: 700;
-				font-size: 13px;
-				margin-bottom: 2px;
-			}
-			.mock-home .cc-chap {
-				font-family: var(--sans);
-				font-size: 10px;
-				color: var(--ink-soft);
-				margin-bottom: 8px;
-			}
-			.mock-home .cc-progress {
-				height: 3px;
-				background: var(--rule);
-				border-radius: 2px;
-				overflow: hidden;
+			.greet-sub {
+				font-family: var(--mono);
+				font-size: 10.5px;
+				color: var(--soft);
 				margin-bottom: 4px;
 			}
-			.mock-home .cc-progress div {
-				height: 100%;
-				width: 12%;
-				background: var(--accent);
-			}
-			.mock-home .cc-meta {
-				font-family: var(--sans);
-				font-size: 9px;
-				color: var(--ink-faint);
-			}
-			.mock-home .lib-section-h {
-				display: flex;
-				justify-content: space-between;
-				align-items: baseline;
-				margin: 0 0 10px;
-			}
-			.mock-home .lib-section-h h4 {
-				font-family: var(--serif);
-				font-size: 14px;
-				font-weight: 600;
-				margin: 0;
-			}
-			.mock-home .lib-section-h .count {
-				font-family: var(--sans);
-				font-size: 9px;
-				color: var(--ink-faint);
-			}
-			.mock-home .lib-grid {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 8px;
-			}
-			.mock-home .lib-cover {
-				aspect-ratio: 2/3;
-				border-radius: 6px;
-			}
-			.mock-home .lib-cover.a {
-				background: linear-gradient(135deg, #d4a574 0%, #8b5a2b 100%);
-			}
-			.mock-home .lib-cover.b {
-				background: linear-gradient(135deg, #c44b22 0%, #6b2410 100%);
-			}
-			.mock-home .lib-cover.c {
-				background: linear-gradient(135deg, #2a3f35 0%, #0f1f18 100%);
-			}
-			.mock-home .nav-bar {
-				margin-top: auto;
-				display: flex;
-				justify-content: space-around;
-				padding-top: 10px;
-				border-top: 1px solid var(--rule);
-			}
-			.mock-home .nav-item {
-				font-family: var(--sans);
-				font-size: 8px;
-				color: var(--ink-faint);
-				text-align: center;
-				padding: 4px;
-			}
-			.mock-home .nav-item.active {
+			.streak {
+				display: inline-block;
+				font-family: var(--mono);
+				font-size: 10px;
 				color: var(--accent);
-				font-weight: 600;
+				background: var(--accent-dim);
+				border-radius: 99px;
+				padding: 3px 9px;
+				margin: 6px 0 12px;
 			}
-
-			.mock-reader {
-				background: var(--bg-warm);
-				padding: 14px 20px 12px;
+			.mock-label {
+				font-family: var(--mono);
+				font-size: 10px;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--faint);
+				margin: 12px 0 8px;
 			}
-			.mock-reader .reader-header {
-				display: flex;
-				align-items: center;
-				gap: 10px;
-				padding-bottom: 8px;
-				margin-bottom: 14px;
-			}
-			.mock-reader .reader-x {
-				font-family: var(--sans);
-				font-size: 18px;
-				color: #3a2e1a;
-				font-weight: 300;
-				flex-shrink: 0;
-			}
-			.mock-reader .reader-titlebox {
-				flex: 1;
-			}
-			.mock-reader .reader-chapter {
-				font-family: var(--serif);
-				font-size: 14px;
-				font-weight: 600;
-				color: #1a1a1f;
-				margin: 0 0 1px;
-				line-height: 1.2;
-			}
-			.mock-reader .reader-meta {
-				font-family: var(--sans);
-				font-size: 9px;
-				color: #6b5a3c;
-				letter-spacing: 0.02em;
-			}
-			.mock-reader .reader-headphones {
-				font-size: 14px;
-				color: #3a2e1a;
-				flex-shrink: 0;
-			}
-			.mock-reader .reader-text {
-				font-family: var(--serif);
-				font-size: 15px;
-				line-height: 1.55;
-				color: #2a2a1f;
-				margin: 0 0 12px;
-			}
-			.mock-reader .reader-bottom {
-				margin-top: auto;
-				padding-top: 10px;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				font-family: var(--sans);
-				font-size: 12px;
-				color: #5a4a2c;
-			}
-			.mock-reader .reader-bottom .num {
-				font-family: var(--sans);
-				font-size: 13px;
-				font-weight: 600;
-			}
-
-			.mock-tts {
-				background: var(--bg-warm);
-				padding: 14px 20px 0;
-			}
-			.mock-tts .reader-header {
-				display: flex;
-				align-items: center;
-				gap: 10px;
-				padding-bottom: 8px;
-				margin-bottom: 14px;
-			}
-			.mock-tts .reader-header .x {
-				font-size: 18px;
-				color: #3a2e1a;
-			}
-			.mock-tts .reader-header .info {
-				flex: 1;
-				font-family: var(--serif);
-				font-size: 14px;
-				font-weight: 600;
-				color: #1a1a1f;
-			}
-			.mock-tts .reader-header .info .meta {
-				display: block;
-				font-family: var(--sans);
-				font-size: 9px;
-				font-weight: 400;
-				color: #6b5a3c;
-			}
-			.mock-tts .reader-header .hp {
-				font-size: 14px;
-				color: var(--accent);
-			}
-			.mock-tts .reader-text-fade {
-				font-family: var(--serif);
-				font-size: 14px;
-				line-height: 1.5;
-				color: rgba(42, 42, 31, 0.35);
-				margin: 0;
-				flex: 1;
-				overflow: hidden;
-			}
-			.mock-tts .tts-panel {
-				background: #f5f0f7;
-				margin: 12px -20px 0;
-				padding: 14px 16px;
-				border-top: 1px solid var(--rule);
-				border-radius: 18px 18px 0 0;
-			}
-			.mock-tts .tts-head {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				font-family: var(--sans);
-				font-weight: 600;
-				font-size: 12px;
-				color: var(--ink);
-				margin-bottom: 12px;
-			}
-			.mock-tts .tts-head .icons {
+			.cr-card {
 				display: flex;
 				gap: 12px;
-				color: var(--ink-soft);
-				font-size: 12px;
+				align-items: center;
+				background: var(--elev);
+				border: 1px solid var(--rule);
+				border-radius: 14px;
+				padding: 11px;
+				transition:
+					background-color 0.35s ease,
+					border-color 0.35s ease;
 			}
-			.mock-tts .tts-controls {
+			.cr-cover {
+				width: 44px;
+				height: 62px;
+				border-radius: 7px;
+				flex: none;
+				background: linear-gradient(
+					155deg,
+					var(--accent),
+					color-mix(in srgb, var(--accent) 45%, var(--ink))
+				);
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				gap: 18px;
-				margin-bottom: 12px;
+				color: var(--accent-ink);
+				font-family: var(--serif);
+				font-weight: 700;
+				font-size: 15px;
 			}
-			.mock-tts .tts-controls .small {
-				color: var(--ink-faint);
+			.cr-meta {
+				min-width: 0;
+				flex: 1;
+			}
+			.cr-title {
+				font-family: var(--serif);
+				font-weight: 600;
+				font-size: 14px;
+			}
+			.cr-sub {
+				font-family: var(--mono);
 				font-size: 10px;
+				color: var(--soft);
+				margin: 2px 0 7px;
 			}
-			.mock-tts .tts-controls .play {
+			.cr-bar {
+				height: 4px;
+				border-radius: 99px;
+				background: var(--rule);
+				overflow: hidden;
+			}
+			.cr-bar i {
+				display: block;
+				height: 100%;
+				width: 10%;
+				background: var(--accent);
+				border-radius: 99px;
+			}
+			.lib-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 9px;
+			}
+			.lib-cell {
+				aspect-ratio: 2/3;
+				border-radius: 8px;
+				background: var(--elev);
+				border: 1px solid var(--rule);
+				display: flex;
+				align-items: flex-end;
+				padding: 6px;
+			}
+			.lib-cell i {
+				display: block;
+				width: 100%;
+				height: 5px;
+				border-radius: 99px;
+				background: var(--rule);
+			}
+			.lib-cell:nth-child(1) {
+				background: color-mix(in srgb, var(--accent) 22%, var(--elev));
+			}
+			.lib-cell:nth-child(3) {
+				background: color-mix(in srgb, var(--accent) 12%, var(--elev));
+			}
+			.navbar {
+				display: flex;
+				justify-content: space-around;
+				border-top: 1px solid var(--rule);
+				padding: 9px 6px 11px;
+				font-family: var(--mono);
+				font-size: 9.5px;
+				color: var(--faint);
+			}
+			.navbar span.on {
+				color: var(--accent);
+				font-weight: 600;
+			}
+
+			/* reader screen */
+			.rd-chrome {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 11px 16px 8px;
+				border-bottom: 1px solid var(--rule);
+			}
+			.rd-chrome .rc-title {
+				font-family: var(--mono);
+				font-size: 10.5px;
+				color: var(--soft);
+			}
+			.rd-chrome .rc-x {
+				font-family: var(--mono);
+				font-size: 12px;
+				color: var(--faint);
+			}
+			.rd-body {
+				padding: 16px 18px 14px;
+				font-size: var(--reader-fs, 14.5px);
+				line-height: var(--reader-lh, 1.62);
+				font-family: var(--reader-font, var(--serif));
+			}
+			.rd-body .ch {
+				font-family: var(--reader-font, var(--serif));
+				font-weight: 700;
+				font-size: 1.25em;
+				margin: 0 0 0.7em;
+			}
+			.rd-body p {
+				margin: 0 0 0.85em;
+			}
+			.rd-foot {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 8px 16px 12px;
+				border-top: 1px solid var(--rule);
+				font-family: var(--mono);
+				font-size: 10.5px;
+				color: var(--faint);
+			}
+			.hl {
+				background: var(--accent-dim);
+				box-shadow: 0 2px 0 var(--accent);
+			}
+
+			/* tts panel */
+			.tts-row {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 16px;
+				padding: 12px 0 4px;
+				font-size: 15px;
+				color: var(--soft);
+			}
+			.tts-play {
 				width: 42px;
 				height: 42px;
 				border-radius: 50%;
 				background: var(--accent);
+				color: var(--accent-ink);
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				color: white;
-				font-size: 12px;
+				font-size: 15px;
 			}
-			.mock-tts .tts-voice {
+			.tts-voice {
+				font-family: var(--mono);
+				font-size: 10px;
+				color: var(--soft);
 				text-align: center;
-				margin-bottom: 8px;
+				padding: 6px 0 12px;
 			}
-			.mock-tts .tts-voice span {
-				display: inline-block;
-				padding: 5px 12px;
-				background: var(--chip);
-				border-radius: 100px;
-				font-family: var(--sans);
-				font-size: 9.5px;
-				color: var(--chip-text);
-				font-weight: 500;
+			.tts-slider {
+				padding: 0 20px 6px;
 			}
-
-			.mock-stats {
-				padding: 18px 18px 12px;
-			}
-			.mock-stats .stats-h {
-				font-family: var(--serif);
-				font-size: 22px;
-				font-weight: 700;
-				margin: 4px 0 14px;
-				letter-spacing: -0.01em;
-			}
-			.mock-stats .week-card {
-				background: var(--bg-elev);
-				border-radius: 14px;
-				padding: 14px 12px;
-				margin-bottom: 14px;
-				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-			}
-			.mock-stats .week-head {
+			.tts-slider .lab {
 				display: flex;
 				justify-content: space-between;
-				align-items: center;
-				margin-bottom: 12px;
-			}
-			.mock-stats .week-head .lbl {
-				font-family: var(--sans);
-				font-weight: 700;
-				font-size: 11px;
-			}
-			.mock-stats .week-head .days {
-				font-family: var(--sans);
-				color: var(--accent);
-				font-weight: 600;
-				font-size: 10px;
-			}
-			.mock-stats .week-stats {
-				display: grid;
-				grid-template-columns: 1fr 1fr 1fr;
-				gap: 4px;
-			}
-			.mock-stats .ws-cell {
-				text-align: center;
-			}
-			.mock-stats .ws-cell .num {
-				font-family: var(--serif);
-				font-size: 17px;
-				font-weight: 700;
-				display: block;
-				letter-spacing: -0.01em;
-			}
-			.mock-stats .ws-cell .lbl {
-				font-family: var(--sans);
-				font-size: 8px;
-				color: var(--ink-soft);
-				display: block;
-				margin: 1px 0 4px;
-			}
-			.mock-stats .ws-cell .delta {
-				font-family: var(--sans);
-				font-size: 8px;
-				font-weight: 600;
-				display: block;
-			}
-			.mock-stats .ws-cell .delta.down {
-				color: #dc2626;
-			}
-			.mock-stats .ws-cell .delta.up {
-				color: #16a34a;
-			}
-			.mock-stats .today-h {
-				font-family: var(--serif);
-				font-size: 13px;
-				font-weight: 700;
-				margin: 6px 0 8px;
-			}
-			.mock-stats .today-grid {
-				display: grid;
-				grid-template-columns: 1fr 1fr 1fr;
-				gap: 6px;
-				margin-bottom: 14px;
-			}
-			.mock-stats .today-cell {
-				background: var(--chip);
-				border-radius: 10px;
-				padding: 10px 4px;
-				text-align: center;
-			}
-			.mock-stats .today-cell .icon {
-				font-size: 11px;
-				color: var(--accent);
-				display: block;
+				font-family: var(--mono);
+				font-size: 9.5px;
+				color: var(--faint);
 				margin-bottom: 4px;
 			}
-			.mock-stats .today-cell .num {
-				font-family: var(--serif);
-				font-size: 13px;
-				font-weight: 700;
-				letter-spacing: -0.02em;
-				display: block;
+			.tts-slider .tr {
+				height: 4px;
+				border-radius: 99px;
+				background: var(--rule);
+				position: relative;
 			}
-			.mock-stats .today-cell .lbl {
-				font-family: var(--sans);
-				font-size: 7.5px;
-				color: var(--ink-soft);
-				margin-top: 1px;
-				display: block;
+			.tts-slider .tr i {
+				position: absolute;
+				inset: 0 auto 0 0;
+				width: 55%;
+				background: var(--accent);
+				border-radius: 99px;
 			}
-			.mock-stats .heatmap-h {
-				font-family: var(--serif);
-				font-size: 13px;
-				font-weight: 700;
-				margin: 4px 0 8px;
-			}
-			.mock-stats .heatmap {
-				display: grid;
-				grid-template-columns: repeat(12, 1fr);
-				gap: 2px;
-			}
-			.mock-stats .heat {
-				aspect-ratio: 1;
-				border-radius: 1.5px;
-				background: var(--chip);
-			}
-			.mock-stats .heat.l1 {
-				background: #b8dbd8;
-			}
-			.mock-stats .heat.l2 {
-				background: #7cc0bb;
-			}
-			.mock-stats .heat.l3 {
-				background: #3f938d;
-			}
-			.mock-stats .heat.l4 {
+			.tts-slider .tr b {
+				position: absolute;
+				top: 50%;
+				left: 55%;
+				transform: translate(-50%, -50%);
+				width: 11px;
+				height: 11px;
+				border-radius: 50%;
 				background: var(--accent);
 			}
 
-			/* ─── INTERACTIVE READER PREVIEW ──────────────────────────────────
-   The widget has its own theme variable system scoped to .preview-phone.
-   Each [data-theme] selector overrides those custom properties, which
-   cascade to every element that references them. Switching themes is
-   one attribute mutation and the whole reader recolors itself.
-
-   Default theme is "dark" so the preview phone reads as a clearly distinct
-   surface against the #F5F0F7 page background instead of camouflaging. */
-			.preview {
-				padding: 120px 0;
-				background: var(--bg);
+			/* stats screen */
+			.st-head {
+				font-family: var(--serif);
+				font-weight: 600;
+				font-size: 17px;
+				margin: 4px 0 10px;
 			}
-			.preview-intro {
-				max-width: 720px;
-				margin: 0 auto 64px;
-				text-align: center;
-			}
-			.preview-intro .section-mark {
-				justify-content: center;
-			}
-			.preview-intro p {
-				font-size: 18px;
-				color: var(--ink-soft);
-				margin: 0;
-				line-height: 1.55;
-			}
-			.preview-grid {
+			.st-grid {
 				display: grid;
-				grid-template-columns: 360px 1fr;
-				gap: 64px;
-				align-items: start;
-				max-width: 1080px;
-				margin: 0 auto;
+				grid-template-columns: 1fr 1fr;
+				gap: 9px;
+				margin-bottom: 10px;
 			}
-
-			.preview-phone-wrap {
-				position: sticky;
-				top: 32px;
-				display: flex;
-				justify-content: center;
-			}
-			.preview-phone {
-				width: 340px;
-				aspect-ratio: 9 / 19.5;
-				border-radius: 40px;
+			.st-cell {
+				background: var(--elev);
 				border: 1px solid var(--rule);
-				overflow: hidden;
+				border-radius: 12px;
+				padding: 10px 12px;
+			}
+			.st-num {
+				font-family: var(--mono);
+				font-weight: 600;
+				font-size: 16px;
+			}
+			.st-lab {
+				font-family: var(--mono);
+				font-size: 9.5px;
+				color: var(--faint);
+				margin-top: 2px;
+			}
+			.st-delta {
+				font-family: var(--mono);
+				font-size: 9.5px;
+				margin-top: 3px;
+			}
+			.up {
+				color: var(--accent);
+			}
+			.down {
+				color: var(--faint);
+			}
+			.heat {
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				gap: 4px;
+			}
+			.heat i {
+				aspect-ratio: 1;
+				border-radius: 3px;
+				background: var(--rule);
+			}
+			.heat i.l1 {
+				background: color-mix(in srgb, var(--accent) 30%, var(--rule));
+			}
+			.heat i.l2 {
+				background: color-mix(in srgb, var(--accent) 60%, var(--rule));
+			}
+			.heat i.l3 {
+				background: var(--accent);
+			}
+
+			/* ════════════════════════════════════════════════════════════════
+   SECTIONS
+   ════════════════════════════════════════════════════════════════ */
+			section {
 				position: relative;
-				/* Default values match the [data-theme="dark"] block below — set as
-     fallbacks so a brief flash before JS resolves the data attribute
-     still renders the dark theme rather than uncolored content. */
-				--reader-bg: #1a1a1e;
-				--reader-ink: #e5e5e5;
-				--reader-meta: #9c9ca3;
-				--reader-faint: #6b6b72;
-				--reader-rule: rgba(255, 255, 255, 0.08);
-				--reader-accent: #14b8a6;
-				--reader-icon: #e5e5e5;
-				background: var(--reader-bg);
-				box-shadow:
-					0 0 0 8px var(--bg-elev),
-					0 0 0 9px var(--rule),
-					0 40px 80px -30px rgba(15, 118, 110, 0.2),
-					0 20px 40px -20px rgba(0, 0, 0, 0.15);
-				transition:
-					background 250ms ease,
-					box-shadow 250ms ease;
+			}
+			.chapter {
+				padding: 88px 0 8px;
+			}
+			.prose {
+				padding: 26px 0 40px;
+			}
+			.prose .dropcap::first-letter {
+				font-family: var(--serif);
+				font-weight: 700;
+				font-variation-settings: "opsz" 72;
+				font-size: 3.35em;
+				float: left;
+				line-height: 0.82;
+				padding: 4px 10px 0 0;
+				color: var(--accent);
 			}
 
-			/* All eleven themes — 3 light + 8 dark. */
-			.preview-phone[data-theme="paper"] {
-				--reader-bg: #faf8f5;
-				--reader-ink: #1a1a1f;
-				--reader-meta: #6b6b72;
-				--reader-faint: #9c9ca3;
-				--reader-rule: rgba(0, 0, 0, 0.08);
-				--reader-accent: #0f766e;
-				--reader-icon: #1a1a1f;
-			}
-			.preview-phone[data-theme="sepia"] {
-				--reader-bg: #f2ead8;
-				--reader-ink: #2a1f12;
-				--reader-meta: #6b5a3c;
-				--reader-faint: #8a7e66;
-				--reader-rule: rgba(58, 46, 26, 0.12);
-				--reader-accent: #8b5a2b;
-				--reader-icon: #3a2e1a;
-			}
-			.preview-phone[data-theme="solari"] {
-				--reader-bg: #fcf6e0;
-				--reader-ink: #57452a;
-				--reader-meta: #7d6a47;
-				--reader-faint: #a39573;
-				--reader-rule: rgba(87, 69, 42, 0.12);
-				--reader-accent: #b58900;
-				--reader-icon: #57452a;
-			}
-			.preview-phone[data-theme="dark"] {
-				--reader-bg: #1a1a1e;
-				--reader-ink: #e5e5e5;
-				--reader-meta: #9c9ca3;
-				--reader-faint: #6b6b72;
-				--reader-rule: rgba(255, 255, 255, 0.08);
-				--reader-accent: #14b8a6;
-				--reader-icon: #e5e5e5;
-			}
-			.preview-phone[data-theme="amoled"] {
-				--reader-bg: #000000;
-				--reader-ink: #e5e5e5;
-				--reader-meta: #9c9ca3;
-				--reader-faint: #6b6b72;
-				--reader-rule: rgba(255, 255, 255, 0.08);
-				--reader-accent: #14b8a6;
-				--reader-icon: #e5e5e5;
-			}
-			.preview-phone[data-theme="nord"] {
-				--reader-bg: #2e3440;
-				--reader-ink: #eceff4;
-				--reader-meta: #d8dee9;
-				--reader-faint: #81a1c1;
-				--reader-rule: rgba(216, 222, 233, 0.12);
-				--reader-accent: #88c0d0;
-				--reader-icon: #eceff4;
-			}
-			.preview-phone[data-theme="dracula"] {
-				--reader-bg: #282a36;
-				--reader-ink: #f8f8f2;
-				--reader-meta: #bd93f9;
-				--reader-faint: #6272a4;
-				--reader-rule: rgba(248, 248, 242, 0.1);
-				--reader-accent: #50fa7b;
-				--reader-icon: #f8f8f2;
-			}
-			.preview-phone[data-theme="gruvbox"] {
-				--reader-bg: #282828;
-				--reader-ink: #ebdbb2;
-				--reader-meta: #a89984;
-				--reader-faint: #7c6f64;
-				--reader-rule: rgba(235, 219, 178, 0.1);
-				--reader-accent: #b8bb26;
-				--reader-icon: #ebdbb2;
-			}
-			.preview-phone[data-theme="catppu"] {
-				--reader-bg: #1e1e2e;
-				--reader-ink: #cdd6f4;
-				--reader-meta: #a6adc8;
-				--reader-faint: #6c7086;
-				--reader-rule: rgba(205, 214, 244, 0.1);
-				--reader-accent: #89b4fa;
-				--reader-icon: #cdd6f4;
-			}
-			.preview-phone[data-theme="navy"] {
-				--reader-bg: #0f172a;
-				--reader-ink: #cbd5e1;
-				--reader-meta: #94a3b8;
-				--reader-faint: #64748b;
-				--reader-rule: rgba(203, 213, 225, 0.1);
-				--reader-accent: #38bdf8;
-				--reader-icon: #cbd5e1;
-			}
-			.preview-phone[data-theme="grey"] {
-				--reader-bg: #2c2c2e;
-				--reader-ink: #e5e5e5;
-				--reader-meta: #9c9ca3;
-				--reader-faint: #6b6b72;
-				--reader-rule: rgba(229, 229, 229, 0.1);
-				--reader-accent: #a78bfa;
-				--reader-icon: #e5e5e5;
-			}
-
-			.preview-phone .reader-screen {
-				height: 100%;
-				background: var(--reader-bg);
+			/* product rows */
+			.rows {
 				display: flex;
 				flex-direction: column;
-				padding: 18px 22px 14px;
-				transition: background 250ms ease;
+				gap: 86px;
+				padding: 46px 0 90px;
 			}
-
-			.preview-phone .pr-statusbar {
-				display: flex;
-				justify-content: space-between;
-				font-family: var(--sans);
-				font-size: 11px;
-				font-weight: 600;
-				color: var(--reader-ink);
-				opacity: 0.6;
-				margin-bottom: 14px;
-				transition: color 250ms ease;
-			}
-
-			.preview-phone .pr-header {
-				display: flex;
+			.row {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+				gap: 64px;
 				align-items: center;
-				gap: 12px;
-				padding-bottom: 10px;
-				margin-bottom: 14px;
+				max-width: var(--wide);
+				margin: 0 auto;
+				padding: 0 24px;
 			}
-			.preview-phone .pr-x {
-				font-family: var(--sans);
-				font-size: 20px;
-				color: var(--reader-icon);
-				font-weight: 300;
-				flex-shrink: 0;
-				transition: color 250ms ease;
+			.row.flip .row-copy {
+				order: 2;
 			}
-			.preview-phone .pr-titlebox {
-				flex: 1;
+			.row.flip .row-art {
+				order: 1;
 			}
-			.preview-phone .pr-chapter {
-				font-family: var(--serif);
-				font-size: 15px;
-				font-weight: 600;
-				color: var(--reader-ink);
-				margin: 0 0 1px;
-				transition: color 250ms ease;
-			}
-			.preview-phone .pr-meta {
-				font-family: var(--sans);
-				font-size: 10px;
-				color: var(--reader-meta);
-				letter-spacing: 0.02em;
-				transition: color 250ms ease;
-			}
-			.preview-phone .pr-headphones {
-				font-size: 16px;
-				color: var(--reader-icon);
-				flex-shrink: 0;
-				transition: color 250ms ease;
-			}
-
-			.preview-phone .pr-body {
-				flex: 1;
-				overflow: hidden;
-				font-family: var(--reader-font, "Literata"), Georgia, serif;
-				font-size: var(--reader-fontsize, 15px);
-				line-height: var(--reader-lineheight, 1.6);
-				color: var(--reader-ink);
-				transition:
-					color 250ms ease,
-					font-size 200ms ease,
-					line-height 200ms ease;
-			}
-			.preview-phone .pr-body p {
-				margin: 0 0 14px;
-			}
-			.preview-phone .pr-body p:last-child {
-				margin-bottom: 0;
-			}
-
-			.preview-phone[data-font="literata"] .pr-body {
-				--reader-font: "Literata";
-			}
-			.preview-phone[data-font="lora"] .pr-body {
-				--reader-font: "Lora";
-			}
-			.preview-phone[data-font="merriweather"] .pr-body {
-				--reader-font: "Merriweather";
-			}
-			.preview-phone[data-font="crimson"] .pr-body {
-				--reader-font: "Crimson Text";
-			}
-			.preview-phone[data-font="source"] .pr-body {
-				--reader-font: "Source Sans 3";
-			}
-			.preview-phone[data-font="noto"] .pr-body {
-				--reader-font: "Noto Sans";
-			}
-			.preview-phone[data-font="dyslexic"] .pr-body {
-				--reader-font: "OpenDyslexic";
-			}
-			.preview-phone[data-font="jetbrains"] .pr-body {
-				--reader-font: "JetBrains Mono";
-			}
-
-			.preview-phone .pr-bottom {
-				margin-top: 14px;
-				padding-top: 12px;
-				border-top: 1px solid var(--reader-rule);
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				font-family: var(--sans);
-				color: var(--reader-meta);
-				font-size: 13px;
-				transition:
-					color 250ms ease,
-					border-color 250ms ease;
-			}
-			.preview-phone .pr-bottom .pr-num {
-				color: var(--reader-ink);
-				font-weight: 600;
-				transition: color 250ms ease;
-			}
-			.preview-phone .pr-bottom .pr-icons {
-				display: flex;
-				gap: 14px;
-				font-size: 14px;
-			}
-
-			.preview-controls {
-				background: var(--bg-elev);
-				border: 1px solid var(--rule);
-				border-radius: 24px;
-				padding: 32px;
-			}
-			.preview-controls h4 {
-				font-family: var(--sans);
+			.row-kicker {
+				font-family: var(--mono);
 				font-size: 11px;
-				font-weight: 600;
-				letter-spacing: 0.18em;
+				letter-spacing: 0.16em;
 				text-transform: uppercase;
-				color: var(--ink-faint);
-				margin: 0 0 16px;
+				color: var(--accent);
+				margin-bottom: 8px;
 			}
-			.preview-controls h4:not(:first-child) {
-				margin-top: 32px;
+			.row-copy p {
+				color: var(--soft);
+			}
+			.ticks {
+				list-style: none;
+				margin: 18px 0 0;
+				padding: 0;
+				display: grid;
+				gap: 9px;
+			}
+			.ticks li {
+				display: flex;
+				gap: 11px;
+				align-items: baseline;
+				font-size: 15.5px;
+				color: var(--ink);
+			}
+			.ticks li::before {
+				content: "—";
+				color: var(--accent);
+				font-family: var(--mono);
+				flex: none;
 			}
 
-			.theme-group-label {
-				font-family: var(--sans);
-				font-size: 10px;
-				color: var(--ink-faint);
-				font-weight: 500;
-				margin: 0 0 10px;
-				letter-spacing: 0.05em;
+			/* ── Live demo ──────────────────────────────────────────────── */
+			.demo-wrap {
+				max-width: var(--wide);
+				margin: 34px auto 0;
+				padding: 0 24px 96px;
+				display: grid;
+				grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+				gap: 56px;
+				align-items: start;
 			}
-			.theme-group-label:not(:first-child) {
-				margin-top: 16px;
+			.demo-panel {
+				background: var(--elev);
+				border: 1px solid var(--rule);
+				border-radius: 18px;
+				padding: 22px;
+				position: sticky;
+				top: 86px;
+				transition:
+					background-color 0.35s ease,
+					border-color 0.35s ease;
 			}
-
-			/* Theme picker — the dark group uses a 4-column grid so 8 dark themes
-   lay out as 2 rows of 4. The light group has only 3, so its picker
-   stays flex-wrap. */
-			.theme-picker {
+			.ctl-label {
+				font-family: var(--mono);
+				font-size: 11px;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--faint);
+				margin: 18px 0 10px;
+			}
+			.ctl-label:first-child {
+				margin-top: 0;
+			}
+			.chips {
 				display: flex;
 				flex-wrap: wrap;
 				gap: 8px;
 			}
-			.theme-picker.theme-picker-grid {
-				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 8px;
-			}
-			.theme-btn {
+			.chip {
+				font-family: var(--mono);
+				font-size: 12px;
+				font-weight: 500;
+				padding: 7px 12px;
+				border-radius: 9px;
+				cursor: pointer;
+				background: transparent;
+				color: var(--soft);
+				border: 1px solid var(--rule);
 				display: inline-flex;
 				align-items: center;
-				gap: 8px;
-				padding: 8px 14px 8px 8px;
-				background: var(--bg);
-				border: 2px solid transparent;
-				border-radius: 100px;
-				cursor: pointer;
-				font-family: var(--sans);
-				font-size: 13px;
-				font-weight: 500;
-				color: var(--ink);
+				gap: 7px;
 				transition:
-					border-color 200ms,
-					background 200ms,
-					transform 100ms;
-				white-space: nowrap;
+					border-color 0.18s ease,
+					color 0.18s ease,
+					background-color 0.18s ease;
 			}
-			.theme-btn:hover {
-				border-color: var(--rule);
-				transform: translateY(-1px);
-			}
-			.theme-btn.active {
+			.chip:hover {
 				border-color: var(--accent);
-				background: var(--bg-elev);
-				font-weight: 600;
-			}
-			.theme-btn .swatch {
-				width: 22px;
-				height: 22px;
-				border-radius: 50%;
-				border: 1px solid var(--rule);
-				flex-shrink: 0;
-				position: relative;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-family: var(--serif);
-				font-size: 11px;
-				font-weight: 600;
-			}
-			.theme-btn .swatch.paper {
-				background: #faf8f5;
-				color: #1a1a1f;
-			}
-			.theme-btn .swatch.sepia {
-				background: #f2ead8;
-				color: #2a1f12;
-			}
-			.theme-btn .swatch.solari {
-				background: #fcf6e0;
-				color: #57452a;
-			}
-			.theme-btn .swatch.dark {
-				background: #1a1a1e;
-				color: #e5e5e5;
-			}
-			.theme-btn .swatch.amoled {
-				background: #000000;
-				color: #e5e5e5;
-			}
-			.theme-btn .swatch.nord {
-				background: #2e3440;
-				color: #eceff4;
-			}
-			.theme-btn .swatch.dracula {
-				background: #282a36;
-				color: #50fa7b;
-			}
-			.theme-btn .swatch.gruvbox {
-				background: #282828;
-				color: #ebdbb2;
-			}
-			.theme-btn .swatch.catppu {
-				background: #1e1e2e;
-				color: #89b4fa;
-			}
-			.theme-btn .swatch.navy {
-				background: #0f172a;
-				color: #38bdf8;
-			}
-			.theme-btn .swatch.grey {
-				background: #2c2c2e;
-				color: #a78bfa;
-			}
-
-			.font-picker {
-				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 8px;
-			}
-			.font-btn {
-				padding: 12px 14px;
-				background: var(--bg);
-				border: 2px solid transparent;
-				border-radius: 12px;
-				cursor: pointer;
-				text-align: center;
-				transition:
-					border-color 200ms,
-					background 200ms;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 4px;
-				min-height: 72px;
-				justify-content: center;
-			}
-			.font-btn:hover {
-				border-color: var(--rule);
-			}
-			.font-btn.active {
-				border-color: var(--accent);
-				background: var(--bg-elev);
-			}
-			.font-btn .preview-text {
-				font-size: 17px;
 				color: var(--ink);
-				letter-spacing: -0.01em;
-				line-height: 1;
 			}
-			.font-btn .name {
-				font-family: var(--sans);
-				font-size: 9px;
+			.chip[aria-pressed="true"] {
+				background: var(--accent-dim);
+				border-color: var(--accent);
+				color: var(--accent);
 				font-weight: 600;
-				color: var(--ink-faint);
-				letter-spacing: 0.05em;
-				text-transform: uppercase;
 			}
-
-			.font-btn[data-font="literata"] .preview-text {
-				font-family: "Literata", serif;
+			.chip .sw {
+				width: 11px;
+				height: 11px;
+				border-radius: 4px;
+				border: 1px solid rgba(128, 128, 128, 0.4);
+				flex: none;
 			}
-			.font-btn[data-font="lora"] .preview-text {
-				font-family: "Lora", serif;
+			.chip .fx {
+				font-family: inherit;
 			}
-			.font-btn[data-font="merriweather"] .preview-text {
-				font-family: "Merriweather", serif;
-				font-size: 14px;
+			.sl-row {
+				margin-top: 12px;
 			}
-			.font-btn[data-font="crimson"] .preview-text {
-				font-family: "Crimson Text", serif;
-			}
-			.font-btn[data-font="source"] .preview-text {
-				font-family: "Source Sans 3", sans-serif;
-			}
-			.font-btn[data-font="noto"] .preview-text {
-				font-family: "Noto Sans", sans-serif;
-			}
-			.font-btn[data-font="dyslexic"] .preview-text {
-				font-family: "OpenDyslexic", sans-serif;
-				font-size: 13px;
-			}
-			.font-btn[data-font="jetbrains"] .preview-text {
-				font-family: "JetBrains Mono", monospace;
-				font-size: 14px;
-			}
-
-			.slider-row {
+			.sl-row .lab {
 				display: flex;
 				justify-content: space-between;
-				align-items: center;
-				margin-bottom: 8px;
+				align-items: baseline;
+				font-family: var(--mono);
+				font-size: 11.5px;
+				color: var(--soft);
+				margin-bottom: 6px;
 			}
-			.slider-row .lbl {
-				font-family: var(--sans);
-				font-size: 13px;
-				color: var(--ink);
-				font-weight: 500;
-			}
-			.slider-row .val {
-				font-family: var(--sans);
-				font-size: 13px;
+			.sl-row .lab output {
 				color: var(--accent);
 				font-weight: 600;
 			}
 			input[type="range"] {
-				-webkit-appearance: none;
 				width: 100%;
-				height: 4px;
-				background: var(--rule);
-				border-radius: 2px;
-				outline: none;
-				margin-bottom: 16px;
-			}
-			input[type="range"]::-webkit-slider-thumb {
-				-webkit-appearance: none;
-				appearance: none;
-				width: 18px;
-				height: 18px;
-				background: var(--accent);
-				border-radius: 50%;
-				cursor: pointer;
-				transition: transform 100ms;
-			}
-			input[type="range"]::-webkit-slider-thumb:hover {
-				transform: scale(1.15);
-			}
-			input[type="range"]::-moz-range-thumb {
-				width: 18px;
-				height: 18px;
-				background: var(--accent);
-				border-radius: 50%;
-				cursor: pointer;
-				border: none;
-			}
-
-			/* ─── Tour cards ─── */
-			.tour {
-				padding: 120px 0;
-				background: var(--bg-elev);
-				border-top: 1px solid var(--rule);
-				border-bottom: 1px solid var(--rule);
-			}
-			.tour-intro {
-				max-width: 720px;
-				margin: 0 auto 80px;
-				text-align: center;
-			}
-			.tour-intro .section-mark {
-				justify-content: center;
-			}
-			.tour-grid {
-				display: grid;
-				grid-template-columns: repeat(2, 1fr);
-				gap: 24px;
-				max-width: 980px;
-				margin: 0 auto;
-			}
-			.tour-card {
-				background: var(--bg);
-				border: 1px solid var(--rule);
-				border-radius: 20px;
-				padding: 36px 32px;
-				position: relative;
-				overflow: hidden;
-				transition:
-					transform 300ms,
-					box-shadow 300ms;
-			}
-			.tour-card:hover {
-				transform: translateY(-4px);
-				box-shadow: 0 20px 40px -20px rgba(15, 118, 110, 0.15);
-			}
-			.tour-card .tc-num {
-				font-family: var(--serif);
-				font-style: italic;
-				font-size: 56px;
-				color: var(--chip);
-				font-weight: 400;
-				position: absolute;
-				top: 16px;
-				right: 24px;
-				line-height: 1;
-			}
-			.tour-card .tc-icon {
-				width: 44px;
-				height: 44px;
-				border-radius: 12px;
-				background: var(--chip);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				margin-bottom: 20px;
-				color: var(--accent);
-			}
-			.tour-card .tc-icon svg {
-				width: 22px;
+				accent-color: var(--accent);
 				height: 22px;
+				background: transparent;
+				cursor: pointer;
 			}
-			.tour-card h4 {
-				font-family: var(--serif);
-				font-size: 22px;
-				font-weight: 500;
-				letter-spacing: -0.01em;
-				margin: 0 0 12px;
-				line-height: 1.25;
-			}
-			.tour-card p {
-				font-size: 15px;
-				line-height: 1.6;
-				color: var(--ink-soft);
-				margin: 0;
-			}
-
-			/* ─── Promise, download, FAQ, footer ─── */
-			.sideload {
-				padding: 120px 0;
-			}
-			.sideload .container {
-				max-width: 920px;
-			}
-			.sideload-grid {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 64px;
-				align-items: start;
-			}
-			.sideload-grid p {
-				font-size: 17px;
-				line-height: 1.65;
-				color: var(--ink-soft);
-				margin: 0 0 16px;
-			}
-			.sideload-list {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-			}
-			.sideload-list li {
-				display: grid;
-				grid-template-columns: 24px 1fr;
-				gap: 14px;
-				padding: 18px 0;
-				border-bottom: 1px solid var(--rule);
-				align-items: start;
-				font-family: var(--sans);
-				font-size: 14px;
-			}
-			.sideload-list li:first-child {
-				border-top: 1px solid var(--rule);
-			}
-			.sideload-list .check {
-				width: 22px;
-				height: 22px;
-				background: var(--accent);
-				border-radius: 50%;
+			.site-sync {
+				margin-top: 20px;
+				padding-top: 16px;
+				border-top: 1px dashed var(--rule);
 				display: flex;
-				align-items: center;
-				justify-content: center;
-				flex-shrink: 0;
-				margin-top: -2px;
-			}
-			.sideload-list .check svg {
-				width: 12px;
-				height: 12px;
-				color: white;
-			}
-			.sideload-list .what {
-				display: block;
-				color: var(--ink);
-				font-weight: 600;
-				margin-bottom: 2px;
-			}
-			.sideload-list .desc {
-				color: var(--ink-soft);
-			}
-
-			.download-section {
-				padding: 120px 0;
-				background: linear-gradient(
-					180deg,
-					var(--bg) 0%,
-					var(--bg-elev) 100%
-				);
-				text-align: center;
-				border-top: 1px solid var(--rule);
-			}
-			.download-section h2 {
-				margin-bottom: 20px;
-			}
-			.download-section .lede {
-				font-size: 19px;
-				color: var(--ink-soft);
-				max-width: 540px;
-				margin: 0 auto 56px;
+				gap: 10px;
+				align-items: flex-start;
+				font-family: var(--mono);
+				font-size: 12px;
+				color: var(--soft);
 				line-height: 1.55;
 			}
-			.download-button .btn-primary {
-				font-size: 17px;
-				padding: 22px 38px;
-			}
-			.download-meta {
-				margin-top: 20px;
-				font-family: var(--sans);
-				font-size: 13px;
-				color: var(--ink-faint);
-				display: flex;
-				justify-content: center;
-				gap: 16px;
-				flex-wrap: wrap;
-				align-items: center;
-			}
-			.download-meta .dot {
-				color: var(--ink-faint);
-			}
-			.download-meta a {
-				color: var(--accent);
-				font-weight: 500;
-				border-bottom: 1px solid transparent;
-				transition: border-color 200ms;
-			}
-			.download-meta a:hover {
-				border-color: var(--accent);
-			}
-
-			.faq {
-				padding: 120px 0;
-			}
-			.faq .container {
-				max-width: 760px;
-			}
-			.faq-list {
-				margin-top: 48px;
-			}
-			details.faq-item {
-				border-bottom: 1px solid var(--rule);
-				padding: 24px 0;
+			.site-sync input {
+				accent-color: var(--accent);
+				margin-top: 2px;
 				cursor: pointer;
 			}
-			details.faq-item:first-child {
-				border-top: 1px solid var(--rule);
-			}
-			details.faq-item summary {
-				list-style: none;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				gap: 24px;
-				font-family: var(--serif);
-				font-size: 20px;
-				line-height: 1.3;
-				font-weight: 500;
-				letter-spacing: -0.01em;
+			.site-sync b {
 				color: var(--ink);
-				transition: color 200ms;
-			}
-			details.faq-item summary::-webkit-details-marker {
-				display: none;
-			}
-			details.faq-item summary::after {
-				content: "";
-				width: 28px;
-				height: 28px;
-				border-radius: 50%;
-				background: var(--chip);
-				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F766E' stroke-width='2.5'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");
-				background-size: 14px;
-				background-repeat: no-repeat;
-				background-position: center;
-				flex-shrink: 0;
-				transition: transform 300ms;
-			}
-			details.faq-item[open] summary::after {
-				transform: rotate(45deg);
-			}
-			details.faq-item summary:hover {
-				color: var(--accent);
-			}
-			details.faq-item .answer {
-				margin-top: 18px;
-				font-size: 17px;
-				line-height: 1.65;
-				color: var(--ink-soft);
-				text-wrap: pretty;
-			}
-			details.faq-item .answer p {
-				margin: 0 0 12px;
-			}
-			details.faq-item .answer p:last-child {
-				margin-bottom: 0;
+				font-weight: 600;
 			}
 
-			.footer {
-				padding: 64px 0 48px;
-				border-top: 1px solid var(--rule);
-				background: var(--bg-elev);
-			}
-			.footer-grid {
+			/* ── Feature shelf ──────────────────────────────────────────── */
+			.shelf {
+				max-width: var(--wide);
+				margin: 0 auto;
+				padding: 40px 24px 96px;
 				display: grid;
-				grid-template-columns: 1.5fr 1fr 1fr;
-				gap: 48px;
-				margin-bottom: 48px;
-			}
-			.footer-col h6 {
-				font-family: var(--sans);
-				font-size: 12px;
-				font-weight: 600;
-				letter-spacing: 0.1em;
-				text-transform: uppercase;
-				color: var(--ink-faint);
-				margin: 0 0 16px;
-			}
-			.footer-col ul {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-			}
-			.footer-col li {
-				font-family: var(--sans);
-				font-size: 14px;
-				margin-bottom: 10px;
-			}
-			.footer-col a {
-				color: var(--ink-soft);
-				transition: color 200ms;
-			}
-			.footer-col a:hover {
-				color: var(--accent);
-			}
-			.footer-mark {
-				font-family: var(--sans);
-				font-weight: 800;
-				font-size: 22px;
-				letter-spacing: -0.02em;
-				margin-bottom: 12px;
-			}
-			.footer-mark span {
-				color: var(--accent);
-			}
-			.footer-tagline {
-				font-family: var(--serif);
-				font-style: italic;
-				font-size: 16px;
-				color: var(--ink-soft);
-				margin: 0 0 16px;
-				max-width: 320px;
-				line-height: 1.5;
-			}
-			.footer-bottom {
-				padding-top: 32px;
-				border-top: 1px solid var(--rule);
-				display: flex;
-				justify-content: space-between;
-				font-family: var(--sans);
-				font-size: 12px;
-				color: var(--ink-faint);
-				flex-wrap: wrap;
+				grid-template-columns: 1fr 1fr;
 				gap: 16px;
 			}
+			.shelf-card {
+				background: var(--elev);
+				border: 1px solid var(--rule);
+				border-radius: 16px;
+				padding: 22px 24px;
+				transition:
+					background-color 0.35s ease,
+					border-color 0.25s ease,
+					transform 0.25s var(--ease);
+			}
+			.shelf-card:hover {
+				border-color: var(--accent);
+				transform: translateY(-2px);
+			}
+			.shelf-tag {
+				display: inline-block;
+				font-family: var(--mono);
+				font-size: 10.5px;
+				letter-spacing: 0.13em;
+				text-transform: uppercase;
+				font-weight: 600;
+				color: var(--accent);
+				background: var(--accent-dim);
+				border-radius: 6px;
+				padding: 4px 9px;
+				margin-bottom: 12px;
+			}
+			.shelf-card h3 {
+				font-size: 19px;
+				margin: 0 0 8px;
+			}
+			.shelf-card p {
+				font-size: 15px;
+				color: var(--soft);
+				margin: 0;
+			}
 
-			/* ─── Mobile ───────────────────────────────────────────────────
-   Breakpoint at 1024px. The hero phone stack overlaps the right edge
-   of the container between ~920 and ~1080px because the two stacked
-   phones (280px wide each, one offset 60px from right) need at least
-   ~340px of horizontal room, which the 1.1fr/1fr grid only gives at
-   >1024px viewports. */
-			@media (max-width: 1024px) {
-				.hero-grid {
+			/* ── No catch band ──────────────────────────────────────────── */
+			.nocatch {
+				border-top: 1px solid var(--rule);
+				border-bottom: 1px solid var(--rule);
+				background: var(--elev);
+				transition:
+					background-color 0.35s ease,
+					border-color 0.35s ease;
+			}
+			.nocatch-inner {
+				max-width: var(--wide);
+				margin: 0 auto;
+				padding: 66px 24px;
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+				gap: 56px;
+			}
+			.assure {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 8px 30px;
+				align-content: start;
+			}
+			.assure div {
+				padding: 12px 0;
+				border-bottom: 1px dashed var(--rule);
+			}
+			.assure dt {
+				font-family: var(--mono);
+				font-size: 12px;
+				font-weight: 600;
+				letter-spacing: 0.05em;
+				color: var(--ink);
+				margin: 0 0 3px;
+			}
+			.assure dd {
+				margin: 0;
+				font-size: 14px;
+				color: var(--soft);
+			}
+
+			/* ── Download ───────────────────────────────────────────────── */
+			.download {
+				text-align: center;
+				padding: 110px 24px;
+			}
+			.download h2 {
+				font-size: clamp(34px, 5vw, 52px);
+				font-variation-settings: "opsz" 72;
+			}
+			.download .lede {
+				max-width: 44ch;
+				margin: 0 auto 30px;
+			}
+			.dl-meta {
+				font-family: var(--mono);
+				font-size: 12.5px;
+				color: var(--faint);
+				margin-top: 18px;
+			}
+
+			/* ── FAQ ────────────────────────────────────────────────────── */
+			.faq {
+				padding-bottom: 100px;
+			}
+			.faq details {
+				border-bottom: 1px solid var(--rule);
+				padding: 4px 0;
+			}
+			.faq details:first-of-type {
+				border-top: 1px solid var(--rule);
+			}
+			.faq summary {
+				list-style: none;
+				cursor: pointer;
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: 20px;
+				font-family: var(--serif);
+				font-weight: 600;
+				font-size: 19px;
+				padding: 18px 2px;
+			}
+			.faq summary::-webkit-details-marker {
+				display: none;
+			}
+			.faq summary::after {
+				content: "+";
+				font-family: var(--mono);
+				font-weight: 400;
+				color: var(--accent);
+				font-size: 20px;
+				flex: none;
+				transition: transform 0.25s var(--ease);
+			}
+			.faq details[open] summary::after {
+				transform: rotate(45deg);
+			}
+			.faq .a {
+				padding: 0 2px 20px;
+				color: var(--soft);
+				max-width: 62ch;
+			}
+
+			/* ── Footer ─────────────────────────────────────────────────── */
+			footer {
+				border-top: 1px solid var(--rule);
+				background: var(--elev);
+				transition:
+					background-color 0.35s ease,
+					border-color 0.35s ease;
+			}
+			.foot-inner {
+				max-width: var(--wide);
+				margin: 0 auto;
+				padding: 54px 24px 26px;
+				display: grid;
+				grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(
+						0,
+						1fr
+					);
+				gap: 40px;
+			}
+			.foot-col h4 {
+				font-family: var(--mono);
+				font-size: 11px;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--faint);
+				margin: 0 0 14px;
+				font-weight: 600;
+			}
+			.foot-col a {
+				display: block;
+				font-size: 15px;
+				color: var(--soft);
+				padding: 4px 0;
+			}
+			.foot-col a:hover {
+				color: var(--accent);
+			}
+			.colophon {
+				max-width: var(--wide);
+				margin: 0 auto;
+				padding: 0 24px 40px;
+				font-family: var(--mono);
+				font-size: 11.5px;
+				color: var(--faint);
+				line-height: 1.7;
+				border-top: 1px dashed var(--rule);
+				padding-top: 20px;
+			}
+			.colophon b {
+				color: var(--soft);
+				font-weight: 500;
+			}
+
+			/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE + MOTION PREFERENCES
+   ════════════════════════════════════════════════════════════════ */
+			@media (max-width: 960px) {
+				.hero-grid,
+				.row,
+				.demo-wrap,
+				.nocatch-inner {
 					grid-template-columns: 1fr;
-					gap: 48px;
 				}
-				.hero-phone {
-					height: 500px;
+				.row.flip .row-copy {
+					order: 1;
 				}
-				.hero-phone .phone-1 {
-					right: 20px;
+				.row.flip .row-art {
+					order: 2;
 				}
-				.hero-phone .phone-2 {
-					left: 20px;
-				}
-				.feature-block,
-				.feature-block.reverse {
-					grid-template-columns: 1fr;
-					gap: 40px;
-					direction: ltr;
-				}
-				.preview-grid {
-					grid-template-columns: 1fr;
-					gap: 40px;
-				}
-				.preview-phone-wrap {
+				.demo-panel {
 					position: static;
 				}
-				.tour-grid {
-					grid-template-columns: 1fr;
+				.hero {
+					padding-top: 52px;
 				}
-				.sideload-grid {
-					grid-template-columns: 1fr;
-					gap: 40px;
+				.hero .phone {
+					max-width: 300px;
 				}
-				.footer-grid {
-					grid-template-columns: 1fr;
-					gap: 32px;
-				}
-				.topbar nav .nav-link {
-					display: none;
-				}
-				.topbar nav .nav-cta {
-					margin-left: 0;
-				}
-				.hero-meta {
-					gap: 20px;
-				}
-				.font-picker {
-					grid-template-columns: repeat(2, 1fr);
-				}
-				.theme-picker.theme-picker-grid {
-					grid-template-columns: repeat(3, 1fr);
+				.foot-inner {
+					grid-template-columns: 1fr 1fr;
 				}
 			}
-			@media (max-width: 540px) {
+			@media (max-width: 640px) {
+				.topnav {
+					display: none;
+				}
+				.theme-pop {
+					margin-left: auto;
+				}
+				.theme-pop > summary #themeName {
+					display: none;
+				}
+				.topbar-inner {
+					gap: 12px;
+				}
+				.shelf {
+					grid-template-columns: 1fr;
+				}
+				.assure {
+					grid-template-columns: 1fr;
+				}
+				.foot-inner {
+					grid-template-columns: 1fr;
+					gap: 26px;
+				}
 				body {
 					font-size: 17px;
 				}
-				.hero {
-					padding: 60px 0 40px;
-				}
-				.feature-text h3 {
-					font-size: 24px;
-				}
-				details.faq-item summary {
-					font-size: 17px;
-				}
-				.manifesto p {
-					font-size: 18px;
-				}
-				.hero-phone .phone {
-					width: 240px;
-				}
-				.feature-phone .phone {
-					width: 280px;
-				}
-				.hero-meta-item strong {
-					font-size: 26px;
-				}
-				.preview-phone {
-					width: 280px;
-				}
-				.preview-controls {
-					padding: 24px;
-				}
-				.theme-picker.theme-picker-grid {
-					grid-template-columns: repeat(2, 1fr);
-				}
 			}
-
-			@keyframes rise {
-				from {
-					opacity: 0;
-					transform: translateY(16px);
+			@media (prefers-reduced-motion: reduce) {
+				html {
+					scroll-behavior: auto;
 				}
-				to {
-					opacity: 1;
-					transform: translateY(0);
+				.rise,
+				.reveal {
+					opacity: 1 !important;
+					transform: none !important;
+					transition: none !important;
 				}
-			}
-			.hero .eyebrow,
-			.hero h1,
-			.hero .lede,
-			.hero-cta,
-			.hero-meta,
-			.hero-phone {
-				animation: rise 700ms cubic-bezier(0.2, 0, 0.2, 1) backwards;
-			}
-			.hero h1 {
-				animation-delay: 100ms;
-			}
-			.hero .lede {
-				animation-delay: 180ms;
-			}
-			.hero-cta {
-				animation-delay: 260ms;
-			}
-			.hero-meta {
-				animation-delay: 340ms;
-			}
-			.hero-phone {
-				animation-delay: 200ms;
+				.btn,
+				.shelf-card {
+					transition: none;
+				}
+				* {
+					animation: none !important;
+				}
 			}
 		</style>
+		<noscript
+			><style>
+				.reveal,
+				.rise {
+					opacity: 1 !important;
+					transform: none !important;
+				}
+			</style></noscript
+		>
 	</head>
 	<body>
+		<div id="progress" aria-hidden="true"></div>
+
+		<!-- ═══════════════ TOPBAR ═══════════════ -->
 		<header class="topbar">
-			<div class="container-wide">
-				<a href="#" class="wordmark">Novel<span>Forge</span></a>
-				<nav>
-					<a href="#features" class="nav-link">Features</a>
-					<a href="#preview" class="nav-link">Try it</a>
-					<a href="#faq" class="nav-link">FAQ</a>
-					<a href="#download" class="nav-cta">
-						Get the app
-						<svg
-							width="14"
-							height="14"
-							viewBox="0 0 24 24"
-							fill="currentColor"
-						>
-							<path
-								d="M4 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 4 3.5z"
-							/>
-						</svg>
-					</a>
+			<div class="topbar-inner">
+				<a class="wordmark" href="#top">Novel<em>Forge</em></a>
+				<nav class="topnav" aria-label="Site">
+					<a href="#product">Features</a>
+					<a href="#preview">Try it</a>
+					<a href="#faq">FAQ</a>
 				</nav>
+				<details class="theme-pop" id="themePop">
+					<summary aria-label="Change page theme">
+						<span class="dot" aria-hidden="true"></span>
+						<span id="themeName">Paper</span>
+					</summary>
+					<div class="theme-menu" role="menu">
+						<div class="tm-label">Page theme · from the app</div>
+						<div id="themeMenuList"></div>
+						<div class="theme-note">
+							These are the eleven reader themes NovelForge ships.
+							The page runs on them too.
+						</div>
+					</div>
+				</details>
+				<a
+					class="btn small"
+					href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
+					>Get the app</a
+				>
 			</div>
 		</header>
 
-		<!-- HERO — the sample novel ("The Long Quiet" by A. Margolis) is a
-     generic placeholder so the site isn't anchored to any real book.
-     The chapter excerpt is original prose. -->
-		<section class="hero">
-			<div class="container-wide">
-				<div class="hero-grid">
-					<div>
-						<div class="eyebrow">
-							<span class="dot"></span>
-							Free · Open source · No accounts
-						</div>
-						<h1>
-							A reader for people<br />
-							who love <em>reading.</em>
-						</h1>
-						<p class="lede">
-							A reading app that doesn't want anything from you.
-							No account. No subscription. Just the book and a
-							serif you like.
-						</p>
-						<div class="hero-cta">
-							<a
-								href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
-								class="btn-primary"
-							>
-								Get it on Google Play
-								<svg viewBox="0 0 24 24" fill="currentColor">
-									<path
-										d="M4 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 4 3.5z"
-									/>
-								</svg>
-							</a>
-							<a href="#preview" class="btn-secondary"
-								>Try the reader →</a
-							>
-						</div>
-						<!-- Hero meta: all three items are things you can count. -->
-						<div class="hero-meta">
-							<div class="hero-meta-item">
-								<strong>8</strong>Reading fonts
-							</div>
-							<div class="hero-meta-item">
-								<strong>11</strong>Reader themes
-							</div>
-							<div class="hero-meta-item">
-								<strong>0</strong>Ads ever
-							</div>
-						</div>
+		<!-- ═══════════════ HERO ═══════════════ -->
+		<section class="hero" id="top">
+			<div class="hero-grid">
+				<div>
+					<div class="eyebrow rise">
+						Free · Open source · No accounts
 					</div>
+					<h1 class="rise d1">
+						A reader for people who
+						<span class="amp">love</span> reading.
+					</h1>
+					<p class="lede rise d2">
+						A reading app that doesn't want anything from you. No
+						account. No subscription. Just the book and a serif you
+						like.
+					</p>
+					<div class="hero-ctas rise d3">
+						<a
+							class="btn"
+							href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
+							>Get it on Google Play</a
+						>
+						<a class="btn ghost" href="#preview"
+							>Try the reader →</a
+						>
+					</div>
+					<div class="hero-colophon rise d4">
+						<span><b>8</b>&nbsp;reading fonts</span
+						><span class="sep">·</span>
+						<span><b>11</b>&nbsp;themes</span
+						><span class="sep">·</span>
+						<span><b>0</b>&nbsp;ads, ever</span>
+					</div>
+				</div>
 
-					<div class="hero-phone">
-						<div class="phone phone-1">
-							<div class="phone-content mock-home">
-								<div class="phone-statusbar">
-									<span>9:41</span><span>●●● 93%</span>
-								</div>
-								<div class="greeting">Good evening</div>
-								<div class="greeting-sub">
+				<div class="rise d2">
+					<div class="phone" aria-hidden="true">
+						<div class="screen">
+							<div class="statusbar">
+								<span>9:41</span><span>●●● 93%</span>
+							</div>
+							<div class="app-pad">
+								<div class="greet">Good evening</div>
+								<div class="greet-sub">
 									19 novels in your library
 								</div>
-								<div class="stats">
-									8-day streak · 292 min today · 7 ch today
-								</div>
-								<div class="section-h">Continue Reading</div>
-								<div class="continue-card">
-									<div class="cc-cover"></div>
-									<div class="cc-info">
-										<div class="cc-title">
+								<span class="streak"
+									>8-day streak · 292 min today</span
+								>
+								<div class="mock-label">Continue reading</div>
+								<div class="cr-card">
+									<div class="cr-cover">LQ</div>
+									<div class="cr-meta">
+										<div class="cr-title">
 											The Long Quiet
 										</div>
-										<div class="cc-chap">Chapter 2</div>
-										<div class="cc-progress">
-											<div></div>
+										<div class="cr-sub">
+											Chapter 2 · 2/20
 										</div>
-										<div class="cc-meta">2 / 20</div>
+										<div class="cr-bar"><i></i></div>
 									</div>
 								</div>
-								<div class="lib-section-h">
-									<h4>Your Library</h4>
-									<span class="count">19 novels</span>
-								</div>
+								<div class="mock-label">Your library</div>
 								<div class="lib-grid">
-									<div class="lib-cover a"></div>
-									<div class="lib-cover b"></div>
-									<div class="lib-cover c"></div>
-								</div>
-								<div class="nav-bar">
-									<div class="nav-item active">Home</div>
-									<div class="nav-item">Library</div>
-									<div class="nav-item">Audio</div>
-									<div class="nav-item">Settings</div>
+									<div class="lib-cell"><i></i></div>
+									<div class="lib-cell"><i></i></div>
+									<div class="lib-cell"><i></i></div>
+									<div class="lib-cell"><i></i></div>
 								</div>
 							</div>
-						</div>
-						<div class="phone phone-2">
-							<div class="phone-content mock-reader">
-								<div class="reader-header">
-									<span class="reader-x">×</span>
-									<div class="reader-titlebox">
-										<p class="reader-chapter">Chapter 1</p>
-										<div class="reader-meta">
-											The Long Quiet · 1/20 · ~2 min
-										</div>
-									</div>
-									<span class="reader-headphones">🎧</span>
-								</div>
-								<p class="reader-text">
-									The town held its breath when the river
-									started to freeze that year. By December the
-									surface was thick enough to walk on, and the
-									children dared each other to cross.
-								</p>
-								<p class="reader-text">
-									Marin watched them from the window of the
-									bookshop, her tea going cold in her hands.
-									She had not yet decided whether to tell
-									anyone what she had found.
-								</p>
-								<div class="reader-bottom">
-									<span>←</span>
-									<span class="num">24</span>
-									<span>→</span>
-								</div>
+							<div class="navbar">
+								<span class="on">Home</span><span>Library</span
+								><span>Audio</span><span>Settings</span>
 							</div>
 						</div>
 					</div>
@@ -2158,27 +1546,33 @@
 			</div>
 		</section>
 
-		<!-- MANIFESTO — drop cap uses a real <span class="drop-initial">
-     for cross-browser reliability. -->
-		<section class="manifesto">
-			<div class="container">
-				<div class="section-mark">The premise</div>
-				<h2>Built for people who love <em>reading.</em></h2>
-				<p>
-					<span class="drop-initial">M</span>ost reading apps assume
-					you read in 10-minute commutes. This one doesn't. It's built
-					for the person who finishes a series in a weekend and starts
-					another the same night. The kind of reader who keeps half a
-					dozen books in active rotation and remembers which paragraph
-					they stopped at three days later.
+		<!-- ═══════════════ CHAPTER I — THE PREMISE ═══════════════ -->
+		<section class="chapter">
+			<div class="container reveal">
+				<div class="eyebrow">
+					The premise <span class="rt">· 1 min</span>
+				</div>
+				<h2>Built for people who love reading.</h2>
+			</div>
+		</section>
+		<section class="prose">
+			<div class="container reveal">
+				<p class="dropcap">
+					Most reading apps assume you read in 10-minute commutes.
+					This one doesn't. It's built for the person who finishes a
+					series in a weekend and starts another the same night. The
+					kind of reader who keeps half a dozen books in active
+					rotation and remembers which paragraph they stopped at three
+					days later.
 				</p>
 				<p>
 					That means offline by default, because you read in the
 					subway and on flights. Eleven themes, because your eyes
 					change as the day goes on. Eight fonts, because some days a
 					serif feels right and some days it doesn't. Stats you can
-					look at and think "huh, I read more than I thought," instead
-					of stats that get sent to a dashboard somewhere.
+					look at and think
+					<em>"huh, I read more than I thought,"</em> instead of stats
+					that get sent to a dashboard somewhere.
 				</p>
 				<p>
 					The whole thing is free. The source is open. Whatever's on
@@ -2187,1036 +1581,947 @@
 			</div>
 		</section>
 
-		<section class="showcase" id="features">
-			<div class="showcase-intro">
-				<div class="section-mark">The product</div>
+		<!-- ═══════════════ CHAPTER II — THE PRODUCT ═══════════════ -->
+		<section class="chapter" id="product">
+			<div class="container reveal">
+				<div class="eyebrow">
+					The product <span class="rt">· 3 min</span>
+				</div>
 				<h2>Designed like the books it carries.</h2>
-				<p>
-					The app's been built and rebuilt over the past year, mostly
-					on weekends, mostly based on what was annoying me about
-					other readers.
+				<p class="lede">
+					Built and rebuilt over the past year, mostly on weekends,
+					mostly based on what was annoying about other readers.
 				</p>
 			</div>
+		</section>
 
-			<div class="container-wide">
-				<div class="feature-block">
-					<div class="feature-text">
-						<span class="feature-tag">The reader</span>
-						<h3>A reader that respects the words.</h3>
-						<p>
-							Eight reading fonts including Literata, Lora,
-							Merriweather, and Open Dyslexic. Eleven themes split
-							between three light (Paper, Sepia, Solari) and eight
-							dark variants like AMOLED, Nord, Dracula, and
-							Catppuccin. Adjustable size, line height, margins.
-						</p>
-						<p>
-							Scroll mode for binge sessions, paged mode when you
-							want to slow down. Long-press a paragraph to
-							bookmark it or pull a highlight. Reading position is
-							saved on every page turn — come back a week later
-							and you'll be on the same line.
-						</p>
-						<ul>
-							<li>11 themes, 8 fonts, paged or scrolled</li>
-							<li>Bookmarks, highlights, annotations</li>
-							<li>Position saved across restarts</li>
-						</ul>
-					</div>
-					<div class="feature-phone">
-						<div class="phone">
-							<div class="phone-content mock-reader">
-								<div class="reader-header">
-									<span class="reader-x">×</span>
-									<div class="reader-titlebox">
-										<p class="reader-chapter">Chapter 1</p>
-										<div class="reader-meta">
-											The Long Quiet · 1/20 · ~2 min
-										</div>
-									</div>
-									<span class="reader-headphones">🎧</span>
-								</div>
-								<p class="reader-text">
+		<div class="rows">
+			<!-- the reader -->
+			<div class="row reveal">
+				<div class="row-copy">
+					<div class="row-kicker">The reader</div>
+					<h3>A reader that respects the words.</h3>
+					<p>
+						Eight reading fonts including Literata, Lora,
+						Merriweather, and Open Dyslexic. Eleven themes split
+						between three light and eight dark. Adjustable size,
+						line height, margins. Scroll mode for binge sessions,
+						paged mode when you want to slow down.
+					</p>
+					<p>
+						Long-press a paragraph to bookmark it or pull a
+						highlight. Reading position is saved on every page turn
+						— come back a week later and you'll be on the same line.
+					</p>
+					<ul class="ticks">
+						<li>11 themes, 8 fonts, paged or scrolled</li>
+						<li>Bookmarks, highlights, annotations</li>
+						<li>Position saved across restarts</li>
+					</ul>
+				</div>
+				<div class="row-art">
+					<div class="phone" aria-hidden="true">
+						<div class="screen">
+							<div class="rd-chrome">
+								<span class="rc-title"
+									>The Long Quiet · 1/20 · ~2 min</span
+								><span class="rc-x">✕</span>
+							</div>
+							<div class="rd-body">
+								<div class="ch">Chapter 1</div>
+								<p>
 									The town held its breath when the river
 									started to freeze that year. By December the
 									surface was thick enough to walk on, and the
 									children dared each other to cross.
 								</p>
-								<p class="reader-text">
-									Marin watched them from the window of the
-									bookshop, her tea going cold in her hands.
-									She had not yet decided whether to tell
-									anyone what she had found, or whether the
-									secret was hers alone to keep.
-								</p>
-								<div class="reader-bottom">
-									<span>←</span>
-									<span class="num">24</span>
-									<span>→</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="feature-block reverse">
-					<div class="feature-text">
-						<span class="feature-tag">The audio</span>
-						<h3>Text-to-speech that sounds <em>good.</em></h3>
-						<p>
-							Three engine options: your device's system TTS, plus
-							neural voices from Piper and Kokoro that you
-							download in-app when you want better quality. Speed,
-							pitch, volume, sentence gaps, paragraph gaps — all
-							separately adjustable.
-						</p>
-						<p>
-							The pronunciation dictionary fixes the words your
-							engine keeps mangling — character names, place
-							names, fictional terms. Save it as JSON and share
-							between devices. Generate full M4B audiobooks with
-							chapter markers when you want to take a novel
-							running.
-						</p>
-						<ul>
-							<li>
-								System TTS plus Piper and Kokoro neural voices
-							</li>
-							<li>M4B audiobook export with chapter markers</li>
-							<li>Audio focus respects calls and other media</li>
-						</ul>
-					</div>
-					<div class="feature-phone">
-						<div class="phone">
-							<div class="phone-content mock-tts">
-								<div class="reader-header">
-									<span class="x">×</span>
-									<div class="info">
-										Chapter 1
-										<span class="meta"
-											>The Long Quiet · 1/20 · ~2
-											min</span
-										>
-									</div>
-									<span class="hp">🎧</span>
-								</div>
-								<p class="reader-text-fade">
-									The town held its breath when the river
-									started to freeze that year. By December the
-									surface was thick enough to walk on, and the
-									children dared each other to cross the bend
-									by the old mill.
-								</p>
-								<div class="tts-panel">
-									<div class="tts-head">
-										<span>Chapter 1</span>
-										<div class="icons">
-											<span>⚙</span>
-											<span>⏱</span>
-											<span>×</span>
-										</div>
-									</div>
-									<div class="tts-controls">
-										<span class="small">⏮</span>
-										<span class="small">↶</span>
-										<div class="play">▶</div>
-										<span class="small">↷</span>
-										<span class="small">⏭</span>
-									</div>
-									<div class="tts-voice">
-										<span>🔊 United States · Blake ♂</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="feature-block">
-					<div class="feature-text">
-						<span class="feature-tag">The stats</span>
-						<h3>Your reading, in numbers.</h3>
-						<p>
-							Word counts, chapters, time spent, daily streaks. A
-							12-week activity heatmap. Personal records for
-							longest session and best day. Week-over-week
-							percentages so you can see whether you're trending
-							up or just remembering selectively.
-						</p>
-						<p>
-							Everything's computed locally on your phone. There's
-							no analytics service watching what you read. At the
-							end of the week you can share a summary card if you
-							want.
-						</p>
-						<ul>
-							<li>Daily, weekly, all-time stats</li>
-							<li>12-week heatmap and streak tracking</li>
-							<li>Shareable summary cards</li>
-						</ul>
-					</div>
-					<div class="feature-phone">
-						<div class="phone">
-							<div class="phone-content mock-stats">
-								<div class="phone-statusbar">
-									<span>9:41</span><span>●●● 93%</span>
-								</div>
-								<div class="stats-h">Reading Stats</div>
-								<div class="week-card">
-									<div class="week-head">
-										<span class="lbl">This Week</span>
-										<span class="days">7/7 days</span>
-									</div>
-									<div class="week-stats">
-										<div class="ws-cell">
-											<span class="num">263.0K</span>
-											<span class="lbl">Words</span>
-											<span class="delta down"
-												>▼ -47%</span
-											>
-										</div>
-										<div class="ws-cell">
-											<span class="num">1d 17h</span>
-											<span class="lbl">Time</span>
-											<span class="delta up">▲ +62%</span>
-										</div>
-										<div class="ws-cell">
-											<span class="num">91</span>
-											<span class="lbl">Chapters</span>
-											<span class="delta down"
-												>▼ -60%</span
-											>
-										</div>
-									</div>
-								</div>
-								<div class="today-h">Today</div>
-								<div class="today-grid">
-									<div class="today-cell">
-										<span class="icon">📖</span>
-										<span class="num">84.4K</span>
-										<span class="lbl">words</span>
-									</div>
-									<div class="today-cell">
-										<span class="icon">⏱</span>
-										<span class="num">10h 45m</span>
-										<span class="lbl">reading</span>
-									</div>
-									<div class="today-cell">
-										<span class="icon">📊</span>
-										<span class="num">26</span>
-										<span class="lbl">chapters</span>
-									</div>
-								</div>
-								<div class="heatmap-h">Activity</div>
-								<div class="heatmap">
-									<div class="heat l1"></div>
-									<div class="heat"></div>
-									<div class="heat l2"></div>
-									<div class="heat"></div>
-									<div class="heat l1"></div>
-									<div class="heat l3"></div>
-									<div class="heat l2"></div>
-									<div class="heat"></div>
-									<div class="heat l4"></div>
-									<div class="heat l2"></div>
-									<div class="heat"></div>
-									<div class="heat l3"></div>
-									<div class="heat"></div>
-									<div class="heat l2"></div>
-									<div class="heat l3"></div>
-									<div class="heat l1"></div>
-									<div class="heat"></div>
-									<div class="heat l4"></div>
-									<div class="heat l1"></div>
-									<div class="heat l3"></div>
-									<div class="heat"></div>
-									<div class="heat l2"></div>
-									<div class="heat l4"></div>
-									<div class="heat l1"></div>
-									<div class="heat l3"></div>
-									<div class="heat l1"></div>
-									<div class="heat"></div>
-									<div class="heat l2"></div>
-									<div class="heat l4"></div>
-									<div class="heat"></div>
-									<div class="heat l3"></div>
-									<div class="heat l2"></div>
-									<div class="heat l1"></div>
-									<div class="heat"></div>
-									<div class="heat l3"></div>
-									<div class="heat l2"></div>
-									<div class="heat"></div>
-									<div class="heat l1"></div>
-									<div class="heat l4"></div>
-									<div class="heat l2"></div>
-									<div class="heat"></div>
-									<div class="heat l3"></div>
-									<div class="heat l1"></div>
-									<div class="heat"></div>
-									<div class="heat l2"></div>
-									<div class="heat l4"></div>
-									<div class="heat"></div>
-									<div class="heat l3"></div>
-									<div class="heat l2"></div>
-									<div class="heat"></div>
-									<div class="heat l1"></div>
-									<div class="heat l3"></div>
-									<div class="heat"></div>
-									<div class="heat l2"></div>
-									<div class="heat l4"></div>
-									<div class="heat"></div>
-									<div class="heat l1"></div>
-									<div class="heat l3"></div>
-									<div class="heat l2"></div>
-									<div class="heat l4"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- INTERACTIVE PREVIEW — phone defaults to data-theme="dark", and
-     "Dark" is the active theme button on first load. The dark theme
-     picker is a 4-column grid so 8 dark themes lay out as 2 rows of 4. -->
-		<section class="preview" id="preview">
-			<div class="container-wide">
-				<div class="preview-intro">
-					<div class="section-mark">Try the reader</div>
-					<h2>See how it feels before you install.</h2>
-					<p>
-						Pick a theme. Try a font. Adjust the size. This is the
-						actual NovelForge reader running in your browser.
-					</p>
-				</div>
-
-				<div class="preview-grid">
-					<div class="preview-phone-wrap">
-						<div
-							class="preview-phone"
-							id="previewPhone"
-							data-theme="dark"
-							data-font="literata"
-						>
-							<div class="reader-screen">
-								<div class="pr-statusbar">
-									<span>9:41</span>
-									<span>●●● 93%</span>
-								</div>
-								<div class="pr-header">
-									<span class="pr-x">×</span>
-									<div class="pr-titlebox">
-										<div class="pr-chapter">Chapter 1</div>
-										<div class="pr-meta">
-											The Long Quiet · 1/20 · ~3 min
-										</div>
-									</div>
-									<span class="pr-headphones">🎧</span>
-								</div>
-								<div class="pr-body">
-									<p>
-										The town held its breath when the river
-										started to freeze that year. By December
-										the surface was thick enough to walk on,
-										and the children dared each other to
-										cross the bend by the old mill where the
-										ice was thinnest.
-									</p>
-									<p>
-										Marin watched them from the window of
+								<p>
+									<span class="hl"
+										>Marin watched them from the window of
 										the bookshop, her tea going cold in her
-										hands. She had not yet decided whether
-										to tell anyone what she had found in the
-										back room three days earlier — the box
-										of letters, the inscriptions in a hand
-										she almost recognized.
-									</p>
-									<p>
-										Outside, a boy slipped and fell laughing
-										onto the ice. His friends pulled him up.
-										The river held. The bookshop bell did
-										not ring all afternoon.
-									</p>
-								</div>
-								<div class="pr-bottom">
-									<span>←</span>
-									<span class="pr-num">24</span>
-									<span>→</span>
-								</div>
+										hands.</span
+									>
+									She had not yet decided whether to tell
+									anyone what she had found.
+								</p>
+							</div>
+							<div class="rd-foot">
+								<span>←</span><span>24</span><span>→</span>
 							</div>
 						</div>
-					</div>
-
-					<div class="preview-controls">
-						<h4>Theme</h4>
-						<p class="theme-group-label">Light</p>
-						<div class="theme-picker" data-group="light">
-							<button class="theme-btn" data-theme="paper">
-								<span class="swatch paper">A</span> Paper
-							</button>
-							<button class="theme-btn" data-theme="sepia">
-								<span class="swatch sepia">A</span> Sepia
-							</button>
-							<button class="theme-btn" data-theme="solari">
-								<span class="swatch solari">A</span> Solari
-							</button>
-						</div>
-
-						<p class="theme-group-label">Dark</p>
-						<div
-							class="theme-picker theme-picker-grid"
-							data-group="dark"
-						>
-							<button class="theme-btn active" data-theme="dark">
-								<span class="swatch dark">A</span> Dark
-							</button>
-							<button class="theme-btn" data-theme="amoled">
-								<span class="swatch amoled">A</span> AMOLED
-							</button>
-							<button class="theme-btn" data-theme="nord">
-								<span class="swatch nord">A</span> Nord
-							</button>
-							<button class="theme-btn" data-theme="dracula">
-								<span class="swatch dracula">A</span> Dracula
-							</button>
-							<button class="theme-btn" data-theme="gruvbox">
-								<span class="swatch gruvbox">A</span> Gruvbox
-							</button>
-							<button class="theme-btn" data-theme="catppu">
-								<span class="swatch catppu">A</span> Catppuccin
-							</button>
-							<button class="theme-btn" data-theme="navy">
-								<span class="swatch navy">A</span> Navy
-							</button>
-							<button class="theme-btn" data-theme="grey">
-								<span class="swatch grey">A</span> Grey
-							</button>
-						</div>
-
-						<h4>Font</h4>
-						<div class="font-picker">
-							<button
-								class="font-btn active"
-								data-font="literata"
-							>
-								<span class="preview-text">Literata</span>
-								<span class="name">Serif</span>
-							</button>
-							<button class="font-btn" data-font="lora">
-								<span class="preview-text">Lora</span>
-								<span class="name">Serif</span>
-							</button>
-							<button class="font-btn" data-font="merriweather">
-								<span class="preview-text">Merriweather</span>
-								<span class="name">Serif</span>
-							</button>
-							<button class="font-btn" data-font="crimson">
-								<span class="preview-text">Crimson</span>
-								<span class="name">Serif</span>
-							</button>
-							<button class="font-btn" data-font="source">
-								<span class="preview-text">Source Sans</span>
-								<span class="name">Sans</span>
-							</button>
-							<button class="font-btn" data-font="noto">
-								<span class="preview-text">Noto Sans</span>
-								<span class="name">Sans</span>
-							</button>
-							<button class="font-btn" data-font="dyslexic">
-								<span class="preview-text">Dyslexic</span>
-								<span class="name">Accessibility</span>
-							</button>
-							<button class="font-btn" data-font="jetbrains">
-								<span class="preview-text">JetBrains</span>
-								<span class="name">Mono</span>
-							</button>
-						</div>
-
-						<h4>Sizing</h4>
-						<div class="slider-row">
-							<span class="lbl">Font size</span>
-							<span class="val" id="fontSizeVal">15px</span>
-						</div>
-						<input
-							type="range"
-							id="fontSizeSlider"
-							min="13"
-							max="22"
-							value="15"
-							step="1"
-						/>
-
-						<div class="slider-row">
-							<span class="lbl">Line spacing</span>
-							<span class="val" id="lineHeightVal">1.6×</span>
-						</div>
-						<input
-							type="range"
-							id="lineHeightSlider"
-							min="1.3"
-							max="2.0"
-							value="1.6"
-							step="0.1"
-						/>
 					</div>
 				</div>
 			</div>
-		</section>
 
-		<!-- TOUR — 8 cards in a 2×4 grid. Card 06 is auto-scroll; card 08 is
-     backup & restore. -->
-		<section class="tour">
-			<div class="container">
-				<div class="tour-intro">
-					<div class="section-mark" style="justify-content: center">
-						More inside
-					</div>
-					<h2>What's in there.</h2>
-				</div>
-			</div>
-			<div class="container-wide">
-				<div class="tour-grid">
-					<div class="tour-card">
-						<span class="tc-num">01</span>
-						<div class="tc-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<path
-									d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-								/>
-							</svg>
-						</div>
-						<h4>Works without signal.</h4>
-						<p>
-							EPUBs import in seconds and they're yours. Reading
-							state syncs back to the library on every page.
-							Subway, flight, family dinner — same app.
-						</p>
-					</div>
-					<div class="tour-card">
-						<span class="tc-num">02</span>
-						<div class="tc-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<path
-									d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
-								/>
-								<path
-									d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"
-								/>
-							</svg>
-						</div>
-						<h4>Volume key navigation.</h4>
-						<p>
-							Volume up scrolls up, down scrolls down. Off by
-							default. Audio focus is handled properly so phone
-							calls and podcasts still work normally when you're
-							not in the reader.
-						</p>
-					</div>
-					<div class="tour-card">
-						<span class="tc-num">03</span>
-						<div class="tc-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<path
-									d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-								/>
-							</svg>
-						</div>
-						<h4>Pronunciation dictionaries.</h4>
-						<p>
-							The TTS keeps butchering "Aelindra"? Add it to the
-							dictionary once and you're done. Export the whole
-							dictionary as a single JSON file and load it on
-							another device.
-						</p>
-					</div>
-					<div class="tour-card">
-						<span class="tc-num">04</span>
-						<div class="tc-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<path
-									d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
-								/>
-							</svg>
-						</div>
-						<h4>Bookmarks &amp; highlights.</h4>
-						<p>
-							Long-press a paragraph to bookmark it with a note.
-							Select text to highlight in six colors. Search
-							across every bookmark in a novel. Export the lot as
-							JSON for safekeeping.
-						</p>
-					</div>
-					<div class="tour-card">
-						<span class="tc-num">05</span>
-						<div class="tc-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<path
-									d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-								/>
-								<polyline points="14 2 14 8 20 8" />
-							</svg>
-						</div>
-						<h4>EPUB import.</h4>
-						<p>
-							Drag any .epub into the app. Cover, chapters,
-							metadata — extracted automatically. Your whole
-							library lives in one place, organized and
-							searchable.
-						</p>
-					</div>
-					<div class="tour-card">
-						<span class="tc-num">06</span>
-						<div class="tc-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<polygon points="5 3 19 12 5 21 5 3" />
-							</svg>
-						</div>
-						<h4>Hands-free auto-scroll.</h4>
-						<p>
-							Teleprompter-style continuous drift down the page,
-							speed adjustable from 20 to 200 pixels per second.
-							Tap anywhere to pause. Auto-advances chapters with a
-							beat at the top of each new one.
-						</p>
-					</div>
-					<div class="tour-card">
-						<span class="tc-num">07</span>
-						<div class="tc-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<rect
-									x="3"
-									y="3"
-									width="18"
-									height="18"
-									rx="2"
-								/>
-								<path d="M9 9h6v6H9z" />
-							</svg>
-						</div>
-						<h4>Continue-reading widget.</h4>
-						<p>
-							A 2×1 home screen widget that shows the cover and
-							chapter you stopped on. Tap and you're back at the
-							saved paragraph. Updates automatically as your
-							reading position moves.
-						</p>
-					</div>
-					<div class="tour-card">
-						<span class="tc-num">08</span>
-						<div class="tc-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<path
-									d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-								/>
-								<polyline points="7 10 12 15 17 10" />
-								<line x1="12" y1="15" x2="12" y2="3" />
-							</svg>
-						</div>
-						<h4>Backup &amp; restore.</h4>
-						<p>
-							Export everything — library, reading history,
-							bookmarks, highlights, settings — as a single ZIP.
-							Move to a new phone and restore it all in one step.
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="sideload">
-			<div class="container">
-				<div class="section-mark">No catch</div>
-				<h2>Free, and it stays that way.</h2>
-				<div class="sideload-grid" style="margin-top: 40px">
-					<div>
-						<p>
-							NovelForge is free on Google Play. There's no paid
-							tier, no subscription, and no ads — now or later.
-						</p>
-						<p>
-							You don't make an account, and nothing you read
-							leaves your phone. The source is open if you'd like
-							to read it.
-						</p>
-					</div>
-					<ul class="sideload-list">
-						<li>
-							<span class="check"
-								><svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="3"
-								>
-									<polyline points="20 6 9 17 4 12" /></svg
-							></span>
-							<div>
-								<span class="what">No accounts</span>
-								<span class="desc"
-									>You don't sign up. Ever.</span
-								>
-							</div>
-						</li>
-						<li>
-							<span class="check"
-								><svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="3"
-								>
-									<polyline points="20 6 9 17 4 12" /></svg
-							></span>
-							<div>
-								<span class="what">No tracking</span>
-								<span class="desc"
-									>Zero analytics, zero telemetry.</span
-								>
-							</div>
-						</li>
-						<li>
-							<span class="check"
-								><svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="3"
-								>
-									<polyline points="20 6 9 17 4 12" /></svg
-							></span>
-							<div>
-								<span class="what">No ads</span>
-								<span class="desc">Not now, not later.</span>
-							</div>
-						</li>
-						<li>
-							<span class="check"
-								><svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="3"
-								>
-									<polyline points="20 6 9 17 4 12" /></svg
-							></span>
-							<div>
-								<span class="what">Open source</span>
-								<span class="desc"
-									>Read the code if you want to.</span
-								>
-							</div>
-						</li>
-						<li>
-							<span class="check"
-								><svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="3"
-								>
-									<polyline points="20 6 9 17 4 12" /></svg
-							></span>
-							<div>
-								<span class="what">Your data</span>
-								<span class="desc">Stays on your phone.</span>
-							</div>
-						</li>
+			<!-- the audio -->
+			<div class="row flip reveal">
+				<div class="row-copy">
+					<div class="row-kicker">The audio</div>
+					<h3>Text-to-speech that sounds good.</h3>
+					<p>
+						Three engine options: your device's system TTS, plus
+						neural voices from Piper and Kokoro that you download
+						in-app when you want better quality. Speed, pitch,
+						volume, sentence gaps, paragraph gaps — all separately
+						adjustable.
+					</p>
+					<p>
+						The pronunciation dictionary fixes the words your engine
+						keeps mangling — character names, place names, fictional
+						terms. Save it as JSON and share between devices.
+						Generate full M4B audiobooks with chapter markers when
+						you want to take a novel running.
+					</p>
+					<ul class="ticks">
+						<li>System TTS plus Piper and Kokoro neural voices</li>
+						<li>M4B audiobook export with chapter markers</li>
+						<li>Audio focus respects calls and other media</li>
 					</ul>
 				</div>
+				<div class="row-art">
+					<div class="phone" aria-hidden="true">
+						<div class="screen">
+							<div class="rd-chrome">
+								<span class="rc-title"
+									>The Long Quiet · Chapter 1</span
+								><span class="rc-x">✕</span>
+							</div>
+							<div class="rd-body">
+								<p>
+									<span class="hl"
+										>The town held its breath when the river
+										started to freeze that year.</span
+									>
+									By December the surface was thick enough to
+									walk on, and the children dared each other
+									to cross the bend by the old mill.
+								</p>
+							</div>
+							<div class="tts-row">
+								<span>⏮</span><span>↶</span>
+								<span class="tts-play">▶</span>
+								<span>↷</span><span>⏭</span>
+							</div>
+							<div class="tts-voice">
+								United States · Blake · Kokoro neural
+							</div>
+							<div class="tts-slider">
+								<div class="lab">
+									<span>Speed</span><span>1.1×</span>
+								</div>
+								<div class="tr"><i></i><b></b></div>
+							</div>
+							<div
+								class="tts-slider"
+								style="padding-bottom: 16px"
+							>
+								<div class="lab">
+									<span>Sentence gap</span><span>220 ms</span>
+								</div>
+								<div class="tr">
+									<i style="width: 38%"></i
+									><b style="left: 38%"></b>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- the stats -->
+			<div class="row reveal">
+				<div class="row-copy">
+					<div class="row-kicker">The stats</div>
+					<h3>Your reading, in numbers.</h3>
+					<p>
+						Word counts, chapters, time spent, daily streaks. A
+						12-week activity heatmap. Personal records for longest
+						session and best day. Week-over-week percentages so you
+						can see whether you're trending up or just remembering
+						selectively.
+					</p>
+					<p>
+						Everything's computed locally on your phone. There's no
+						analytics service watching what you read. At the end of
+						the week you can share a summary card if you want.
+					</p>
+					<ul class="ticks">
+						<li>Daily, weekly, all-time stats</li>
+						<li>12-week heatmap and streak tracking</li>
+						<li>Shareable summary cards</li>
+					</ul>
+				</div>
+				<div class="row-art">
+					<div class="phone" aria-hidden="true">
+						<div class="screen">
+							<div class="statusbar">
+								<span>9:41</span><span>●●● 93%</span>
+							</div>
+							<div class="app-pad">
+								<div class="st-head">Reading stats</div>
+								<div class="st-grid">
+									<div class="st-cell">
+										<div class="st-num">263.0K</div>
+										<div class="st-lab">
+											Words this week
+										</div>
+										<div class="st-delta up">▲ +12%</div>
+									</div>
+									<div class="st-cell">
+										<div class="st-num">1d 17h</div>
+										<div class="st-lab">Time</div>
+										<div class="st-delta up">▲ +62%</div>
+									</div>
+									<div class="st-cell">
+										<div class="st-num">91</div>
+										<div class="st-lab">Chapters</div>
+										<div class="st-delta down">▼ −9%</div>
+									</div>
+									<div class="st-cell">
+										<div class="st-num">7/7</div>
+										<div class="st-lab">Days read</div>
+										<div class="st-delta up">
+											Streak alive
+										</div>
+									</div>
+								</div>
+								<div class="mock-label">12-week activity</div>
+								<div class="heat">
+									<i class="l1"></i><i></i><i class="l2"></i
+									><i class="l3"></i><i class="l1"></i
+									><i class="l2"></i><i></i><i class="l3"></i
+									><i class="l2"></i><i class="l1"></i
+									><i class="l3"></i><i class="l2"></i> <i></i
+									><i class="l2"></i><i class="l1"></i
+									><i class="l2"></i><i class="l3"></i><i></i
+									><i class="l1"></i><i class="l2"></i
+									><i class="l3"></i><i class="l3"></i
+									><i class="l1"></i><i class="l2"></i>
+									<i class="l2"></i><i class="l3"></i><i></i
+									><i class="l1"></i><i class="l2"></i
+									><i class="l3"></i><i class="l2"></i
+									><i class="l1"></i><i></i><i class="l2"></i
+									><i class="l3"></i><i class="l3"></i>
+								</div>
+							</div>
+							<div class="navbar">
+								<span>Home</span><span>Library</span
+								><span>Audio</span><span class="on">Stats</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ═══════════════ CHAPTER III — TRY THE READER ═══════════════ -->
+		<section class="chapter" id="preview">
+			<div class="container reveal">
+				<div class="eyebrow">
+					Try the reader <span class="rt">· live</span>
+				</div>
+				<h2>See how it feels before you install.</h2>
+				<p class="lede">
+					Pick a theme. Try a font. Adjust the size. These are the
+					reader's actual controls, running in your browser.
+				</p>
 			</div>
 		</section>
 
-		<section class="download-section" id="download">
-			<div class="container">
-				<div class="section-mark" style="justify-content: center">
+		<div class="demo-wrap">
+			<div class="demo-panel reveal">
+				<div class="ctl-label">Theme</div>
+				<div class="chips" id="demoThemes"></div>
+
+				<div class="ctl-label">Font</div>
+				<div class="chips" id="demoFonts"></div>
+
+				<div class="ctl-label">Sizing</div>
+				<div class="sl-row">
+					<div class="lab">
+						<span>Font size</span><output id="fsOut">15px</output>
+					</div>
+					<input
+						type="range"
+						id="fsSlider"
+						min="12"
+						max="20"
+						value="15"
+						step="1"
+						aria-label="Font size"
+					/>
+				</div>
+				<div class="sl-row">
+					<div class="lab">
+						<span>Line spacing</span
+						><output id="lhOut">1.6×</output>
+					</div>
+					<input
+						type="range"
+						id="lhSlider"
+						min="13"
+						max="21"
+						value="16"
+						step="1"
+						aria-label="Line spacing"
+					/>
+				</div>
+
+				<label class="site-sync">
+					<input type="checkbox" id="siteSync" checked />
+					<span
+						><b>Theme this page too.</b> The site runs on the same
+						eleven palettes the app ships — pick one and everything
+						follows.</span
+					>
+				</label>
+			</div>
+
+			<div class="reveal">
+				<div
+					class="phone"
+					id="demoPhone"
+					data-theme="paper"
+					style="max-width: 360px"
+				>
+					<div class="screen">
+						<div class="statusbar">
+							<span>9:41</span><span>●●● 93%</span>
+						</div>
+						<div class="rd-chrome">
+							<span class="rc-title"
+								>The Long Quiet · 1/20 · ~3 min</span
+							><span class="rc-x">✕</span>
+						</div>
+						<div
+							class="rd-body"
+							id="demoBody"
+							style="--reader-fs: 15px; --reader-lh: 1.6"
+						>
+							<div class="ch">Chapter 1</div>
+							<p>
+								The town held its breath when the river started
+								to freeze that year. By December the surface was
+								thick enough to walk on, and the children dared
+								each other to cross the bend by the old mill
+								where the ice was thinnest.
+							</p>
+							<p>
+								Marin watched them from the window of the
+								bookshop, her tea going cold in her hands. She
+								had not yet decided whether to tell anyone what
+								she had found in the back room three days
+								earlier — the box of letters, the inscriptions
+								in a hand she almost recognized.
+							</p>
+							<p>
+								Outside, a boy slipped and fell laughing onto
+								the ice. His friends pulled him up. The river
+								held. The bookshop bell did not ring all
+								afternoon.
+							</p>
+						</div>
+						<div class="rd-foot">
+							<span>←</span><span>24</span><span>→</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ═══════════════ CHAPTER IV — WHAT'S IN THERE ═══════════════ -->
+		<section class="chapter">
+			<div class="container reveal">
+				<div class="eyebrow">
+					More inside <span class="rt">· 2 min</span>
+				</div>
+				<h2>What's in there.</h2>
+			</div>
+		</section>
+
+		<div class="shelf">
+			<div class="shelf-card reveal">
+				<span class="shelf-tag">Offline</span>
+				<h3>Works without signal.</h3>
+				<p>
+					EPUBs import in seconds and they're yours. Reading state
+					syncs back to the library on every page. Subway, flight,
+					family dinner — same app.
+				</p>
+			</div>
+			<div class="shelf-card reveal">
+				<span class="shelf-tag">Hardware</span>
+				<h3>Volume key navigation.</h3>
+				<p>
+					Volume up scrolls up, down scrolls down. Off by default.
+					Audio focus is handled properly, so phone calls and podcasts
+					still work normally when you're not in the reader.
+				</p>
+			</div>
+			<div class="shelf-card reveal">
+				<span class="shelf-tag">TTS dictionary</span>
+				<h3>Pronunciation dictionaries.</h3>
+				<p>
+					The TTS keeps butchering "Aelindra"? Add it to the
+					dictionary once and you're done. Export the whole dictionary
+					as a single JSON file and load it on another device.
+				</p>
+			</div>
+			<div class="shelf-card reveal">
+				<span class="shelf-tag">Margins</span>
+				<h3>Bookmarks &amp; highlights.</h3>
+				<p>
+					Long-press a paragraph to bookmark it with a note. Select
+					text to highlight in six colors. Search across every
+					bookmark in a novel. Export the lot as JSON for safekeeping.
+				</p>
+			</div>
+			<div class="shelf-card reveal">
+				<span class="shelf-tag">Library</span>
+				<h3>EPUB import.</h3>
+				<p>
+					Drag any .epub into the app. Cover, chapters, metadata —
+					extracted automatically. Your whole library lives in one
+					place, organized and searchable.
+				</p>
+			</div>
+			<div class="shelf-card reveal">
+				<span class="shelf-tag">Hands-free</span>
+				<h3>Teleprompter auto-scroll.</h3>
+				<p>
+					Continuous drift down the page, speed adjustable from 20 to
+					200 pixels per second. Tap anywhere to pause. Auto-advances
+					chapters with a beat at the top of each new one.
+				</p>
+			</div>
+			<div class="shelf-card reveal">
+				<span class="shelf-tag">Home screen</span>
+				<h3>Continue-reading widget.</h3>
+				<p>
+					A 2×1 widget that shows the cover and chapter you stopped
+					on. Tap and you're back at the saved paragraph. Updates
+					automatically as your reading position moves.
+				</p>
+			</div>
+			<div class="shelf-card reveal">
+				<span class="shelf-tag">Portability</span>
+				<h3>Backup &amp; restore.</h3>
+				<p>
+					Export everything — library, reading history, bookmarks,
+					highlights, settings — as a single ZIP. Move to a new phone
+					and restore it all in one step.
+				</p>
+			</div>
+		</div>
+
+		<!-- ═══════════════ NO CATCH ═══════════════ -->
+		<section class="nocatch">
+			<div class="nocatch-inner">
+				<div class="reveal">
+					<div class="eyebrow">No catch</div>
+					<h2>Free, and it stays that way.</h2>
+					<p class="soft">
+						NovelForge is free on Google Play. There's no paid tier,
+						no subscription, and no ads — now or later. You don't
+						make an account, and nothing you read leaves your phone.
+						The source is open if you'd like to read it.
+					</p>
+				</div>
+				<dl class="assure reveal">
+					<div>
+						<dt>No accounts</dt>
+						<dd>You don't sign up. Ever.</dd>
+					</div>
+					<div>
+						<dt>No tracking</dt>
+						<dd>Zero analytics, zero telemetry.</dd>
+					</div>
+					<div>
+						<dt>No ads</dt>
+						<dd>Not now, not later.</dd>
+					</div>
+					<div>
+						<dt>Open source</dt>
+						<dd>Read the code if you want to.</dd>
+					</div>
+					<div>
+						<dt>Your data</dt>
+						<dd>Stays on your phone.</dd>
+					</div>
+					<div>
+						<dt>Your files</dt>
+						<dd>EPUBs you own, nothing hosted.</dd>
+					</div>
+				</dl>
+			</div>
+		</section>
+
+		<!-- ═══════════════ DOWNLOAD ═══════════════ -->
+		<section class="download" id="download">
+			<div class="reveal">
+				<div class="eyebrow" style="justify-content: center">
 					Get the app
 				</div>
-				<h2>Free. Open. <em>Yours.</em></h2>
+				<h2>Free. Open. Yours.</h2>
 				<p class="lede">
 					Android 8.0 or later. Android only for now — an iOS build
 					isn't planned.
 				</p>
-				<div class="download-button">
-					<a
-						href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
-						class="btn-primary"
-					>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M4 3.5v17a1 1 0 0 0 1.5.87l14-8.5a1 1 0 0 0 0-1.74l-14-8.5A1 1 0 0 0 4 3.5z"
-							/>
-						</svg>
-						Get it on Google Play
-					</a>
-					<p class="download-meta">
-						<span>Android 8.0+</span>
-						<span class="dot">·</span>
-						<span>Free</span>
-						<span class="dot">·</span>
-						<span>No ads or in-app purchases</span>
-					</p>
+				<a
+					class="btn"
+					style="font-size: 15px; padding: 15px 30px"
+					href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
+					>Get it on Google Play</a
+				>
+				<div class="dl-meta">
+					Android 8.0+ · Free · No ads or in-app purchases
 				</div>
 			</div>
 		</section>
 
+		<!-- ═══════════════ FAQ ═══════════════ -->
 		<section class="faq" id="faq">
 			<div class="container">
-				<div class="section-mark">Questions</div>
-				<h2>The honest <em>FAQ.</em></h2>
-				<div class="faq-list">
-					<details class="faq-item">
+				<div class="reveal">
+					<div class="eyebrow">
+						Questions <span class="rt">· honest answers</span>
+					</div>
+					<h2>The honest FAQ.</h2>
+				</div>
+				<div class="reveal">
+					<details>
 						<summary>Is it really free?</summary>
-						<div class="answer">
-							<p>
-								Yes. Free to download on Google Play, with no
-								subscription, no ads, and no in-app purchases.
-								The source is open on GitHub if you want to see
-								exactly what it does.
-							</p>
+						<div class="a">
+							Yes. Free to download on Google Play, with no
+							subscription, no ads, and no in-app purchases. The
+							source is open on GitHub if you want to see exactly
+							what it does.
 						</div>
 					</details>
-					<details class="faq-item">
+					<details>
 						<summary>What about updates?</summary>
-						<div class="answer">
-							<p>
-								Google Play updates the app automatically in the
-								background, the same as any other app. There's
-								nothing to do on your end.
-							</p>
+						<div class="a">
+							Google Play updates the app automatically in the
+							background, the same as any other app. There's
+							nothing to do on your end.
 						</div>
 					</details>
-					<details class="faq-item">
+					<details>
 						<summary>What books can I read in it?</summary>
-						<div class="answer">
-							<p>
-								Anything you have as an EPUB file. Import it and
-								NovelForge pulls out the cover, chapters, and
-								metadata automatically.
-							</p>
-							<p>
-								Everything stays on your device — the app
-								doesn't host, fetch, or sell content. It's a
-								reader for the files you already own.
-							</p>
+						<div class="a">
+							Anything you have as an EPUB file. Import it and
+							NovelForge pulls out the cover, chapters, and
+							metadata automatically. Everything stays on your
+							device — the app doesn't host, fetch, or sell
+							content. It's a reader for the files you already
+							own.
 						</div>
 					</details>
-					<details class="faq-item">
+					<details>
 						<summary>Will there ever be an iOS version?</summary>
-						<div class="answer">
-							<p>
-								Not planned. An iOS version would mean a
-								separate codebase and a different distribution
-								path, and right now the focus is on making the
-								Android app as good as it can be.
-							</p>
+						<div class="a">
+							Not planned. An iOS version would mean a separate
+							codebase and a different distribution path, and
+							right now the focus is on making the Android app as
+							good as it can be.
 						</div>
 					</details>
-					<details class="faq-item">
+					<details>
 						<summary>Can I support the project?</summary>
-						<div class="answer">
-							<p>
-								Bug reports, feature suggestions, and code
-								contributions on GitHub are the most useful
-								thing. After that, telling other readers it
-								exists.
-							</p>
-							<p>
-								There's no donation page on principle. If you're
-								feeling generous, support an author whose work
-								you've enjoyed — they need it more than this
-								project does.
-							</p>
+						<div class="a">
+							Bug reports, feature suggestions, and code
+							contributions on GitHub are the most useful thing.
+							After that, telling other readers it exists. There's
+							no donation page on principle. If you're feeling
+							generous, support an author whose work you've
+							enjoyed — they need it more than this project does.
 						</div>
 					</details>
-					<details class="faq-item">
+					<details>
 						<summary>Where is my data stored?</summary>
-						<div class="answer">
-							<p>
-								Locally, in the app's private storage on your
-								device. Reading history, bookmarks, highlights,
-								settings — all of it. The app never sends your
-								reading data to a server because there is no
-								NovelForge server.
-							</p>
-							<p>
-								For backups, Settings has an "Export backup"
-								option that produces a single ZIP file you can
-								save anywhere. Importing the ZIP on a new device
-								restores everything.
-							</p>
+						<div class="a">
+							Locally, in the app's private storage on your
+							device. Reading history, bookmarks, highlights,
+							settings — all of it. The app never sends your
+							reading data to a server because there is no
+							NovelForge server. For backups, Settings has an
+							"Export backup" option that produces a single ZIP
+							you can save anywhere. Importing it on a new device
+							restores everything.
 						</div>
 					</details>
 				</div>
 			</div>
 		</section>
 
-		<footer class="footer">
-			<div class="container-wide">
-				<div class="footer-grid">
-					<div class="footer-col">
-						<div class="footer-mark">Novel<span>Forge</span></div>
-						<p class="footer-tagline">
-							A reading app for people who love reading.
-						</p>
-					</div>
-					<div class="footer-col">
-						<h6>Project</h6>
-						<ul>
-							<li>
-								<a
-									href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
-									>Google Play</a
-								>
-							</li>
-							<li>
-								<a
-									href="https://github.com/abhinavxt/novelforge"
-									>GitHub repository</a
-								>
-							</li>
-							<li>
-								<a
-									href="https://github.com/abhinavxt/novelforge/issues"
-									>Report a bug</a
-								>
-							</li>
-						</ul>
-					</div>
-					<div class="footer-col">
-						<h6>Resources</h6>
-						<ul>
-							<li><a href="#features">Features</a></li>
-							<li><a href="#preview">Try the reader</a></li>
-							<li><a href="#faq">FAQ</a></li>
-							<li>
-								<a
-									href="https://github.com/abhinavxt/novelforge/blob/main/LICENSE"
-									>License (MIT)</a
-								>
-							</li>
-						</ul>
-					</div>
+		<!-- ═══════════════ FOOTER ═══════════════ -->
+		<footer>
+			<div class="foot-inner">
+				<div class="foot-col">
+					<a class="wordmark" href="#top" style="margin-bottom: 12px"
+						>Novel<em>Forge</em></a
+					>
+					<p
+						class="soft"
+						style="
+							font-size: 14.5px;
+							max-width: 32ch;
+							margin-top: 10px;
+						"
+					>
+						A reading app for people who love reading.
+					</p>
 				</div>
-				<div class="footer-bottom">
-					<span>Open source · MIT licensed</span>
-					<span>Android 8.0+ · On Google Play</span>
+				<div class="foot-col">
+					<h4>Project</h4>
+					<a
+						href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
+						>Google Play</a
+					>
+					<a href="https://github.com/abhinavxt/novelforge"
+						>GitHub repository</a
+					>
+					<a href="https://github.com/abhinavxt/novelforge/issues"
+						>Report a bug</a
+					>
+					<a
+						href="https://github.com/abhinavxt/novelforge/blob/main/LICENSE"
+						>License (MIT)</a
+					>
 				</div>
+				<div class="foot-col">
+					<h4>Resources</h4>
+					<a href="#product">Features</a>
+					<a href="#preview">Try the reader</a>
+					<a href="#faq">FAQ</a>
+				</div>
+			</div>
+			<div class="colophon">
+				<b>Colophon.</b> This page is set in Literata and JetBrains Mono
+				— two of the eight faces that ship in the app — and its palette
+				is whichever of the app's eleven reader themes you picked up
+				top. Open source, MIT licensed. Android 8.0+, on Google Play.
 			</div>
 		</footer>
 
 		<script>
-			/* Reader preview controller. The logic uses data attributes
-   throughout: the button's data-font / data-theme value gets mirrored
-   to the phone, which triggers the CSS variable swap and the right
-   family loads. */
 			;(function () {
-				const phone = document.getElementById("previewPhone")
-				const body = phone.querySelector(".pr-body")
+				"use strict"
 
-				const themeButtons = document.querySelectorAll(".theme-btn")
-				themeButtons.forEach((btn) => {
-					btn.addEventListener("click", () => {
-						const theme = btn.dataset.theme
-						phone.dataset.theme = theme
-						themeButtons.forEach((b) =>
-							b.classList.remove("active"),
+				/* ── Theme registry: name → swatch color for pickers, plus the
+        meta theme-color the browser chrome should adopt. ───────── */
+				var THEMES = [
+					{
+						id: "paper",
+						name: "Paper",
+						sw: "#faf6ee",
+						meta: "#faf6ee",
+					},
+					{
+						id: "sepia",
+						name: "Sepia",
+						sw: "#f3e7d3",
+						meta: "#f3e7d3",
+					},
+					{
+						id: "solari",
+						name: "Solari",
+						sw: "#fdf6e3",
+						meta: "#fdf6e3",
+					},
+					{
+						id: "dark",
+						name: "Dark",
+						sw: "#1e2026",
+						meta: "#16171b",
+					},
+					{
+						id: "amoled",
+						name: "AMOLED",
+						sw: "#000000",
+						meta: "#000000",
+					},
+					{
+						id: "nord",
+						name: "Nord",
+						sw: "#2e3440",
+						meta: "#2e3440",
+					},
+					{
+						id: "dracula",
+						name: "Dracula",
+						sw: "#282a36",
+						meta: "#282a36",
+					},
+					{
+						id: "gruvbox",
+						name: "Gruvbox",
+						sw: "#282828",
+						meta: "#282828",
+					},
+					{
+						id: "catppuccin",
+						name: "Catppuccin",
+						sw: "#1e1e2e",
+						meta: "#1e1e2e",
+					},
+					{
+						id: "navy",
+						name: "Navy",
+						sw: "#0f1a2b",
+						meta: "#0f1a2b",
+					},
+					{
+						id: "grey",
+						name: "Grey",
+						sw: "#26282b",
+						meta: "#26282b",
+					},
+				]
+				var FONTS = [
+					{
+						id: "literata",
+						name: "Literata",
+						fam: '"Literata", Georgia, serif',
+					},
+					{ id: "lora", name: "Lora", fam: '"Lora", Georgia, serif' },
+					{
+						id: "merri",
+						name: "Merriweather",
+						fam: '"Merriweather", Georgia, serif',
+					},
+					{
+						id: "crimson",
+						name: "Crimson",
+						fam: '"Crimson Text", Georgia, serif',
+					},
+					{
+						id: "source",
+						name: "Source Sans",
+						fam: '"Source Sans 3", system-ui, sans-serif',
+					},
+					{
+						id: "noto",
+						name: "Noto Sans",
+						fam: '"Noto Sans", system-ui, sans-serif',
+					},
+					{
+						id: "dyslexic",
+						name: "Dyslexic",
+						fam: '"Open-Dyslexic", "OpenDyslexic", sans-serif',
+					},
+					{
+						id: "jbmono",
+						name: "JB Mono",
+						fam: '"JetBrains Mono", monospace',
+					},
+				]
+
+				var root = document.documentElement
+				var metaT = document.getElementById("metaTheme")
+				var store = {
+					get: function (k) {
+						try {
+							return localStorage.getItem(k)
+						} catch (e) {
+							return null
+						}
+					},
+					set: function (k, v) {
+						try {
+							localStorage.setItem(k, v)
+						} catch (e) {}
+					},
+				}
+
+				function findTheme(id) {
+					for (var i = 0; i < THEMES.length; i++)
+						if (THEMES[i].id === id) return THEMES[i]
+					return THEMES[0]
+				}
+
+				/* ── Site-wide theme ─────────────────────────────────────────── */
+				var themeNameEl = document.getElementById("themeName")
+				function applySiteTheme(id) {
+					var t = findTheme(id)
+					root.setAttribute("data-theme", t.id)
+					if (metaT) metaT.setAttribute("content", t.meta)
+					if (themeNameEl) themeNameEl.textContent = t.name
+					store.set("nf-theme", t.id)
+					refreshMenuPressed(t.id)
+				}
+
+				/* topbar popover menu */
+				var menuList = document.getElementById("themeMenuList")
+				var themePop = document.getElementById("themePop")
+				THEMES.forEach(function (t) {
+					var b = document.createElement("button")
+					b.type = "button"
+					b.setAttribute("role", "menuitem")
+					b.setAttribute("aria-pressed", "false")
+					b.dataset.theme = t.id
+					b.innerHTML =
+						'<span class="sw" style="background:' +
+						t.sw +
+						'"></span>' +
+						t.name
+					b.addEventListener("click", function () {
+						applySiteTheme(t.id)
+						syncDemoToSite(t.id)
+						if (themePop) themePop.removeAttribute("open")
+					})
+					menuList.appendChild(b)
+				})
+				function refreshMenuPressed(id) {
+					var btns = menuList.querySelectorAll("button")
+					for (var i = 0; i < btns.length; i++)
+						btns[i].setAttribute(
+							"aria-pressed",
+							btns[i].dataset.theme === id ? "true" : "false",
 						)
-						btn.classList.add("active")
-					})
+				}
+				document.addEventListener("click", function (e) {
+					if (
+						themePop &&
+						themePop.hasAttribute("open") &&
+						!themePop.contains(e.target)
+					)
+						themePop.removeAttribute("open")
 				})
 
-				const fontButtons = document.querySelectorAll(".font-btn")
-				fontButtons.forEach((btn) => {
-					btn.addEventListener("click", () => {
-						const font = btn.dataset.font
-						phone.dataset.font = font
-						fontButtons.forEach((b) => b.classList.remove("active"))
-						btn.classList.add("active")
-					})
-				})
+				/* ── Live reader demo ────────────────────────────────────────── */
+				var phone = document.getElementById("demoPhone")
+				var body = document.getElementById("demoBody")
+				var chipsT = document.getElementById("demoThemes")
+				var chipsF = document.getElementById("demoFonts")
+				var sync = document.getElementById("siteSync")
 
-				const fontSizeSlider = document.getElementById("fontSizeSlider")
-				const fontSizeVal = document.getElementById("fontSizeVal")
-				fontSizeSlider.addEventListener("input", (e) => {
-					const px = e.target.value
-					body.style.setProperty("--reader-fontsize", px + "px")
-					fontSizeVal.textContent = px + "px"
-				})
-
-				const lineHeightSlider =
-					document.getElementById("lineHeightSlider")
-				const lineHeightVal = document.getElementById("lineHeightVal")
-				lineHeightSlider.addEventListener("input", (e) => {
-					const lh = parseFloat(e.target.value).toFixed(1)
-					body.style.setProperty("--reader-lineheight", lh)
-					lineHeightVal.textContent = lh + "×"
-				})
-			})()
-
-			/* Title-bar updater for hash navigation. When the user clicks an
-   anchor link in the topbar, mirror the section name into document.title
-   so the browser tab and any bookmark made from the page reflect the
-   section. Resets to the base title when the hash is empty. */
-			;(function () {
-				const baseTitle =
-					"NovelForge — A reading app for people who love reading"
-				const sectionTitles = {
-					features: "Features — NovelForge",
-					preview: "Try the reader — NovelForge",
-					faq: "FAQ — NovelForge",
-					download: "Download — NovelForge",
+				function pressOnly(container, id, key) {
+					var cs = container.querySelectorAll(".chip")
+					for (var i = 0; i < cs.length; i++)
+						cs[i].setAttribute(
+							"aria-pressed",
+							cs[i].dataset[key] === id ? "true" : "false",
+						)
 				}
 
-				const updateTitle = () => {
-					const hash = window.location.hash.slice(1)
-					document.title = sectionTitles[hash] || baseTitle
+				THEMES.forEach(function (t, idx) {
+					var b = document.createElement("button")
+					b.type = "button"
+					b.className = "chip"
+					b.dataset.theme = t.id
+					b.setAttribute("aria-pressed", idx === 0 ? "true" : "false")
+					b.innerHTML =
+						'<span class="sw" style="background:' +
+						t.sw +
+						'"></span>' +
+						t.name
+					b.addEventListener("click", function () {
+						phone.setAttribute("data-theme", t.id)
+						pressOnly(chipsT, t.id, "theme")
+						if (sync && sync.checked) applySiteTheme(t.id)
+					})
+					chipsT.appendChild(b)
+				})
+
+				FONTS.forEach(function (f, idx) {
+					var b = document.createElement("button")
+					b.type = "button"
+					b.className = "chip"
+					b.dataset.font = f.id
+					b.setAttribute("aria-pressed", idx === 0 ? "true" : "false")
+					b.innerHTML =
+						'<span class="fx" style="font-family:' +
+						f.fam.replace(/"/g, "&quot;") +
+						'">Aa</span>' +
+						f.name
+					b.addEventListener("click", function () {
+						body.style.setProperty("--reader-font", f.fam)
+						pressOnly(chipsF, f.id, "font")
+					})
+					chipsF.appendChild(b)
+				})
+
+				/* keep demo chips in sync when theme is changed from the topbar */
+				function syncDemoToSite(id) {
+					if (!phone) return
+					phone.setAttribute("data-theme", id)
+					pressOnly(chipsT, id, "theme")
 				}
 
-				window.addEventListener("hashchange", updateTitle)
-				// Run once on load in case the page is opened with a hash already
-				// present (e.g. someone shared a deep link to #faq).
-				updateTitle()
+				var fs = document.getElementById("fsSlider"),
+					fsOut = document.getElementById("fsOut")
+				var lh = document.getElementById("lhSlider"),
+					lhOut = document.getElementById("lhOut")
+				fs.addEventListener("input", function () {
+					body.style.setProperty("--reader-fs", fs.value + "px")
+					fsOut.textContent = fs.value + "px"
+				})
+				lh.addEventListener("input", function () {
+					var v = (lh.value / 10).toFixed(1)
+					body.style.setProperty("--reader-lh", v)
+					lhOut.textContent = v + "\u00d7"
+				})
+
+				/* ── Reading-progress bar ────────────────────────────────────── */
+				var bar = document.getElementById("progress")
+				var ticking = false
+				function paintProgress() {
+					var h = document.documentElement
+					var max = h.scrollHeight - h.clientHeight
+					bar.style.width =
+						(max > 0 ? (h.scrollTop / max) * 100 : 0) + "%"
+					ticking = false
+				}
+				window.addEventListener(
+					"scroll",
+					function () {
+						if (!ticking) {
+							ticking = true
+							requestAnimationFrame(paintProgress)
+						}
+					},
+					{ passive: true },
+				)
+				paintProgress()
+
+				/* ── Scroll reveals ──────────────────────────────────────────── */
+				var reduce = window.matchMedia(
+					"(prefers-reduced-motion: reduce)",
+				).matches
+				if (!reduce && "IntersectionObserver" in window) {
+					var io = new IntersectionObserver(
+						function (entries) {
+							entries.forEach(function (en) {
+								if (en.isIntersecting) {
+									en.target.classList.add("in")
+									io.unobserve(en.target)
+								}
+							})
+						},
+						{ rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+					)
+					document.querySelectorAll(".reveal").forEach(function (el) {
+						io.observe(el)
+					})
+				} else {
+					document.querySelectorAll(".reveal").forEach(function (el) {
+						el.classList.add("in")
+					})
+				}
+
+				/* ── Restore saved theme, then run the hero entrance ─────────── */
+				var saved = store.get("nf-theme")
+				if (saved) {
+					applySiteTheme(saved)
+					syncDemoToSite(saved)
+				} else {
+					refreshMenuPressed("paper")
+				}
+
+				requestAnimationFrame(function () {
+					document.body.classList.add("loaded")
+				})
 			})()
 		</script>
 	</body>
