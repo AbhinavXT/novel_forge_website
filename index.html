@@ -1,48 +1,139 @@
 <!doctype html>
-<html lang="en" data-theme="paper">
+<html lang="en" data-theme="navy">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>NovelForge — A reading app for people who love reading</title>
+		<title>NovelForge — the Android reader that never loses the plot</title>
 		<meta
 			name="description"
-			content="A privacy-respecting Android EPUB reader. Eight reading fonts, eleven themes, neural text-to-speech. Free on Google Play, open source, no accounts."
+			content="A free, open-source Android EPUB reader built for long series: a spoiler-safe character codex, relationship graph, full-text library search, neural text-to-speech, eleven themes, and zero accounts, ads, or tracking."
 		/>
+		<link rel="canonical" href="https://novelforge.app/" />
+		<!-- replace with your real domain -->
+		<meta name="robots" content="index,follow" />
+
 		<meta
 			property="og:title"
-			content="NovelForge — A reading app for people who love reading"
+			content="NovelForge — the Android reader that never loses the plot"
 		/>
 		<meta
 			property="og:description"
-			content="A privacy-respecting Android EPUB reader. Eight reading fonts, eleven themes, neural text-to-speech. Free on Google Play, open source, no accounts."
+			content="Spoiler-safe character codex, relationship graph, full-text search, neural TTS, eleven themes. Free, open source, no accounts."
 		/>
 		<meta property="og:type" content="website" />
-		<meta name="theme-color" id="metaTheme" content="#faf6ee" />
+		<meta property="og:url" content="https://novelforge.app/" />
+		<meta property="og:site_name" content="NovelForge" />
+		<meta name="twitter:card" content="summary" />
+		<meta
+			name="twitter:title"
+			content="NovelForge — the Android reader that never loses the plot"
+		/>
+		<meta
+			name="twitter:description"
+			content="Spoiler-safe character codex, relationship graph, full-text search, neural TTS. Free, open source, no accounts."
+		/>
+		<meta name="theme-color" id="metaTheme" content="#0f1a2b" />
+		<link
+			rel="icon"
+			href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%230f1a2b"/><path d="M9 7h8.5a5 5 0 0 1 0 10H9zM9 17h10.5a4.5 4.5 0 0 1 0 9H9z" fill="none" stroke="%235ea7ee" stroke-width="2.4" stroke-linejoin="round"/></svg>'
+		/>
 
-		<!-- Every face on this page ships inside the app. Literata carries the
-     display and body; JetBrains Mono carries labels and numbers; the
-     rest exist so the live reader demo can switch without re-fetching. -->
+		<!-- Fraunces carries the display voice; Literata and JetBrains Mono ship
+     inside the app itself, so the body of this page is literally set in the
+     app's own type. The rest exist for the live reader demo. -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Noto+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,450;1,9..144,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Merriweather:ital,wght@0,400;0,700&family=Crimson+Text:ital,wght@0,400;0,600&family=Source+Sans+3:wght@400;600&family=Noto+Sans:wght@400;600&display=swap"
 			rel="stylesheet"
 		/>
-		<!-- Open Dyslexic isn't on Google Fonts; pulled from a CDN hosting it
-     with the creator's permission. -->
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/gh/antijingoist/open-dyslexic@master/web/open-dyslexic.css"
 		/>
 
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "SoftwareApplication",
+				"name": "NovelForge",
+				"operatingSystem": "Android 8.0+",
+				"applicationCategory": "BooksAndReference",
+				"description": "Free, open-source Android EPUB reader for long series: spoiler-safe character codex, relationship graph, full-text library search, neural text-to-speech, eleven reading themes, offline-first, no accounts or ads.",
+				"offers": {
+					"@type": "Offer",
+					"price": "0",
+					"priceCurrency": "USD"
+				},
+				"url": "https://novelforge.app/",
+				"installUrl": "https://github.com/abhinavxt/novelforge/releases",
+				"license": "https://github.com/abhinavxt/novelforge/blob/main/LICENSE"
+			}
+		</script>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Is NovelForge really free?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "Yes. Free to download from GitHub Releases with no subscription, no ads, and no in-app purchases. The source is open."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "What is the character codex?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "NovelForge scans your downloaded chapters on-device and builds an index of recurring characters, places, and factions — who they are, when they first appeared, and every chapter that mentions them. It only ever shows entries up to your current reading position, so it cannot spoil you."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "Does the character analysis use the cloud?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "No. The codex, relationship graph, and full-text search all run entirely on your phone. Nothing you read leaves the device — there is no NovelForge server."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "What books can I read in NovelForge?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "Any EPUB file you own. Import it and the cover, chapters, and metadata are extracted automatically. The app doesn't host, fetch, or sell content."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "Is there an iOS version of NovelForge?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "Not planned. The focus is on making the Android app as good as it can be."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "Where is my reading data stored?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "Locally, in the app's private storage. A one-tap backup exports everything — library, history, bookmarks, highlights, settings — as a single ZIP you can restore on a new device."
+						}
+					}
+				]
+			}
+		</script>
+
 		<style>
-			/* ════════════════════════════════════════════════════════════════
-   THEME SYSTEM — the same eleven palettes the app ships.
-   Any element carrying [data-theme] resolves these variables, so the
-   page root and the demo phone share one source of truth.
-   ════════════════════════════════════════════════════════════════ */
+			/* ═══════════════════════════════════════════════════════════════════
+   THEMES — the same eleven palettes the app ships. The page root and
+   every .phone / .panel[data-theme] resolve the same variables.
+   ═══════════════════════════════════════════════════════════════════ */
 			html[data-theme="paper"],
-			.phone[data-theme="paper"] {
+			[data-theme="paper"].themed {
 				--bg: #faf6ee;
 				--elev: #fffdf8;
 				--sunken: #f1ead9;
@@ -56,7 +147,7 @@
 				--scheme: light;
 			}
 			html[data-theme="sepia"],
-			.phone[data-theme="sepia"] {
+			[data-theme="sepia"].themed {
 				--bg: #f3e7d3;
 				--elev: #faf0df;
 				--sunken: #e9d9bd;
@@ -70,7 +161,7 @@
 				--scheme: light;
 			}
 			html[data-theme="solari"],
-			.phone[data-theme="solari"] {
+			[data-theme="solari"].themed {
 				--bg: #fdf6e3;
 				--elev: #fffdf2;
 				--sunken: #f3ecd6;
@@ -84,7 +175,7 @@
 				--scheme: light;
 			}
 			html[data-theme="dark"],
-			.phone[data-theme="dark"] {
+			[data-theme="dark"].themed {
 				--bg: #16171b;
 				--elev: #1e2026;
 				--sunken: #111216;
@@ -98,7 +189,7 @@
 				--scheme: dark;
 			}
 			html[data-theme="amoled"],
-			.phone[data-theme="amoled"] {
+			[data-theme="amoled"].themed {
 				--bg: #000000;
 				--elev: #0e0e11;
 				--sunken: #000000;
@@ -112,7 +203,7 @@
 				--scheme: dark;
 			}
 			html[data-theme="nord"],
-			.phone[data-theme="nord"] {
+			[data-theme="nord"].themed {
 				--bg: #2e3440;
 				--elev: #3b4252;
 				--sunken: #272c36;
@@ -126,7 +217,7 @@
 				--scheme: dark;
 			}
 			html[data-theme="dracula"],
-			.phone[data-theme="dracula"] {
+			[data-theme="dracula"].themed {
 				--bg: #282a36;
 				--elev: #313342;
 				--sunken: #21222c;
@@ -140,7 +231,7 @@
 				--scheme: dark;
 			}
 			html[data-theme="gruvbox"],
-			.phone[data-theme="gruvbox"] {
+			[data-theme="gruvbox"].themed {
 				--bg: #282828;
 				--elev: #32302f;
 				--sunken: #1f1f1f;
@@ -154,7 +245,7 @@
 				--scheme: dark;
 			}
 			html[data-theme="catppuccin"],
-			.phone[data-theme="catppuccin"] {
+			[data-theme="catppuccin"].themed {
 				--bg: #1e1e2e;
 				--elev: #2a2a3d;
 				--sunken: #181825;
@@ -168,7 +259,7 @@
 				--scheme: dark;
 			}
 			html[data-theme="navy"],
-			.phone[data-theme="navy"] {
+			[data-theme="navy"].themed {
 				--bg: #0f1a2b;
 				--elev: #16233a;
 				--sunken: #0a1320;
@@ -182,7 +273,7 @@
 				--scheme: dark;
 			}
 			html[data-theme="grey"],
-			.phone[data-theme="grey"] {
+			[data-theme="grey"].themed {
 				--bg: #26282b;
 				--elev: #303336;
 				--sunken: #1d1f21;
@@ -196,16 +287,16 @@
 				--scheme: dark;
 			}
 
-			/* ════════════════════════════════════════════════════════════════
+			/* ═══════════════════════════════════════════════════════════════════
    BASE
-   ════════════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════════════════════ */
 			:root {
+				--display: "Fraunces", Georgia, serif;
 				--serif: "Literata", Georgia, "Times New Roman", serif;
 				--mono:
 					"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
-				--container: 70ch;
-				--wide: 1140px;
-				--dur: 0.55s;
+				--wide: 1150px;
+				--narrow: 70ch;
 				--ease: cubic-bezier(0.22, 0.75, 0.3, 1);
 			}
 			*,
@@ -221,7 +312,7 @@
 				margin: 0;
 				font-family: var(--serif);
 				font-size: 18px;
-				line-height: 1.68;
+				line-height: 1.7;
 				color: var(--ink);
 				background: var(--bg);
 				-webkit-font-smoothing: antialiased;
@@ -243,62 +334,41 @@
 				outline-offset: 3px;
 				border-radius: 2px;
 			}
-
-			.container {
-				max-width: var(--container);
-				margin: 0 auto;
-				padding: 0 24px;
-			}
 			.wide {
 				max-width: var(--wide);
 				margin: 0 auto;
 				padding: 0 24px;
 			}
-
-			/* Running-header eyebrow: mono, like the reader's own chrome. */
-			.eyebrow {
-				font-family: var(--mono);
-				font-size: 12px;
-				font-weight: 500;
-				letter-spacing: 0.14em;
-				text-transform: uppercase;
-				color: var(--accent);
-				display: flex;
-				align-items: center;
-				gap: 12px;
-			}
-			.eyebrow::after {
-				content: "";
-				height: 1px;
-				flex: 0 0 42px;
-				background: var(--rule);
-			}
-			.eyebrow .rt {
-				color: var(--faint);
-				letter-spacing: 0.08em;
-				text-transform: none;
+			.narrow {
+				max-width: var(--narrow);
+				margin: 0 auto;
+				padding: 0 24px;
 			}
 
 			h1,
 			h2,
 			h3 {
-				font-family: var(--serif);
+				font-family: var(--display);
 				font-optical-sizing: auto;
-				font-variation-settings: "opsz" 60;
 				font-weight: 600;
-				line-height: 1.14;
+				line-height: 1.08;
 				margin: 0;
-				letter-spacing: -0.015em;
+				letter-spacing: -0.018em;
 				text-wrap: balance;
 			}
 			h2 {
-				font-size: clamp(30px, 4.4vw, 42px);
-				margin: 14px 0 18px;
+				font-size: clamp(32px, 4.6vw, 46px);
+				margin: 12px 0 16px;
 			}
 			h3 {
-				font-size: 23px;
+				font-size: 22px;
+				margin: 8px 0 10px;
+			}
+			h1 em,
+			h2 em {
+				font-style: italic;
 				font-weight: 600;
-				margin: 10px 0 12px;
+				color: var(--accent);
 			}
 			p {
 				margin: 0 0 1.2em;
@@ -311,7 +381,29 @@
 				color: var(--soft);
 			}
 
-			/* ── Reading-progress bar (the reader's own progress line) ──── */
+			/* chapter furniture: running head + folio, like a set book */
+			.chapterhead {
+				display: flex;
+				align-items: baseline;
+				gap: 14px;
+				font-family: var(--mono);
+				font-size: 12px;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--accent);
+			}
+			.chapterhead .folio {
+				color: var(--faint);
+				letter-spacing: 0.06em;
+				text-transform: none;
+			}
+			.chapterhead::after {
+				content: "";
+				height: 1px;
+				flex: 1;
+				background: var(--rule);
+			}
+
 			#progress {
 				position: fixed;
 				top: 0;
@@ -320,17 +412,14 @@
 				width: 0%;
 				background: var(--accent);
 				z-index: 60;
-				transition: background-color 0.35s ease;
 			}
 
-			/* ── Topbar ─────────────────────────────────────────────────── */
+			/* ── Topbar ─────────────────────────────────────────────────────── */
 			.topbar {
 				position: sticky;
 				top: 0;
 				z-index: 50;
-				background: var(
-					--bg
-				); /* fallback where color-mix is unsupported */
+				background: var(--bg);
 				background: color-mix(in srgb, var(--bg) 86%, transparent);
 				backdrop-filter: blur(10px);
 				-webkit-backdrop-filter: blur(10px);
@@ -342,19 +431,16 @@
 			.topbar-inner {
 				max-width: var(--wide);
 				margin: 0 auto;
-				padding: 14px 24px;
+				padding: 13px 24px;
 				display: flex;
 				align-items: center;
-				gap: 26px;
+				gap: 24px;
 			}
 			.wordmark {
-				font-family: var(--serif);
+				font-family: var(--display);
 				font-weight: 700;
-				font-size: 20px;
+				font-size: 21px;
 				letter-spacing: -0.01em;
-				display: flex;
-				align-items: baseline;
-				gap: 2px;
 			}
 			.wordmark em {
 				font-style: italic;
@@ -363,14 +449,13 @@
 			}
 			.topnav {
 				display: flex;
-				gap: 22px;
+				gap: 20px;
 				margin-left: auto;
 			}
 			.topnav a {
 				font-family: var(--mono);
 				font-size: 12.5px;
 				font-weight: 500;
-				letter-spacing: 0.04em;
 				color: var(--soft);
 				padding: 6px 2px;
 				border-bottom: 1px solid transparent;
@@ -379,6 +464,7 @@
 				color: var(--ink);
 				border-bottom-color: var(--accent);
 			}
+
 			.btn {
 				display: inline-flex;
 				align-items: center;
@@ -386,23 +472,19 @@
 				font-family: var(--mono);
 				font-size: 13.5px;
 				font-weight: 600;
-				letter-spacing: 0.02em;
 				padding: 11px 20px;
 				border-radius: 10px;
 				background: var(--accent);
 				color: var(--accent-ink);
 				border: 1px solid transparent;
-				transition:
-					transform 0.18s var(--ease),
-					background-color 0.35s ease,
-					color 0.35s ease;
 				cursor: pointer;
+				transition: transform 0.18s var(--ease);
 			}
 			.btn:hover {
 				transform: translateY(-1px);
 			}
 			.btn:active {
-				transform: translateY(0);
+				transform: none;
 			}
 			.btn.ghost {
 				background: transparent;
@@ -418,7 +500,7 @@
 				font-size: 12.5px;
 			}
 
-			/* ── Theme switcher popover ─────────────────────────────────── */
+			/* theme popover */
 			.theme-pop {
 				position: relative;
 			}
@@ -430,14 +512,10 @@
 				gap: 8px;
 				font-family: var(--mono);
 				font-size: 12.5px;
-				font-weight: 500;
 				color: var(--soft);
 				padding: 8px 12px;
 				border: 1px solid var(--rule);
 				border-radius: 10px;
-				transition:
-					border-color 0.2s ease,
-					color 0.2s ease;
 			}
 			.theme-pop > summary:hover {
 				border-color: var(--accent);
@@ -460,9 +538,9 @@
 				background: var(--elev);
 				border: 1px solid var(--rule);
 				border-radius: 14px;
-				box-shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.35);
+				box-shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.4);
 				padding: 8px;
-				width: 230px;
+				width: 232px;
 				z-index: 70;
 			}
 			.theme-menu .tm-label {
@@ -488,9 +566,6 @@
 				color: var(--ink);
 				cursor: pointer;
 			}
-			.theme-menu button {
-				color: var(--ink);
-			} /* identifier data-theme must not restyle rows */
 			.theme-menu button:hover {
 				background: var(--accent-dim);
 			}
@@ -499,24 +574,18 @@
 				color: var(--accent);
 				font-weight: 600;
 			}
-			.theme-menu .sw {
-				width: 16px;
-				height: 16px;
+			.sw {
+				width: 15px;
+				height: 15px;
 				border-radius: 5px;
 				flex: none;
 				border: 1px solid rgba(128, 128, 128, 0.35);
 			}
-			.theme-note {
-				font-family: var(--mono);
-				font-size: 10.5px;
-				color: var(--faint);
-				padding: 6px 10px 8px;
-				line-height: 1.5;
-			}
-
-			/* ── Hero ───────────────────────────────────────────────────── */
+			/* ═══════════════════════════════════════════════════════════════════
+   HERO — headline beside the living graph
+   ═══════════════════════════════════════════════════════════════════ */
 			.hero {
-				padding: 78px 0 30px;
+				padding: 72px 0 26px;
 				overflow: hidden;
 			}
 			.hero-grid {
@@ -524,32 +593,24 @@
 				margin: 0 auto;
 				padding: 0 24px;
 				display: grid;
-				grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-				gap: 56px;
+				grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+				gap: 52px;
 				align-items: center;
 			}
 			.hero h1 {
-				font-size: clamp(42px, 6vw, 66px);
+				font-size: clamp(40px, 5.6vw, 62px);
 				font-weight: 700;
-				font-variation-settings: "opsz" 72;
-				margin: 18px 0 22px;
-			}
-			.hero h1 .amp {
-				font-style: italic;
-				font-weight: 600;
-				color: var(--accent);
+				margin: 16px 0 20px;
 			}
 			.hero .lede {
-				max-width: 46ch;
+				max-width: 44ch;
 			}
 			.hero-ctas {
 				display: flex;
 				gap: 14px;
-				margin: 30px 0 26px;
+				margin: 28px 0 24px;
 				flex-wrap: wrap;
 			}
-
-			/* colophon-style stat line instead of stat cards */
 			.hero-colophon {
 				font-family: var(--mono);
 				font-size: 13px;
@@ -568,7 +629,86 @@
 				margin: 0 12px;
 			}
 
-			/* staged entrance */
+			/* the graph instrument */
+			.graphbox {
+				background: var(--elev);
+				border: 1px solid var(--rule);
+				border-radius: 20px;
+				padding: 16px 16px 14px;
+				box-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.45);
+				transition:
+					background-color 0.35s ease,
+					border-color 0.35s ease;
+			}
+			.graphbox .gb-head {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				font-family: var(--mono);
+				font-size: 11px;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--faint);
+				padding: 2px 4px 10px;
+			}
+			.graphbox .gb-head b {
+				color: var(--accent);
+				font-weight: 600;
+				letter-spacing: 0.06em;
+			}
+			#graph,
+			#graphMini {
+				width: 100%;
+				height: 380px;
+				display: block;
+				border-radius: 12px;
+				background: var(--sunken);
+				border: 1px solid var(--rule);
+				cursor: crosshair;
+				transition:
+					background-color 0.35s ease,
+					border-color 0.35s ease;
+				touch-action: pan-y;
+			}
+			#graphMini {
+				cursor: default;
+			}
+			.gb-slider {
+				padding: 14px 4px 2px;
+			}
+			.gb-slider .lab {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				font-family: var(--mono);
+				font-size: 11.5px;
+				color: var(--soft);
+				margin-bottom: 6px;
+			}
+			.gb-slider .lab output {
+				color: var(--accent);
+				font-weight: 600;
+			}
+			.gb-slider input[type="range"] {
+				width: 100%;
+				accent-color: var(--accent);
+				height: 24px;
+				background: transparent;
+				cursor: ew-resize;
+			}
+			.gb-note {
+				font-family: var(--mono);
+				font-size: 11px;
+				color: var(--faint);
+				padding: 8px 4px 0;
+				line-height: 1.6;
+			}
+			.gb-note b {
+				color: var(--soft);
+				font-weight: 500;
+			}
+
+			/* staged entrance + scroll reveals */
 			.rise {
 				opacity: 0;
 				transform: translateY(16px);
@@ -592,8 +732,6 @@
 			.loaded .rise.d4 {
 				transition-delay: 0.32s;
 			}
-
-			/* scroll reveals */
 			.reveal {
 				opacity: 0;
 				transform: translateY(22px);
@@ -606,10 +744,134 @@
 					transform 0.75s var(--ease);
 			}
 
-			/* ════════════════════════════════════════════════════════════════
-   PHONE MOCKUPS — themed by the nearest [data-theme] ancestor,
-   which is the page root everywhere except the live demo.
-   ════════════════════════════════════════════════════════════════ */
+			/* ═══════════════════════════════════════════════════════════════════
+   CONTENTS — the page's own table of contents
+   ═══════════════════════════════════════════════════════════════════ */
+			.toc {
+				padding: 64px 0 8px;
+			}
+			.toc-card {
+				max-width: var(--narrow);
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+			.toc ol {
+				list-style: none;
+				margin: 22px 0 0;
+				padding: 0;
+				border-top: 1px solid var(--rule);
+			}
+			.toc li a {
+				display: flex;
+				align-items: baseline;
+				gap: 16px;
+				padding: 13px 2px;
+				border-bottom: 1px solid var(--rule);
+			}
+			.toc li a:hover .toc-title {
+				color: var(--accent);
+			}
+			.toc .rn {
+				font-family: var(--mono);
+				font-size: 12px;
+				color: var(--accent);
+				width: 34px;
+				flex: none;
+				font-weight: 600;
+			}
+			.toc-title {
+				font-family: var(--display);
+				font-weight: 600;
+				font-size: 19px;
+			}
+			.toc .dots {
+				flex: 1;
+				border-bottom: 1px dotted var(--rule);
+				transform: translateY(-4px);
+			}
+			.toc .pg {
+				font-family: var(--mono);
+				font-size: 12px;
+				color: var(--faint);
+			}
+
+			/* ═══════════════════════════════════════════════════════════════════
+   CHAPTER ROWS
+   ═══════════════════════════════════════════════════════════════════ */
+			section {
+				position: relative;
+			}
+			.chapter {
+				padding: 88px 0 6px;
+			}
+			.prose {
+				padding: 22px 0 34px;
+			}
+			.prose .dropcap::first-letter {
+				font-family: var(--display);
+				font-weight: 700;
+				font-size: 3.3em;
+				float: left;
+				line-height: 0.82;
+				padding: 5px 10px 0 0;
+				color: var(--accent);
+			}
+			.rows {
+				display: flex;
+				flex-direction: column;
+				gap: 84px;
+				padding: 42px 0 88px;
+			}
+			.row {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+				gap: 60px;
+				align-items: center;
+				max-width: var(--wide);
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+			.row.flip .row-copy {
+				order: 2;
+			}
+			.row.flip .row-art {
+				order: 1;
+			}
+			.row-kicker {
+				font-family: var(--mono);
+				font-size: 11px;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: var(--accent);
+				margin-bottom: 8px;
+			}
+			.row-copy p {
+				color: var(--soft);
+			}
+			.ticks {
+				list-style: none;
+				margin: 18px 0 0;
+				padding: 0;
+				display: grid;
+				gap: 9px;
+			}
+			.ticks li {
+				display: flex;
+				gap: 11px;
+				align-items: baseline;
+				font-size: 15.5px;
+				color: var(--ink);
+			}
+			.ticks li::before {
+				content: "—";
+				color: var(--accent);
+				font-family: var(--mono);
+				flex: none;
+			}
+
+			/* ═══════════════════════════════════════════════════════════════════
+   PHONE MOCKUPS
+   ═══════════════════════════════════════════════════════════════════ */
 			.phone {
 				width: 100%;
 				max-width: 330px;
@@ -644,29 +906,6 @@
 			.app-pad {
 				padding: 6px 16px 16px;
 			}
-
-			.greet {
-				font-family: var(--serif);
-				font-weight: 600;
-				font-size: 19px;
-				margin: 6px 0 2px;
-			}
-			.greet-sub {
-				font-family: var(--mono);
-				font-size: 10.5px;
-				color: var(--soft);
-				margin-bottom: 4px;
-			}
-			.streak {
-				display: inline-block;
-				font-family: var(--mono);
-				font-size: 10px;
-				color: var(--accent);
-				background: var(--accent-dim);
-				border-radius: 99px;
-				padding: 3px 9px;
-				margin: 6px 0 12px;
-			}
 			.mock-label {
 				font-family: var(--mono);
 				font-size: 10px;
@@ -674,91 +913,6 @@
 				text-transform: uppercase;
 				color: var(--faint);
 				margin: 12px 0 8px;
-			}
-			.cr-card {
-				display: flex;
-				gap: 12px;
-				align-items: center;
-				background: var(--elev);
-				border: 1px solid var(--rule);
-				border-radius: 14px;
-				padding: 11px;
-				transition:
-					background-color 0.35s ease,
-					border-color 0.35s ease;
-			}
-			.cr-cover {
-				width: 44px;
-				height: 62px;
-				border-radius: 7px;
-				flex: none;
-				background: linear-gradient(
-					155deg,
-					var(--accent),
-					color-mix(in srgb, var(--accent) 45%, var(--ink))
-				);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				color: var(--accent-ink);
-				font-family: var(--serif);
-				font-weight: 700;
-				font-size: 15px;
-			}
-			.cr-meta {
-				min-width: 0;
-				flex: 1;
-			}
-			.cr-title {
-				font-family: var(--serif);
-				font-weight: 600;
-				font-size: 14px;
-			}
-			.cr-sub {
-				font-family: var(--mono);
-				font-size: 10px;
-				color: var(--soft);
-				margin: 2px 0 7px;
-			}
-			.cr-bar {
-				height: 4px;
-				border-radius: 99px;
-				background: var(--rule);
-				overflow: hidden;
-			}
-			.cr-bar i {
-				display: block;
-				height: 100%;
-				width: 10%;
-				background: var(--accent);
-				border-radius: 99px;
-			}
-			.lib-grid {
-				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 9px;
-			}
-			.lib-cell {
-				aspect-ratio: 2/3;
-				border-radius: 8px;
-				background: var(--elev);
-				border: 1px solid var(--rule);
-				display: flex;
-				align-items: flex-end;
-				padding: 6px;
-			}
-			.lib-cell i {
-				display: block;
-				width: 100%;
-				height: 5px;
-				border-radius: 99px;
-				background: var(--rule);
-			}
-			.lib-cell:nth-child(1) {
-				background: color-mix(in srgb, var(--accent) 22%, var(--elev));
-			}
-			.lib-cell:nth-child(3) {
-				background: color-mix(in srgb, var(--accent) 12%, var(--elev));
 			}
 			.navbar {
 				display: flex;
@@ -799,10 +953,10 @@
 				font-family: var(--reader-font, var(--serif));
 			}
 			.rd-body .ch {
-				font-family: var(--reader-font, var(--serif));
 				font-weight: 700;
-				font-size: 1.25em;
+				font-size: 1.22em;
 				margin: 0 0 0.7em;
+				font-family: inherit;
 			}
 			.rd-body p {
 				margin: 0 0 0.85em;
@@ -822,7 +976,129 @@
 				box-shadow: 0 2px 0 var(--accent);
 			}
 
-			/* tts panel */
+			/* codex screen */
+			.cx-search {
+				font-family: var(--mono);
+				font-size: 10.5px;
+				color: var(--faint);
+				border: 1px solid var(--rule);
+				border-radius: 9px;
+				padding: 8px 11px;
+				margin: 8px 0 8px;
+			}
+			.cx-guard {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				font-family: var(--mono);
+				font-size: 9.5px;
+				color: var(--accent);
+				background: var(--accent-dim);
+				border-radius: 99px;
+				padding: 4px 10px;
+				margin-bottom: 8px;
+			}
+			.cx-row {
+				padding: 9px 2px;
+				border-bottom: 1px dashed var(--rule);
+			}
+			.cx-name {
+				font-family: var(--serif);
+				font-weight: 600;
+				font-size: 13.5px;
+			}
+			.cx-meta {
+				font-family: var(--mono);
+				font-size: 9.5px;
+				color: var(--soft);
+				margin-top: 1px;
+			}
+			.cx-spark {
+				display: flex;
+				align-items: flex-end;
+				gap: 2px;
+				height: 22px;
+				margin-top: 5px;
+			}
+			.cx-spark i {
+				width: 5px;
+				border-radius: 2px 2px 0 0;
+				background: var(--accent);
+				display: block;
+			}
+
+			/* search screen */
+			.se-field {
+				font-family: var(--mono);
+				font-size: 11px;
+				color: var(--ink);
+				border: 1px solid var(--accent);
+				border-radius: 9px;
+				padding: 8px 11px;
+				margin: 8px 0 10px;
+			}
+			.se-field .cur {
+				display: inline-block;
+				width: 1px;
+				height: 11px;
+				background: var(--accent);
+				vertical-align: -1px;
+				animation: blink 1.1s steps(1) infinite;
+			}
+			@keyframes blink {
+				50% {
+					opacity: 0;
+				}
+			}
+			.se-group {
+				display: flex;
+				gap: 10px;
+				align-items: center;
+				margin: 10px 0 6px;
+			}
+			.se-cover {
+				width: 26px;
+				height: 38px;
+				border-radius: 5px;
+				flex: none;
+				background: linear-gradient(
+					155deg,
+					var(--accent),
+					color-mix(in srgb, var(--accent) 45%, var(--ink))
+				);
+			}
+			.se-gtitle {
+				font-family: var(--serif);
+				font-weight: 600;
+				font-size: 12.5px;
+			}
+			.se-gsub {
+				font-family: var(--mono);
+				font-size: 9px;
+				color: var(--faint);
+			}
+			.se-hit {
+				padding: 7px 0 7px 36px;
+				border-bottom: 1px dashed var(--rule);
+			}
+			.se-ch {
+				font-family: var(--mono);
+				font-size: 9.5px;
+				color: var(--accent);
+			}
+			.se-snip {
+				font-size: 11.5px;
+				color: var(--soft);
+				line-height: 1.5;
+			}
+			.se-snip b {
+				color: var(--ink);
+				background: var(--accent-dim);
+				border-radius: 3px;
+				padding: 0 2px;
+			}
+
+			/* tts screen */
 			.tts-row {
 				display: flex;
 				align-items: center;
@@ -946,91 +1222,16 @@
 				background: var(--accent);
 			}
 
-			/* ════════════════════════════════════════════════════════════════
-   SECTIONS
-   ════════════════════════════════════════════════════════════════ */
-			section {
-				position: relative;
-			}
-			.chapter {
-				padding: 88px 0 8px;
-			}
-			.prose {
-				padding: 26px 0 40px;
-			}
-			.prose .dropcap::first-letter {
-				font-family: var(--serif);
-				font-weight: 700;
-				font-variation-settings: "opsz" 72;
-				font-size: 3.35em;
-				float: left;
-				line-height: 0.82;
-				padding: 4px 10px 0 0;
-				color: var(--accent);
-			}
-
-			/* product rows */
-			.rows {
-				display: flex;
-				flex-direction: column;
-				gap: 86px;
-				padding: 46px 0 90px;
-			}
-			.row {
-				display: grid;
-				grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-				gap: 64px;
-				align-items: center;
-				max-width: var(--wide);
-				margin: 0 auto;
-				padding: 0 24px;
-			}
-			.row.flip .row-copy {
-				order: 2;
-			}
-			.row.flip .row-art {
-				order: 1;
-			}
-			.row-kicker {
-				font-family: var(--mono);
-				font-size: 11px;
-				letter-spacing: 0.16em;
-				text-transform: uppercase;
-				color: var(--accent);
-				margin-bottom: 8px;
-			}
-			.row-copy p {
-				color: var(--soft);
-			}
-			.ticks {
-				list-style: none;
-				margin: 18px 0 0;
-				padding: 0;
-				display: grid;
-				gap: 9px;
-			}
-			.ticks li {
-				display: flex;
-				gap: 11px;
-				align-items: baseline;
-				font-size: 15.5px;
-				color: var(--ink);
-			}
-			.ticks li::before {
-				content: "—";
-				color: var(--accent);
-				font-family: var(--mono);
-				flex: none;
-			}
-
-			/* ── Live demo ──────────────────────────────────────────────── */
+			/* ═══════════════════════════════════════════════════════════════════
+   LIVE READER DEMO
+   ═══════════════════════════════════════════════════════════════════ */
 			.demo-wrap {
 				max-width: var(--wide);
 				margin: 34px auto 0;
-				padding: 0 24px 96px;
+				padding: 0 24px 92px;
 				display: grid;
 				grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-				gap: 56px;
+				gap: 52px;
 				align-items: start;
 			}
 			.demo-panel {
@@ -1088,15 +1289,12 @@
 				color: var(--accent);
 				font-weight: 600;
 			}
-			.chip .sw {
+			.chip .swx {
 				width: 11px;
 				height: 11px;
 				border-radius: 4px;
 				border: 1px solid rgba(128, 128, 128, 0.4);
 				flex: none;
-			}
-			.chip .fx {
-				font-family: inherit;
 			}
 			.sl-row {
 				margin-top: 12px;
@@ -1143,11 +1341,13 @@
 				font-weight: 600;
 			}
 
-			/* ── Feature shelf ──────────────────────────────────────────── */
+			/* ═══════════════════════════════════════════════════════════════════
+   FEATURE SHELF · NO-CATCH · DOWNLOAD · FAQ · FOOTER
+   ═══════════════════════════════════════════════════════════════════ */
 			.shelf {
 				max-width: var(--wide);
 				margin: 0 auto;
-				padding: 40px 24px 96px;
+				padding: 38px 24px 92px;
 				display: grid;
 				grid-template-columns: 1fr 1fr;
 				gap: 16px;
@@ -1189,7 +1389,6 @@
 				margin: 0;
 			}
 
-			/* ── No catch band ──────────────────────────────────────────── */
 			.nocatch {
 				border-top: 1px solid var(--rule);
 				border-bottom: 1px solid var(--rule);
@@ -1201,16 +1400,17 @@
 			.nocatch-inner {
 				max-width: var(--wide);
 				margin: 0 auto;
-				padding: 66px 24px;
+				padding: 64px 24px;
 				display: grid;
 				grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-				gap: 56px;
+				gap: 52px;
 			}
 			.assure {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
 				gap: 8px 30px;
 				align-content: start;
+				margin: 0;
 			}
 			.assure div {
 				padding: 12px 0;
@@ -1230,14 +1430,12 @@
 				color: var(--soft);
 			}
 
-			/* ── Download ───────────────────────────────────────────────── */
 			.download {
 				text-align: center;
-				padding: 110px 24px;
+				padding: 106px 24px;
 			}
 			.download h2 {
 				font-size: clamp(34px, 5vw, 52px);
-				font-variation-settings: "opsz" 72;
 			}
 			.download .lede {
 				max-width: 44ch;
@@ -1250,9 +1448,8 @@
 				margin-top: 18px;
 			}
 
-			/* ── FAQ ────────────────────────────────────────────────────── */
 			.faq {
-				padding-bottom: 100px;
+				padding-bottom: 96px;
 			}
 			.faq details {
 				border-bottom: 1px solid var(--rule);
@@ -1268,7 +1465,7 @@
 				justify-content: space-between;
 				align-items: baseline;
 				gap: 20px;
-				font-family: var(--serif);
+				font-family: var(--display);
 				font-weight: 600;
 				font-size: 19px;
 				padding: 18px 2px;
@@ -1294,7 +1491,6 @@
 				max-width: 62ch;
 			}
 
-			/* ── Footer ─────────────────────────────────────────────────── */
 			footer {
 				border-top: 1px solid var(--rule);
 				background: var(--elev);
@@ -1305,7 +1501,7 @@
 			.foot-inner {
 				max-width: var(--wide);
 				margin: 0 auto;
-				padding: 54px 24px 26px;
+				padding: 52px 24px 26px;
 				display: grid;
 				grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(
 						0,
@@ -1334,22 +1530,21 @@
 			.colophon {
 				max-width: var(--wide);
 				margin: 0 auto;
-				padding: 0 24px 40px;
+				padding: 20px 24px 40px;
 				font-family: var(--mono);
 				font-size: 11.5px;
 				color: var(--faint);
 				line-height: 1.7;
 				border-top: 1px dashed var(--rule);
-				padding-top: 20px;
 			}
 			.colophon b {
 				color: var(--soft);
 				font-weight: 500;
 			}
 
-			/* ════════════════════════════════════════════════════════════════
-   RESPONSIVE + MOTION PREFERENCES
-   ════════════════════════════════════════════════════════════════ */
+			/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE + MOTION
+   ═══════════════════════════════════════════════════════════════════ */
 			@media (max-width: 960px) {
 				.hero-grid,
 				.row,
@@ -1367,10 +1562,10 @@
 					position: static;
 				}
 				.hero {
-					padding-top: 52px;
+					padding-top: 48px;
 				}
-				.hero .phone {
-					max-width: 300px;
+				#graph {
+					height: 320px;
 				}
 				.foot-inner {
 					grid-template-columns: 1fr 1fr;
@@ -1402,6 +1597,9 @@
 				body {
 					font-size: 17px;
 				}
+				#graph {
+					height: 280px;
+				}
 			}
 			@media (prefers-reduced-motion: reduce) {
 				html {
@@ -1417,8 +1615,8 @@
 				.shelf-card {
 					transition: none;
 				}
-				* {
-					animation: none !important;
+				.se-field .cur {
+					animation: none;
 				}
 			}
 		</style>
@@ -1429,10 +1627,29 @@
 					opacity: 1 !important;
 					transform: none !important;
 				}
+				.graphbox .gb-slider,
+				.gb-note {
+					display: none;
+				}
 			</style></noscript
 		>
 	</head>
 	<body>
+		<script>
+			/* Set theme before first paint: saved choice wins; otherwise light-mode
+   systems get Paper, everyone else gets Navy. */
+			;(function () {
+				try {
+					var t = localStorage.getItem("nf-theme")
+					if (!t)
+						t = matchMedia("(prefers-color-scheme: light)").matches
+							? "paper"
+							: "navy"
+					document.documentElement.setAttribute("data-theme", t)
+				} catch (e) {}
+			})()
+		</script>
+
 		<div id="progress" aria-hidden="true"></div>
 
 		<!-- ═══════════════ TOPBAR ═══════════════ -->
@@ -1440,27 +1657,24 @@
 			<div class="topbar-inner">
 				<a class="wordmark" href="#top">Novel<em>Forge</em></a>
 				<nav class="topnav" aria-label="Site">
-					<a href="#product">Features</a>
-					<a href="#preview">Try it</a>
+					<a href="#contents">Contents</a>
+					<a href="#codex">Codex</a>
+					<a href="#reader">Try it</a>
 					<a href="#faq">FAQ</a>
 				</nav>
 				<details class="theme-pop" id="themePop">
 					<summary aria-label="Change page theme">
 						<span class="dot" aria-hidden="true"></span>
-						<span id="themeName">Paper</span>
+						<span id="themeName">Navy</span>
 					</summary>
 					<div class="theme-menu" role="menu">
 						<div class="tm-label">Page theme · from the app</div>
 						<div id="themeMenuList"></div>
-						<div class="theme-note">
-							These are the eleven reader themes NovelForge ships.
-							The page runs on them too.
-						</div>
 					</div>
 				</details>
 				<a
 					class="btn small"
-					href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
+					href="https://github.com/abhinavxt/novelforge/releases"
 					>Get the app</a
 				>
 			</div>
@@ -1470,109 +1684,177 @@
 		<section class="hero" id="top">
 			<div class="hero-grid">
 				<div>
-					<div class="eyebrow rise">
+					<div class="chapterhead rise">
 						Free · Open source · No accounts
 					</div>
 					<h1 class="rise d1">
-						A reader for people who
-						<span class="amp">love</span> reading.
+						The reader that never <em>loses the plot.</em>
 					</h1>
 					<p class="lede rise d2">
-						A reading app that doesn't want anything from you. No
-						account. No subscription. Just the book and a serif you
-						like.
+						NovelForge reads your books so it can help you read
+						them: a character codex, a relationship graph, and
+						search across every downloaded chapter — all on your
+						phone, none of it spoiling you.
 					</p>
 					<div class="hero-ctas rise d3">
 						<a
 							class="btn"
-							href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
-							>Get it on Google Play</a
+							href="https://github.com/abhinavxt/novelforge/releases"
+							>Get it on GitHub</a
 						>
-						<a class="btn ghost" href="#preview"
-							>Try the reader →</a
-						>
+						<a class="btn ghost" href="#reader">Try the reader →</a>
 					</div>
 					<div class="hero-colophon rise d4">
-						<span><b>8</b>&nbsp;reading fonts</span
-						><span class="sep">·</span>
 						<span><b>11</b>&nbsp;themes</span
 						><span class="sep">·</span>
-						<span><b>0</b>&nbsp;ads, ever</span>
+						<span><b>8</b>&nbsp;fonts</span
+						><span class="sep">·</span>
+						<span><b>0</b>&nbsp;ads, accounts, or servers</span>
 					</div>
 				</div>
 
 				<div class="rise d2">
-					<div class="phone" aria-hidden="true">
-						<div class="screen">
-							<div class="statusbar">
-								<span>9:41</span><span>●●● 93%</span>
-							</div>
-							<div class="app-pad">
-								<div class="greet">Good evening</div>
-								<div class="greet-sub">
-									19 novels in your library
-								</div>
-								<span class="streak"
-									>8-day streak · 292 min today</span
-								>
-								<div class="mock-label">Continue reading</div>
-								<div class="cr-card">
-									<div class="cr-cover">LQ</div>
-									<div class="cr-meta">
-										<div class="cr-title">
-											The Long Quiet
-										</div>
-										<div class="cr-sub">
-											Chapter 2 · 2/20
-										</div>
-										<div class="cr-bar"><i></i></div>
-									</div>
-								</div>
-								<div class="mock-label">Your library</div>
-								<div class="lib-grid">
-									<div class="lib-cell"><i></i></div>
-									<div class="lib-cell"><i></i></div>
-									<div class="lib-cell"><i></i></div>
-									<div class="lib-cell"><i></i></div>
-								</div>
-							</div>
-							<div class="navbar">
-								<span class="on">Home</span><span>Library</span
-								><span>Audio</span><span>Settings</span>
-							</div>
+					<div class="graphbox">
+						<div class="gb-head">
+							<span><b>Relationship graph</b> · live</span>
+							<span id="gbCount">—</span>
 						</div>
+						<canvas
+							id="graph"
+							role="img"
+							aria-label="Interactive character relationship graph. Characters appear as connected dots; dragging the reading-position slider reveals characters only after the chapter where they first appear."
+						></canvas>
+						<div class="gb-slider">
+							<div class="lab">
+								<span>Your reading position</span>
+								<output id="gbPos">Ch. 140</output>
+							</div>
+							<input
+								type="range"
+								id="gbSlider"
+								min="1"
+								max="600"
+								value="140"
+								step="1"
+								aria-label="Reading position in chapters"
+							/>
+						</div>
+						<p class="gb-note">
+							<b>This is the app's actual behavior.</b> The graph
+							is built only from chapters you've read — drag
+							forward and watch characters appear the moment you'd
+							meet them. Hover a character to trace their bonds.
+						</p>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- ═══════════════ CHAPTER I — THE PREMISE ═══════════════ -->
-		<section class="chapter">
-			<div class="container reveal">
-				<div class="eyebrow">
-					The premise <span class="rt">· 1 min</span>
+		<!-- ═══════════════ CONTENTS ═══════════════ -->
+		<nav class="toc" id="contents" aria-label="Page contents">
+			<div class="toc-card reveal">
+				<div class="chapterhead">
+					Contents
+					<span class="folio">· a short book about the app</span>
 				</div>
-				<h2>Built for people who love reading.</h2>
+				<ol>
+					<li>
+						<a href="#premise"
+							><span class="rn">I</span
+							><span class="toc-title">The premise</span
+							><span class="dots"></span
+							><span class="pg">1 min</span></a
+						>
+					</li>
+					<li>
+						<a href="#codex"
+							><span class="rn">II</span
+							><span class="toc-title">The codex</span
+							><span class="dots"></span
+							><span class="pg">the headline act</span></a
+						>
+					</li>
+					<li>
+						<a href="#recall"
+							><span class="rn">III</span
+							><span class="toc-title">Search &amp; recall</span
+							><span class="dots"></span
+							><span class="pg">2 min</span></a
+						>
+					</li>
+					<li>
+						<a href="#reader"
+							><span class="rn">IV</span
+							><span class="toc-title"
+								>The reader — try it live</span
+							><span class="dots"></span
+							><span class="pg">interactive</span></a
+						>
+					</li>
+					<li>
+						<a href="#audio"
+							><span class="rn">V</span
+							><span class="toc-title">The audio</span
+							><span class="dots"></span
+							><span class="pg">2 min</span></a
+						>
+					</li>
+					<li>
+						<a href="#numbers"
+							><span class="rn">VI</span
+							><span class="toc-title">The numbers</span
+							><span class="dots"></span
+							><span class="pg">1 min</span></a
+						>
+					</li>
+					<li>
+						<a href="#shelf"
+							><span class="rn">VII</span
+							><span class="toc-title"
+								>Everything else inside</span
+							><span class="dots"></span
+							><span class="pg">grid</span></a
+						>
+					</li>
+					<li>
+						<a href="#faq"
+							><span class="rn">—</span
+							><span class="toc-title">The honest FAQ</span
+							><span class="dots"></span
+							><span class="pg">appendix</span></a
+						>
+					</li>
+				</ol>
+			</div>
+		</nav>
+
+		<!-- ═══════════════ I · THE PREMISE ═══════════════ -->
+		<section class="chapter" id="premise">
+			<div class="narrow reveal">
+				<div class="chapterhead">
+					Chapter I <span class="folio">· the premise</span>
+				</div>
+				<h2>Built for how you actually read.</h2>
 			</div>
 		</section>
 		<section class="prose">
-			<div class="container reveal">
+			<div class="narrow reveal">
 				<p class="dropcap">
-					Most reading apps assume you read in 10-minute commutes.
-					This one doesn't. It's built for the person who finishes a
-					series in a weekend and starts another the same night. The
-					kind of reader who keeps half a dozen books in active
-					rotation and remembers which paragraph they stopped at three
-					days later.
+					Most reading apps assume you read in ten-minute commutes.
+					This one assumes you're eleven hundred chapters into
+					something, you have four more books in rotation, and you
+					just hit a name you haven't seen since last March. Other
+					apps leave you to scroll back. NovelForge answers: who they
+					are, when you met them, and every scene they've been in —
+					without revealing a single chapter you haven't reached.
 				</p>
 				<p>
-					That means offline by default, because you read in the
-					subway and on flights. Eleven themes, because your eyes
-					change as the day goes on. Eight fonts, because some days a
-					serif feels right and some days it doesn't. Stats you can
-					look at and think
-					<em>"huh, I read more than I thought,"</em> instead of stats
-					that get sent to a dashboard somewhere.
+					That's the idea across the whole app. Offline by default,
+					because you read on flights. Eleven themes, because your
+					eyes change as the day goes on. Stats that stay on your
+					phone, so you can think
+					<em>"huh, I read more than I thought"</em> without a
+					dashboard somewhere thinking it too.
 				</p>
 				<p>
 					The whole thing is free. The source is open. Whatever's on
@@ -1581,42 +1863,274 @@
 			</div>
 		</section>
 
-		<!-- ═══════════════ CHAPTER II — THE PRODUCT ═══════════════ -->
-		<section class="chapter" id="product">
-			<div class="container reveal">
-				<div class="eyebrow">
-					The product <span class="rt">· 3 min</span>
+		<!-- ═══════════════ II · THE CODEX ═══════════════ -->
+		<section class="chapter" id="codex">
+			<div class="narrow reveal">
+				<div class="chapterhead">
+					Chapter II <span class="folio">· the codex</span>
 				</div>
-				<h2>Designed like the books it carries.</h2>
+				<h2>"Wait — who is this again?" <em>Solved.</em></h2>
 				<p class="lede">
-					Built and rebuilt over the past year, mostly on weekends,
-					mostly based on what was annoying about other readers.
+					The feature no other reader has, built for the question
+					every long-series reader asks.
 				</p>
 			</div>
 		</section>
 
 		<div class="rows">
-			<!-- the reader -->
 			<div class="row reveal">
 				<div class="row-copy">
-					<div class="row-kicker">The reader</div>
-					<h3>A reader that respects the words.</h3>
+					<div class="row-kicker">Character codex</div>
+					<h3>Every character, indexed on your phone.</h3>
 					<p>
-						Eight reading fonts including Literata, Lora,
-						Merriweather, and Open Dyslexic. Eleven themes split
-						between three light and eight dark. Adjustable size,
-						line height, margins. Scroll mode for binge sessions,
-						paged mode when you want to slow down.
+						NovelForge scans your downloaded chapters — on-device,
+						no cloud — and finds every recurring character, place,
+						and faction. Each entry shows when they first appeared,
+						how often they turn up, a presence sparkline across the
+						whole book, and every mention with a snippet. Tap a
+						mention and the reader opens at that exact paragraph.
 					</p>
 					<p>
-						Long-press a paragraph to bookmark it or pull a
-						highlight. Reading position is saved on every page turn
-						— come back a week later and you'll be on the same line.
+						The spoiler guard is structural, not a checkbox: entries
+						and mentions are cut off at your current chapter, so a
+						character you haven't met doesn't exist yet, and one you
+						have can't leak future scenes.
 					</p>
 					<ul class="ticks">
-						<li>11 themes, 8 fonts, paged or scrolled</li>
-						<li>Bookmarks, highlights, annotations</li>
-						<li>Position saved across restarts</li>
+						<li>
+							Characters, places, and factions — detected
+							automatically
+						</li>
+						<li>
+							First appearance, mention timeline, your highlights
+							about them
+						</li>
+						<li>
+							Spoiler-safe by construction, toggleable when you
+							want to peek
+						</li>
+					</ul>
+				</div>
+				<div class="row-art">
+					<div class="phone" aria-hidden="true">
+						<div class="screen">
+							<div class="statusbar">
+								<span>9:41</span><span>●●● 93%</span>
+							</div>
+							<div class="app-pad">
+								<div class="st-head">Codex</div>
+								<div class="cx-search">Filter names…</div>
+								<span class="cx-guard"
+									>◉ Spoiler guard · up to Ch. 312</span
+								>
+								<div class="cx-row">
+									<div class="cx-name">Marin</div>
+									<div class="cx-meta">
+										1,847 mentions · 289 chapters · since
+										Ch. 1
+									</div>
+									<div class="cx-spark">
+										<i style="height: 70%"></i
+										><i style="height: 95%"></i
+										><i style="height: 60%"></i>
+										<i style="height: 85%"></i
+										><i style="height: 40%"></i
+										><i style="height: 75%"></i>
+										<i style="height: 90%"></i
+										><i style="height: 55%"></i
+										><i style="height: 80%"></i>
+										<i style="height: 100%"></i
+										><i style="height: 65%"></i
+										><i style="height: 88%"></i>
+									</div>
+								</div>
+								<div class="cx-row">
+									<div class="cx-name">The Ferryman</div>
+									<div class="cx-meta">
+										412 mentions · 96 chapters · since Ch.
+										18
+									</div>
+								</div>
+								<div class="cx-row">
+									<div class="cx-name">Brother Hallis</div>
+									<div class="cx-meta">
+										238 mentions · 71 chapters · since Ch.
+										52
+									</div>
+								</div>
+								<div class="cx-row" style="border-bottom: 0">
+									<div class="cx-name">The River Court</div>
+									<div class="cx-meta">
+										190 mentions · 44 chapters · since Ch.
+										176
+									</div>
+								</div>
+							</div>
+							<div class="navbar">
+								<span>Home</span><span class="on">Codex</span
+								><span>Audio</span><span>Stats</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row flip reveal">
+				<div class="row-copy">
+					<div class="row-kicker">Relationship graph</div>
+					<h3>Who appears with whom — drawn, not listed.</h3>
+					<p>
+						The graph you tried up top is the real feature:
+						characters sized by how often they appear, connected
+						when they share chapters, laid out so factions cluster
+						and loners drift to the edges. Tap two characters and
+						get every chapter they share; tap a chapter and you're
+						reading the scene.
+					</p>
+					<p>
+						Because it's built only from chapters behind your
+						bookmark, the graph grows as you read. Finishing an arc
+						literally redraws the map.
+					</p>
+					<ul class="ticks">
+						<li>Force-drawn map of your story so far</li>
+						<li>Tap any two characters for their shared scenes</li>
+						<li>Pinch to zoom; updates as your position moves</li>
+					</ul>
+				</div>
+				<div class="row-art">
+					<div
+						class="graphbox"
+						style="max-width: 320px; margin: 0 auto"
+					>
+						<div class="gb-head">
+							<span><b>In the app</b></span
+							><span>Ch. 312</span>
+						</div>
+						<canvas
+							id="graphMini"
+							style="height: 230px"
+							role="img"
+							aria-label="A smaller decorative rendering of the same character relationship graph."
+						></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ═══════════════ III · SEARCH & RECALL ═══════════════ -->
+		<section class="chapter" id="recall">
+			<div class="narrow reveal">
+				<div class="chapterhead">
+					Chapter III <span class="folio">· search &amp; recall</span>
+				</div>
+				<h2>Your library, <em>greppable.</em></h2>
+			</div>
+		</section>
+
+		<div class="rows">
+			<div class="row reveal">
+				<div class="row-copy">
+					<div class="row-kicker">Full-text search</div>
+					<h3>"Where did I read that?" takes two seconds.</h3>
+					<p>
+						Every downloaded chapter is indexed on-device. Type a
+						name, a phrase, half a memory — results come back
+						grouped by book, with the match bolded in context. Tap
+						one and the reader opens scrolled to that paragraph, not
+						just that chapter.
+					</p>
+					<p>
+						Inside a chapter, a find bar does the same at close
+						range: every occurrence marked, next and previous, works
+						in both scroll and paged mode.
+					</p>
+					<ul class="ticks">
+						<li>
+							Search across every downloaded chapter, instantly
+						</li>
+						<li>Jump straight to the matching paragraph</li>
+						<li>In-chapter find with match highlighting</li>
+					</ul>
+				</div>
+				<div class="row-art">
+					<div class="phone" aria-hidden="true">
+						<div class="screen">
+							<div class="statusbar">
+								<span>9:41</span><span>●●● 93%</span>
+							</div>
+							<div class="app-pad">
+								<div class="st-head">Search in books</div>
+								<div class="se-field">
+									frozen river<span class="cur"></span>
+								</div>
+								<div class="se-group">
+									<div class="se-cover"></div>
+									<div>
+										<div class="se-gtitle">
+											The Long Quiet
+										</div>
+										<div class="se-gsub">9 matches</div>
+									</div>
+								</div>
+								<div class="se-hit">
+									<div class="se-ch">
+										Ch. 1 · The Bend by the Mill
+									</div>
+									<div class="se-snip">
+										…the town held its breath when the
+										<b>frozen river</b> finally bore the
+										children's weight…
+									</div>
+								</div>
+								<div class="se-hit">
+									<div class="se-ch">
+										Ch. 44 · What the Ice Kept
+									</div>
+									<div class="se-snip">
+										…Marin knelt where the
+										<b>frozen river</b> had cracked, and saw
+										the second box…
+									</div>
+								</div>
+								<div class="se-hit" style="border-bottom: 0">
+									<div class="se-ch">Ch. 212 · The Thaw</div>
+									<div class="se-snip">
+										…nothing about the
+										<b>frozen river</b> had ever been an
+										accident…
+									</div>
+								</div>
+							</div>
+							<div class="navbar">
+								<span>Home</span><span class="on">Library</span
+								><span>Audio</span><span>Stats</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row flip reveal">
+				<div class="row-copy">
+					<div class="row-kicker">Margins</div>
+					<h3>Highlights, bookmarks, and a way back to them.</h3>
+					<p>
+						Long-press a paragraph to bookmark it with a note.
+						Select text to highlight in six colors. Everything is
+						searchable, everything exports as JSON, and the codex
+						cross-references your highlights — open a character and
+						see every line you've ever marked about them.
+					</p>
+					<p>
+						Reading history keeps the trail: every session, every
+						book, so "the thing I was reading two Tuesdays ago" is
+						an actual query the app can answer.
+					</p>
+					<ul class="ticks">
+						<li>Six highlight colors, notes on bookmarks</li>
+						<li>Highlights and notes export for safekeeping</li>
+						<li>Session-level reading history</li>
 					</ul>
 				</div>
 				<div class="row-art">
@@ -1624,58 +2138,184 @@
 						<div class="screen">
 							<div class="rd-chrome">
 								<span class="rc-title"
-									>The Long Quiet · 1/20 · ~2 min</span
+									>The Long Quiet · Ch. 44 · ~4 min</span
 								><span class="rc-x">✕</span>
 							</div>
 							<div class="rd-body">
-								<div class="ch">Chapter 1</div>
-								<p>
-									The town held its breath when the river
-									started to freeze that year. By December the
-									surface was thick enough to walk on, and the
-									children dared each other to cross.
-								</p>
 								<p>
 									<span class="hl"
-										>Marin watched them from the window of
-										the bookshop, her tea going cold in her
-										hands.</span
+										>Marin knelt where the frozen river had
+										cracked, and saw the second box wedged
+										under the ice like a held breath.</span
 									>
-									She had not yet decided whether to tell
-									anyone what she had found.
+									She did not call for Toma. Some discoveries
+									you keep for one more hour, just to have
+									them to yourself.
+								</p>
+								<p>
+									The letters inside were drier than the first
+									set, the hand steadier — as if whoever wrote
+									them had stopped being afraid.
 								</p>
 							</div>
 							<div class="rd-foot">
-								<span>←</span><span>24</span><span>→</span>
+								<span>←</span><span>44</span><span>→</span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 
-			<!-- the audio -->
-			<div class="row flip reveal">
+		<!-- ═══════════════ IV · THE READER, LIVE ═══════════════ -->
+		<section class="chapter" id="reader">
+			<div class="narrow reveal">
+				<div class="chapterhead">
+					Chapter IV <span class="folio">· try it live</span>
+				</div>
+				<h2>See how it reads before you install.</h2>
+				<p class="lede">
+					These are the reader's actual controls, running in your
+					browser. Eleven themes, eight fonts, and the sliders between
+					them.
+				</p>
+			</div>
+		</section>
+
+		<div class="demo-wrap">
+			<div class="demo-panel reveal">
+				<div class="ctl-label">Theme</div>
+				<div class="chips" id="demoThemes"></div>
+				<div class="ctl-label">Font</div>
+				<div class="chips" id="demoFonts"></div>
+				<div class="ctl-label">Sizing</div>
+				<div class="sl-row">
+					<div class="lab">
+						<span>Font size</span><output id="fsOut">15px</output>
+					</div>
+					<input
+						type="range"
+						id="fsSlider"
+						min="12"
+						max="20"
+						value="15"
+						step="1"
+						aria-label="Font size"
+					/>
+				</div>
+				<div class="sl-row">
+					<div class="lab">
+						<span>Line spacing</span
+						><output id="lhOut">1.6×</output>
+					</div>
+					<input
+						type="range"
+						id="lhSlider"
+						min="13"
+						max="21"
+						value="16"
+						step="1"
+						aria-label="Line spacing"
+					/>
+				</div>
+				<label class="site-sync">
+					<input type="checkbox" id="siteSync" checked />
+					<span
+						><b>Theme this page too.</b> The site runs on the same
+						eleven palettes the app ships — pick one and everything
+						follows.</span
+					>
+				</label>
+			</div>
+
+			<div class="reveal">
+				<div
+					class="phone themed"
+					id="demoPhone"
+					data-theme="navy"
+					style="max-width: 360px"
+				>
+					<div class="screen">
+						<div class="statusbar">
+							<span>9:41</span><span>●●● 93%</span>
+						</div>
+						<div class="rd-chrome">
+							<span class="rc-title"
+								>The Long Quiet · 1/20 · ~3 min</span
+							><span class="rc-x">✕</span>
+						</div>
+						<div
+							class="rd-body"
+							id="demoBody"
+							style="--reader-fs: 15px; --reader-lh: 1.6"
+						>
+							<div class="ch">Chapter 1</div>
+							<p>
+								The town held its breath when the river started
+								to freeze that year. By December the surface was
+								thick enough to walk on, and the children dared
+								each other to cross the bend by the old mill
+								where the ice was thinnest.
+							</p>
+							<p>
+								Marin watched them from the window of the
+								bookshop, her tea going cold in her hands. She
+								had not yet decided whether to tell anyone what
+								she had found in the back room three days
+								earlier — the box of letters, the inscriptions
+								in a hand she almost recognized.
+							</p>
+							<p>
+								Outside, a boy slipped and fell laughing onto
+								the ice. His friends pulled him up. The river
+								held. The bookshop bell did not ring all
+								afternoon.
+							</p>
+						</div>
+						<div class="rd-foot">
+							<span>←</span><span>24</span><span>→</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ═══════════════ V · THE AUDIO ═══════════════ -->
+		<section class="chapter" id="audio">
+			<div class="narrow reveal">
+				<div class="chapterhead">
+					Chapter V <span class="folio">· the audio</span>
+				</div>
+				<h2>Text-to-speech that <em>sounds</em> good.</h2>
+			</div>
+		</section>
+
+		<div class="rows">
+			<div class="row reveal">
 				<div class="row-copy">
 					<div class="row-kicker">The audio</div>
-					<h3>Text-to-speech that sounds good.</h3>
+					<h3>Three engines, one pronunciation dictionary.</h3>
 					<p>
-						Three engine options: your device's system TTS, plus
-						neural voices from Piper and Kokoro that you download
-						in-app when you want better quality. Speed, pitch,
-						volume, sentence gaps, paragraph gaps — all separately
-						adjustable.
+						Your device's system TTS out of the box, plus Piper and
+						Kokoro neural voices you download in-app when you want
+						better. Speed, pitch, volume, sentence gaps, paragraph
+						gaps — separately adjustable, with a sleep timer for
+						reading yourself out.
 					</p>
 					<p>
 						The pronunciation dictionary fixes the words your engine
-						keeps mangling — character names, place names, fictional
-						terms. Save it as JSON and share between devices.
-						Generate full M4B audiobooks with chapter markers when
-						you want to take a novel running.
+						keeps mangling — character names, place names, invented
+						terms. Save it as JSON, load it on another device. And
+						when a book deserves a run or a commute, generate a
+						proper M4B audiobook with chapter markers.
 					</p>
 					<ul class="ticks">
 						<li>System TTS plus Piper and Kokoro neural voices</li>
 						<li>M4B audiobook export with chapter markers</li>
-						<li>Audio focus respects calls and other media</li>
+						<li>
+							Sleep timer; audio focus respects calls and other
+							media
+						</li>
 					</ul>
 				</div>
 				<div class="row-art">
@@ -1694,13 +2334,13 @@
 									>
 									By December the surface was thick enough to
 									walk on, and the children dared each other
-									to cross the bend by the old mill.
+									to cross.
 								</p>
 							</div>
 							<div class="tts-row">
-								<span>⏮</span><span>↶</span>
-								<span class="tts-play">▶</span>
-								<span>↷</span><span>⏭</span>
+								<span>⏮</span><span>↶</span
+								><span class="tts-play">▶</span><span>↷</span
+								><span>⏭</span>
 							</div>
 							<div class="tts-voice">
 								United States · Blake · Kokoro neural
@@ -1727,28 +2367,42 @@
 					</div>
 				</div>
 			</div>
+		</div>
 
-			<!-- the stats -->
-			<div class="row reveal">
+		<!-- ═══════════════ VI · THE NUMBERS ═══════════════ -->
+		<section class="chapter" id="numbers">
+			<div class="narrow reveal">
+				<div class="chapterhead">
+					Chapter VI <span class="folio">· the numbers</span>
+				</div>
+				<h2>Your reading, kept honest.</h2>
+			</div>
+		</section>
+
+		<div class="rows">
+			<div class="row flip reveal">
 				<div class="row-copy">
 					<div class="row-kicker">The stats</div>
-					<h3>Your reading, in numbers.</h3>
+					<h3>Words, streaks, records — counted on your phone.</h3>
 					<p>
-						Word counts, chapters, time spent, daily streaks. A
-						12-week activity heatmap. Personal records for longest
-						session and best day. Week-over-week percentages so you
-						can see whether you're trending up or just remembering
-						selectively.
+						Words, chapters, time, streaks. A 12-week heatmap.
+						Personal records for longest session and best day,
+						week-over-week deltas so you can see whether you're
+						trending up or just remembering selectively. A
+						home-screen widget puts the book you're on one tap away.
 					</p>
 					<p>
-						Everything's computed locally on your phone. There's no
-						analytics service watching what you read. At the end of
-						the week you can share a summary card if you want.
+						All of it is computed locally. There is no analytics
+						service watching what you read — there's nowhere for one
+						to live. Share a weekly summary card if you want; that's
+						your call, made per-card.
 					</p>
 					<ul class="ticks">
-						<li>Daily, weekly, all-time stats</li>
-						<li>12-week heatmap and streak tracking</li>
-						<li>Shareable summary cards</li>
+						<li>Daily, weekly, and all-time stats with records</li>
+						<li>
+							12-week heatmap, streaks, shareable summary cards
+						</li>
+						<li>Continue-reading home-screen widget</li>
 					</ul>
 				</div>
 				<div class="row-art">
@@ -1814,202 +2468,73 @@
 			</div>
 		</div>
 
-		<!-- ═══════════════ CHAPTER III — TRY THE READER ═══════════════ -->
-		<section class="chapter" id="preview">
-			<div class="container reveal">
-				<div class="eyebrow">
-					Try the reader <span class="rt">· live</span>
+		<!-- ═══════════════ VII · EVERYTHING ELSE ═══════════════ -->
+		<section class="chapter" id="shelf">
+			<div class="narrow reveal">
+				<div class="chapterhead">
+					Chapter VII
+					<span class="folio">· everything else inside</span>
 				</div>
-				<h2>See how it feels before you install.</h2>
-				<p class="lede">
-					Pick a theme. Try a font. Adjust the size. These are the
-					reader's actual controls, running in your browser.
-				</p>
-			</div>
-		</section>
-
-		<div class="demo-wrap">
-			<div class="demo-panel reveal">
-				<div class="ctl-label">Theme</div>
-				<div class="chips" id="demoThemes"></div>
-
-				<div class="ctl-label">Font</div>
-				<div class="chips" id="demoFonts"></div>
-
-				<div class="ctl-label">Sizing</div>
-				<div class="sl-row">
-					<div class="lab">
-						<span>Font size</span><output id="fsOut">15px</output>
-					</div>
-					<input
-						type="range"
-						id="fsSlider"
-						min="12"
-						max="20"
-						value="15"
-						step="1"
-						aria-label="Font size"
-					/>
-				</div>
-				<div class="sl-row">
-					<div class="lab">
-						<span>Line spacing</span
-						><output id="lhOut">1.6×</output>
-					</div>
-					<input
-						type="range"
-						id="lhSlider"
-						min="13"
-						max="21"
-						value="16"
-						step="1"
-						aria-label="Line spacing"
-					/>
-				</div>
-
-				<label class="site-sync">
-					<input type="checkbox" id="siteSync" checked />
-					<span
-						><b>Theme this page too.</b> The site runs on the same
-						eleven palettes the app ships — pick one and everything
-						follows.</span
-					>
-				</label>
-			</div>
-
-			<div class="reveal">
-				<div
-					class="phone"
-					id="demoPhone"
-					data-theme="paper"
-					style="max-width: 360px"
-				>
-					<div class="screen">
-						<div class="statusbar">
-							<span>9:41</span><span>●●● 93%</span>
-						</div>
-						<div class="rd-chrome">
-							<span class="rc-title"
-								>The Long Quiet · 1/20 · ~3 min</span
-							><span class="rc-x">✕</span>
-						</div>
-						<div
-							class="rd-body"
-							id="demoBody"
-							style="--reader-fs: 15px; --reader-lh: 1.6"
-						>
-							<div class="ch">Chapter 1</div>
-							<p>
-								The town held its breath when the river started
-								to freeze that year. By December the surface was
-								thick enough to walk on, and the children dared
-								each other to cross the bend by the old mill
-								where the ice was thinnest.
-							</p>
-							<p>
-								Marin watched them from the window of the
-								bookshop, her tea going cold in her hands. She
-								had not yet decided whether to tell anyone what
-								she had found in the back room three days
-								earlier — the box of letters, the inscriptions
-								in a hand she almost recognized.
-							</p>
-							<p>
-								Outside, a boy slipped and fell laughing onto
-								the ice. His friends pulled him up. The river
-								held. The bookshop bell did not ring all
-								afternoon.
-							</p>
-						</div>
-						<div class="rd-foot">
-							<span>←</span><span>24</span><span>→</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- ═══════════════ CHAPTER IV — WHAT'S IN THERE ═══════════════ -->
-		<section class="chapter">
-			<div class="container reveal">
-				<div class="eyebrow">
-					More inside <span class="rt">· 2 min</span>
-				</div>
-				<h2>What's in there.</h2>
+				<h2>The rest of the shelf.</h2>
 			</div>
 		</section>
 
 		<div class="shelf">
 			<div class="shelf-card reveal">
-				<span class="shelf-tag">Offline</span>
-				<h3>Works without signal.</h3>
+				<span class="shelf-tag">Library</span>
+				<h3>EPUB in, EPUB out.</h3>
 				<p>
-					EPUBs import in seconds and they're yours. Reading state
-					syncs back to the library on every page. Subway, flight,
-					family dinner — same app.
+					Import any .epub — cover, chapters, metadata extracted
+					automatically. Export any book back to a clean EPUB for
+					archiving or another reader. Your files never stop being
+					yours.
+				</p>
+			</div>
+			<div class="shelf-card reveal">
+				<span class="shelf-tag">Reading modes</span>
+				<h3>Scroll, page, or drift.</h3>
+				<p>
+					Infinite scroll for binge nights, paged mode with slide,
+					fade, or curl transitions when you want to slow down, and a
+					teleprompter auto-scroll from 20 to 200 px/s for hands-free
+					reading.
+				</p>
+			</div>
+			<div class="shelf-card reveal">
+				<span class="shelf-tag">Tap zones</span>
+				<h3>Taps where your thumb is.</h3>
+				<p>
+					Four tap-zone layouts: classic sides, forward-anywhere for
+					one-handed reading, an L-shaped layout, or off entirely for
+					swipe-and-volume-key purists. Same zones in both reading
+					modes.
 				</p>
 			</div>
 			<div class="shelf-card reveal">
 				<span class="shelf-tag">Hardware</span>
-				<h3>Volume key navigation.</h3>
+				<h3>Volume-key page turns.</h3>
 				<p>
-					Volume up scrolls up, down scrolls down. Off by default.
-					Audio focus is handled properly, so phone calls and podcasts
-					still work normally when you're not in the reader.
+					Volume up scrolls up, down scrolls down — off by default.
+					Audio focus is handled properly, so calls and podcasts
+					behave normally when you're not in the reader.
 				</p>
 			</div>
 			<div class="shelf-card reveal">
-				<span class="shelf-tag">TTS dictionary</span>
-				<h3>Pronunciation dictionaries.</h3>
+				<span class="shelf-tag">Collections</span>
+				<h3>A library that stays sorted.</h3>
 				<p>
-					The TTS keeps butchering "Aelindra"? Add it to the
-					dictionary once and you're done. Export the whole dictionary
-					as a single JSON file and load it on another device.
-				</p>
-			</div>
-			<div class="shelf-card reveal">
-				<span class="shelf-tag">Margins</span>
-				<h3>Bookmarks &amp; highlights.</h3>
-				<p>
-					Long-press a paragraph to bookmark it with a note. Select
-					text to highlight in six colors. Search across every
-					bookmark in a novel. Export the lot as JSON for safekeeping.
-				</p>
-			</div>
-			<div class="shelf-card reveal">
-				<span class="shelf-tag">Library</span>
-				<h3>EPUB import.</h3>
-				<p>
-					Drag any .epub into the app. Cover, chapters, metadata —
-					extracted automatically. Your whole library lives in one
-					place, organized and searchable.
-				</p>
-			</div>
-			<div class="shelf-card reveal">
-				<span class="shelf-tag">Hands-free</span>
-				<h3>Teleprompter auto-scroll.</h3>
-				<p>
-					Continuous drift down the page, speed adjustable from 20 to
-					200 pixels per second. Tap anywhere to pause. Auto-advances
-					chapters with a beat at the top of each new one.
-				</p>
-			</div>
-			<div class="shelf-card reveal">
-				<span class="shelf-tag">Home screen</span>
-				<h3>Continue-reading widget.</h3>
-				<p>
-					A 2×1 widget that shows the cover and chapter you stopped
-					on. Tap and you're back at the saved paragraph. Updates
-					automatically as your reading position moves.
+					Categories you define, an updates feed for ongoing books,
+					grid or list views, and a home screen that knows what you
+					were reading and how far you got — down to the paragraph.
 				</p>
 			</div>
 			<div class="shelf-card reveal">
 				<span class="shelf-tag">Portability</span>
-				<h3>Backup &amp; restore.</h3>
+				<h3>Backup &amp; restore, one file.</h3>
 				<p>
-					Export everything — library, reading history, bookmarks,
-					highlights, settings — as a single ZIP. Move to a new phone
-					and restore it all in one step.
+					Everything — library, history, bookmarks, highlights, codex,
+					settings — exports as a single ZIP, automatically on a
+					schedule if you like. New phone, one import, done.
 				</p>
 			</div>
 		</div>
@@ -2018,13 +2543,15 @@
 		<section class="nocatch">
 			<div class="nocatch-inner">
 				<div class="reveal">
-					<div class="eyebrow">No catch</div>
+					<div class="chapterhead">No catch</div>
 					<h2>Free, and it stays that way.</h2>
 					<p class="soft">
-						NovelForge is free on Google Play. There's no paid tier,
-						no subscription, and no ads — now or later. You don't
-						make an account, and nothing you read leaves your phone.
-						The source is open if you'd like to read it.
+						NovelForge is a free download from GitHub. No paid tier,
+						no subscription, no ads — now or later. You don't make
+						an account, and nothing you read leaves your phone. Even
+						the character analysis that looks like it should need a
+						cloud, doesn't. The source is open if you'd like to
+						check.
 					</p>
 				</div>
 				<dl class="assure reveal">
@@ -2041,12 +2568,12 @@
 						<dd>Not now, not later.</dd>
 					</div>
 					<div>
-						<dt>Open source</dt>
-						<dd>Read the code if you want to.</dd>
+						<dt>No cloud</dt>
+						<dd>Codex, graph, and search run on-device.</dd>
 					</div>
 					<div>
-						<dt>Your data</dt>
-						<dd>Stays on your phone.</dd>
+						<dt>Open source</dt>
+						<dd>Read the code if you want to.</dd>
 					</div>
 					<div>
 						<dt>Your files</dt>
@@ -2059,32 +2586,33 @@
 		<!-- ═══════════════ DOWNLOAD ═══════════════ -->
 		<section class="download" id="download">
 			<div class="reveal">
-				<div class="eyebrow" style="justify-content: center">
+				<div class="chapterhead" style="justify-content: center">
 					Get the app
 				</div>
-				<h2>Free. Open. Yours.</h2>
+				<h2>Free. Open. <em>Yours.</em></h2>
 				<p class="lede">
-					Android 8.0 or later. Android only for now — an iOS build
-					isn't planned.
+					Android 8.0 or later. Android only — an iOS build isn't
+					planned.
 				</p>
 				<a
 					class="btn"
 					style="font-size: 15px; padding: 15px 30px"
-					href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
-					>Get it on Google Play</a
+					href="https://github.com/abhinavxt/novelforge/releases"
+					>Get it on GitHub</a
 				>
 				<div class="dl-meta">
-					Android 8.0+ · Free · No ads or in-app purchases
+					Android 8.0+ · Free APK on GitHub Releases · No ads or
+					in-app purchases
 				</div>
 			</div>
 		</section>
 
 		<!-- ═══════════════ FAQ ═══════════════ -->
 		<section class="faq" id="faq">
-			<div class="container">
+			<div class="narrow">
 				<div class="reveal">
-					<div class="eyebrow">
-						Questions <span class="rt">· honest answers</span>
+					<div class="chapterhead">
+						Appendix <span class="folio">· honest answers</span>
 					</div>
 					<h2>The honest FAQ.</h2>
 				</div>
@@ -2092,38 +2620,52 @@
 					<details>
 						<summary>Is it really free?</summary>
 						<div class="a">
-							Yes. Free to download on Google Play, with no
-							subscription, no ads, and no in-app purchases. The
-							source is open on GitHub if you want to see exactly
-							what it does.
+							Yes. Free to download from GitHub Releases — no
+							subscription, no ads, no in-app purchases. And since
+							the source is right there, you can see exactly what
+							it does.
 						</div>
 					</details>
 					<details>
-						<summary>What about updates?</summary>
+						<summary>What is the character codex?</summary>
 						<div class="a">
-							Google Play updates the app automatically in the
-							background, the same as any other app. There's
-							nothing to do on your end.
+							The app scans your downloaded chapters on-device and
+							builds an index of recurring characters, places, and
+							factions — when they first appeared, how often, and
+							every mention with a snippet. It only shows entries
+							up to your current reading position, so it can't
+							spoil you. Tap any mention and the reader opens at
+							that paragraph.
+						</div>
+					</details>
+					<details>
+						<summary>
+							Does the character analysis use the cloud?
+						</summary>
+						<div class="a">
+							No. The codex, the relationship graph, and full-text
+							search all run entirely on your phone. It's fast
+							heuristics and a local index, not an API call. There
+							is no NovelForge server for your reading to reach.
 						</div>
 					</details>
 					<details>
 						<summary>What books can I read in it?</summary>
 						<div class="a">
-							Anything you have as an EPUB file. Import it and
-							NovelForge pulls out the cover, chapters, and
-							metadata automatically. Everything stays on your
-							device — the app doesn't host, fetch, or sell
-							content. It's a reader for the files you already
-							own.
+							Anything you have as an EPUB. Import it and the
+							cover, chapters, and metadata are extracted
+							automatically. The app doesn't host, fetch, or sell
+							content — it's a reader for the files you already
+							own, and it can export them back out as EPUB too.
 						</div>
 					</details>
 					<details>
 						<summary>Will there ever be an iOS version?</summary>
 						<div class="a">
 							Not planned. An iOS version would mean a separate
-							codebase and a different distribution path, and
-							right now the focus is on making the Android app as
-							good as it can be.
+							codebase and a different distribution path, and the
+							focus is on making the Android app as good as it can
+							be.
 						</div>
 					</details>
 					<details>
@@ -2132,22 +2674,19 @@
 							Bug reports, feature suggestions, and code
 							contributions on GitHub are the most useful thing.
 							After that, telling other readers it exists. There's
-							no donation page on principle. If you're feeling
+							no donation page on principle — if you're feeling
 							generous, support an author whose work you've
-							enjoyed — they need it more than this project does.
+							enjoyed.
 						</div>
 					</details>
 					<details>
 						<summary>Where is my data stored?</summary>
 						<div class="a">
-							Locally, in the app's private storage on your
-							device. Reading history, bookmarks, highlights,
-							settings — all of it. The app never sends your
-							reading data to a server because there is no
-							NovelForge server. For backups, Settings has an
-							"Export backup" option that produces a single ZIP
-							you can save anywhere. Importing it on a new device
-							restores everything.
+							Locally, in the app's private storage. Reading
+							history, bookmarks, highlights, codex, settings —
+							all of it. Settings has a one-tap backup that
+							exports everything as a single ZIP; importing it on
+							a new device restores it all.
 						</div>
 					</details>
 				</div>
@@ -2158,15 +2697,13 @@
 		<footer>
 			<div class="foot-inner">
 				<div class="foot-col">
-					<a class="wordmark" href="#top" style="margin-bottom: 12px"
-						>Novel<em>Forge</em></a
-					>
+					<a class="wordmark" href="#top">Novel<em>Forge</em></a>
 					<p
 						class="soft"
 						style="
 							font-size: 14.5px;
 							max-width: 32ch;
-							margin-top: 10px;
+							margin-top: 12px;
 						"
 					>
 						A reading app for people who love reading.
@@ -2174,9 +2711,8 @@
 				</div>
 				<div class="foot-col">
 					<h4>Project</h4>
-					<a
-						href="https://play.google.com/store/apps/details?id=com.abhinavxt.novelreader"
-						>Google Play</a
+					<a href="https://github.com/abhinavxt/novelforge/releases"
+						>Download (GitHub Releases)</a
 					>
 					<a href="https://github.com/abhinavxt/novelforge"
 						>GitHub repository</a
@@ -2190,17 +2726,20 @@
 					>
 				</div>
 				<div class="foot-col">
-					<h4>Resources</h4>
-					<a href="#product">Features</a>
-					<a href="#preview">Try the reader</a>
-					<a href="#faq">FAQ</a>
+					<h4>Contents</h4>
+					<a href="#codex">The codex</a>
+					<a href="#recall">Search &amp; recall</a>
+					<a href="#reader">Try the reader</a>
+					<a href="#faq">The honest FAQ</a>
 				</div>
 			</div>
 			<div class="colophon">
-				<b>Colophon.</b> This page is set in Literata and JetBrains Mono
-				— two of the eight faces that ship in the app — and its palette
-				is whichever of the app's eleven reader themes you picked up
-				top. Open source, MIT licensed. Android 8.0+, on Google Play.
+				<b>Colophon.</b> This page is set under a Fraunces display in
+				Literata and JetBrains Mono — two of the eight faces that ship
+				in the app — and its palette is whichever of the app's eleven
+				reader themes you picked up top. The relationship graph in the
+				hero runs the same layout algorithm as the app. Open source, MIT
+				licensed. Android 8.0+, free on GitHub.
 			</div>
 		</footer>
 
@@ -2208,8 +2747,7 @@
 			;(function () {
 				"use strict"
 
-				/* ── Theme registry: name → swatch color for pickers, plus the
-        meta theme-color the browser chrome should adopt. ───────── */
+				/* ═══════════════ THEME SYSTEM ═══════════════ */
 				var THEMES = [
 					{
 						id: "paper",
@@ -2333,14 +2871,12 @@
 						} catch (e) {}
 					},
 				}
-
 				function findTheme(id) {
 					for (var i = 0; i < THEMES.length; i++)
 						if (THEMES[i].id === id) return THEMES[i]
-					return THEMES[0]
+					return THEMES[9] /* navy */
 				}
 
-				/* ── Site-wide theme ─────────────────────────────────────────── */
 				var themeNameEl = document.getElementById("themeName")
 				function applySiteTheme(id) {
 					var t = findTheme(id)
@@ -2349,9 +2885,9 @@
 					if (themeNameEl) themeNameEl.textContent = t.name
 					store.set("nf-theme", t.id)
 					refreshMenuPressed(t.id)
+					document.dispatchEvent(new CustomEvent("nf-theme"))
 				}
 
-				/* topbar popover menu */
 				var menuList = document.getElementById("themeMenuList")
 				var themePop = document.getElementById("themePop")
 				THEMES.forEach(function (t) {
@@ -2389,7 +2925,519 @@
 						themePop.removeAttribute("open")
 				})
 
-				/* ── Live reader demo ────────────────────────────────────────── */
+				/* ═══════════════ RELATIONSHIP GRAPH ═══════════════
+   The cast of "The Long Quiet", the demo book used across this page.
+   first = the chapter a character first appears; edges carry the
+   chapter a bond becomes visible plus how many chapters it spans.
+   Layout is the app's algorithm: Fruchterman–Reingold with log-weight
+   attraction, sqrt(degree) damping, and a collision post-pass.      */
+				var CAST = [
+					{ n: "Marin", first: 1, occ: 1847 },
+					{ n: "Toma", first: 2, occ: 990 },
+					{ n: "Edda", first: 5, occ: 760 },
+					{ n: "The Ferryman", first: 18, occ: 412 },
+					{ n: "Ilse", first: 34, occ: 356 },
+					{ n: "Brother Hallis", first: 52, occ: 238 },
+					{ n: "Sera", first: 88, occ: 300 },
+					{ n: "Corvin", first: 120, occ: 210 },
+					{ n: "The River Court", first: 176, occ: 190 },
+					{ n: "The Warden", first: 205, occ: 175 },
+					{ n: "Nyra", first: 230, occ: 260 },
+					{ n: "Petra", first: 310, occ: 150 },
+					{ n: "Aldous", first: 420, occ: 170 },
+					{ n: "Vesna", first: 545, occ: 90 },
+				]
+				var BONDS = [
+					[0, 1, 240, 3],
+					[0, 2, 190, 6],
+					[1, 2, 120, 9],
+					[0, 3, 96, 18],
+					[1, 3, 50, 20],
+					[0, 4, 74, 34],
+					[3, 4, 60, 40],
+					[0, 5, 88, 52],
+					[2, 5, 40, 60],
+					[0, 6, 110, 88],
+					[2, 6, 30, 92],
+					[4, 6, 26, 95],
+					[6, 7, 66, 124],
+					[0, 7, 58, 121],
+					[8, 9, 52, 210],
+					[7, 9, 44, 207],
+					[0, 9, 36, 208],
+					[0, 10, 84, 230],
+					[6, 10, 48, 236],
+					[8, 10, 30, 250],
+					[10, 11, 40, 312],
+					[0, 11, 46, 310],
+					[11, 12, 34, 424],
+					[0, 12, 44, 421],
+					[8, 12, 26, 430],
+					[12, 13, 22, 548],
+					[0, 13, 28, 545],
+				]
+
+				function forceLayout(n, edges) {
+					var px = [],
+						py = [],
+						i,
+						j
+					for (i = 0; i < n; i++) {
+						var ang = (2 * Math.PI * i) / n
+						px.push(0.5 + 0.35 * Math.cos(ang))
+						py.push(0.5 + 0.35 * Math.sin(ang))
+					}
+					var k = 1.2 / Math.sqrt(n)
+					var maxW = 1
+					edges.forEach(function (e) {
+						if (e[2] > maxW) maxW = e[2]
+					})
+					var deg = []
+					for (i = 0; i < n; i++) deg.push(0)
+					edges.forEach(function (e) {
+						deg[e[0]]++
+						deg[e[1]]++
+					})
+					var seed = 1234567
+					function jit() {
+						seed = (seed * 48271) % 2147483647
+						return (seed / 2147483647 - 0.5) * 1e-3
+					}
+					var temp = 0.12
+					for (var it = 0; it < 180; it++) {
+						var dx = [],
+							dy = []
+						for (i = 0; i < n; i++) {
+							dx.push(0)
+							dy.push(0)
+						}
+						for (i = 0; i < n; i++)
+							for (j = i + 1; j < n; j++) {
+								var ax = px[i] - px[j],
+									ay = py[i] - py[j],
+									d = Math.sqrt(ax * ax + ay * ay)
+								if (d < 1e-4) {
+									ax = jit()
+									ay = jit()
+									d = 1e-3
+								}
+								var f = (k * k) / d
+								dx[i] += (ax / d) * f
+								dy[i] += (ay / d) * f
+								dx[j] -= (ax / d) * f
+								dy[j] -= (ay / d) * f
+							}
+						edges.forEach(function (e) {
+							var a = e[0],
+								b = e[1]
+							var ax = px[a] - px[b],
+								ay = py[a] - py[b],
+								d = Math.sqrt(ax * ax + ay * ay)
+							if (d < 1e-4) return
+							var wf =
+								0.15 +
+								(0.35 * Math.log(1 + e[2])) / Math.log(1 + maxW)
+							var f = ((d * d) / k) * wf
+							var fa = f / Math.max(1, Math.sqrt(deg[a])),
+								fb = f / Math.max(1, Math.sqrt(deg[b]))
+							dx[a] -= (ax / d) * fa
+							dy[a] -= (ay / d) * fa
+							dx[b] += (ax / d) * fb
+							dy[b] += (ay / d) * fb
+						})
+						for (i = 0; i < n; i++) {
+							dx[i] += (0.5 - px[i]) * 0.06
+							dy[i] += (0.5 - py[i]) * 0.06
+							var dl = Math.sqrt(dx[i] * dx[i] + dy[i] * dy[i])
+							if (dl > 0) {
+								var st = Math.min(dl, temp)
+								px[i] += (dx[i] / dl) * st
+								py[i] += (dy[i] / dl) * st
+							}
+						}
+						temp *= 0.97
+					}
+					var mnx = Math.min.apply(null, px),
+						mxx = Math.max.apply(null, px)
+					var mny = Math.min.apply(null, py),
+						mxy = Math.max.apply(null, py)
+					var sx = mxx - mnx || 1,
+						sy = mxy - mny || 1
+					for (i = 0; i < n; i++) {
+						px[i] = ((px[i] - mnx) / sx) * 0.84 + 0.08
+						py[i] = ((py[i] - mny) / sy) * 0.84 + 0.08
+					}
+					var minSep = 0.11
+					for (var pass = 0; pass < 60; pass++) {
+						var moved = false
+						for (i = 0; i < n; i++)
+							for (j = i + 1; j < n; j++) {
+								var ax2 = px[i] - px[j],
+									ay2 = py[i] - py[j],
+									d2 = Math.sqrt(ax2 * ax2 + ay2 * ay2)
+								if (d2 < 1e-5) {
+									ax2 = jit()
+									ay2 = jit()
+									d2 = 1e-4
+								}
+								if (d2 < minSep) {
+									var push = (minSep - d2) / 2
+									px[i] += (ax2 / d2) * push
+									py[i] += (ay2 / d2) * push
+									px[j] -= (ax2 / d2) * push
+									py[j] -= (ay2 / d2) * push
+									moved = true
+								}
+							}
+						if (!moved) break
+					}
+					var out = []
+					for (i = 0; i < n; i++)
+						out.push([
+							Math.min(0.95, Math.max(0.05, px[i])),
+							Math.min(0.93, Math.max(0.07, py[i])),
+						])
+					return out
+				}
+				var LAYOUT = forceLayout(CAST.length, BONDS)
+
+				var reduce = window.matchMedia(
+					"(prefers-reduced-motion: reduce)",
+				).matches
+
+				/* One renderer serves both canvases: the hero instrument (interactive,
+   ambient float, slider-driven) and the in-app vignette (static). */
+				function makeGraph(canvas, opts) {
+					if (!canvas) return null
+					var S =
+						opts.scale ||
+						1 /* uniform content scale — mini renders at 0.72 */
+					var ctx = canvas.getContext("2d")
+					var pos = opts.pos,
+						hover = -1,
+						running = false,
+						t0 = performance.now()
+					var C = {}
+
+					function colors() {
+						var cs = getComputedStyle(canvas)
+						C.accent = cs.getPropertyValue("--accent").trim()
+						C.ink = cs.getPropertyValue("--ink").trim()
+						C.elev = cs.getPropertyValue("--elev").trim()
+						C.soft = cs.getPropertyValue("--soft").trim()
+						C.rule = cs.getPropertyValue("--rule").trim()
+					}
+					function fit() {
+						var r = canvas.getBoundingClientRect()
+						var dpr = Math.min(window.devicePixelRatio || 1, 2)
+						canvas.width = Math.max(1, Math.round(r.width * dpr))
+						canvas.height = Math.max(1, Math.round(r.height * dpr))
+						ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+					}
+					/* Content box: margins sized from the widest label and largest node,
+     so no label can leave the canvas — the clamp-only approach let
+     "The Ferryman" bleed off the right edge. */
+					var M = { mx: 44, myT: 22, myB: 34 }
+					function metrics() {
+						ctx.font =
+							(10.5 * S).toFixed(1) +
+							"px 'JetBrains Mono', monospace"
+						var maxLab = 0,
+							maxRad = 0
+						CAST.forEach(function (c, i) {
+							var w = ctx.measureText(c.n).width
+							if (w > maxLab) maxLab = w
+							var rr = radius(i)
+							if (rr > maxRad) maxRad = rr
+						})
+						M.mx =
+							Math.ceil(Math.max(maxLab / 2 + 8, maxRad + 10)) + 3
+						M.myT = Math.ceil(maxRad + 10) + 3
+						M.myB = Math.ceil(maxRad + 14 * S + 12) + 3
+					}
+					function base(i, r) {
+						var tx = (LAYOUT[i][0] - 0.05) / 0.9,
+							ty = (LAYOUT[i][1] - 0.07) / 0.86
+						return [
+							M.mx +
+								Math.min(1, Math.max(0, tx)) *
+									Math.max(1, r.width - 2 * M.mx),
+							M.myT +
+								Math.min(1, Math.max(0, ty)) *
+									Math.max(1, r.height - M.myT - M.myB),
+						]
+					}
+					function alphaNode(i) {
+						return Math.min(
+							1,
+							Math.max(0, (pos - CAST[i].first) / 22),
+						)
+					}
+					function alphaBond(e) {
+						return Math.min(
+							alphaNode(e[0]),
+							alphaNode(e[1]),
+							Math.min(1, Math.max(0, (pos - e[3]) / 22)),
+						)
+					}
+					var maxOcc = 0
+					CAST.forEach(function (c) {
+						if (c.occ > maxOcc) maxOcc = c.occ
+					})
+					function radius(i) {
+						var t = Math.log(1 + CAST[i].occ) / Math.log(1 + maxOcc)
+						return (6 + 11 * t) * S
+					}
+					function pt(i, now) {
+						var r = canvas.getBoundingClientRect()
+						var b = base(i, r),
+							x = b[0],
+							y = b[1]
+						if (!reduce && opts.animate) {
+							var ph =
+								i *
+								2.39996 /* golden-angle phases so drifts never sync */
+							x += Math.sin(now / 1900 + ph) * 2.4
+							y += Math.cos(now / 2300 + ph) * 2.4
+						}
+						return [x, y]
+					}
+					function draw(now) {
+						now = now || performance.now()
+						var r = canvas.getBoundingClientRect()
+						ctx.clearRect(0, 0, r.width, r.height)
+						var maxW = 1
+						BONDS.forEach(function (e) {
+							if (e[2] > maxW) maxW = e[2]
+						})
+						var pts = CAST.map(function (_, i) {
+							return pt(i, now)
+						})
+
+						BONDS.forEach(function (e) {
+							var a = alphaBond(e)
+							if (a <= 0.01) return
+							var touches =
+								hover >= 0 && (e[0] === hover || e[1] === hover)
+							var base = 0.28 + (0.5 * e[2]) / maxW
+							var al = hover < 0 ? base : touches ? 0.95 : 0.07
+							ctx.globalAlpha = a * al
+							ctx.strokeStyle = C.accent
+							ctx.lineWidth = (1 + (3.6 * e[2]) / maxW) * S
+							ctx.beginPath()
+							ctx.moveTo(pts[e[0]][0], pts[e[0]][1])
+							ctx.lineTo(pts[e[1]][0], pts[e[1]][1])
+							ctx.stroke()
+						})
+
+						var nb = {}
+						if (hover >= 0)
+							BONDS.forEach(function (e) {
+								if (e[0] === hover && alphaBond(e) > 0.01)
+									nb[e[1]] = 1
+								if (e[1] === hover && alphaBond(e) > 0.01)
+									nb[e[0]] = 1
+							})
+
+						ctx.textAlign = "center"
+						ctx.textBaseline = "top"
+						ctx.font =
+							(10.5 * S).toFixed(1) +
+							"px 'JetBrains Mono', monospace"
+						CAST.forEach(function (c, i) {
+							var a = alphaNode(i)
+							if (a <= 0.01) return
+							var dim = hover >= 0 && i !== hover && !nb[i]
+							var rad = radius(i),
+								p = pts[i]
+							ctx.globalAlpha = a * (dim ? 0.28 : 1)
+							ctx.fillStyle = C.accent
+							ctx.beginPath()
+							ctx.arc(p[0], p[1], rad, 0, 7)
+							ctx.fill()
+							if (i === hover) {
+								ctx.globalAlpha = a * 0.3
+								ctx.beginPath()
+								ctx.arc(p[0], p[1], rad + 6, 0, 7)
+								ctx.fill()
+							}
+							/* recently-revealed pulse: a widening ring for ~30 chapters */
+							var age = pos - c.first
+							if (age >= 0 && age < 30 && opts.animate) {
+								ctx.globalAlpha = a * (1 - age / 30) * 0.55
+								ctx.strokeStyle = C.accent
+								ctx.lineWidth = 1.5
+								ctx.beginPath()
+								ctx.arc(p[0], p[1], rad + 4 + age * 0.5, 0, 7)
+								ctx.stroke()
+							}
+							ctx.globalAlpha = a * (dim ? 0.35 : 0.95)
+							var label = c.n,
+								tw = ctx.measureText(label).width
+							ctx.fillStyle = C.elev
+							ctx.fillRect(
+								p[0] - tw / 2 - 4,
+								p[1] + rad + 3,
+								tw + 8,
+								14 * S,
+							)
+							ctx.fillStyle = C.ink
+							ctx.fillText(label, p[0], p[1] + rad + 3 + 2 * S)
+						})
+						ctx.globalAlpha = 1
+					}
+					function frame(now) {
+						if (!running) return
+						draw(now)
+						requestAnimationFrame(frame)
+					}
+					function start() {
+						if (running || reduce || !opts.animate) {
+							draw()
+							return
+						}
+						running = true
+						requestAnimationFrame(frame)
+					}
+					function stop() {
+						running = false
+					}
+
+					if (opts.interactive) {
+						canvas.addEventListener("pointermove", function (ev) {
+							var r = canvas.getBoundingClientRect()
+							var mx = ev.clientX - r.left,
+								my = ev.clientY - r.top,
+								best = -1,
+								bd = 1e9
+							CAST.forEach(function (c, i) {
+								if (alphaNode(i) <= 0.01) return
+								var b = base(i, r),
+									x = b[0],
+									y = b[1]
+								var d = Math.hypot(mx - x, my - y),
+									hr = Math.max(radius(i) * 1.8, 26)
+								if (d < hr && d < bd) {
+									best = i
+									bd = d
+								}
+							})
+							if (best !== hover) {
+								hover = best
+								canvas.style.cursor =
+									best >= 0 ? "pointer" : "crosshair"
+								if (!running) draw()
+							}
+						})
+						canvas.addEventListener("pointerleave", function () {
+							hover = -1
+							if (!running) draw()
+						})
+						canvas.addEventListener("pointerdown", function (ev) {
+							/* tap-to-toggle for touch, mirrors the app's selection */
+							var r = canvas.getBoundingClientRect()
+							var mx = ev.clientX - r.left,
+								my = ev.clientY - r.top,
+								best = -1,
+								bd = 1e9
+							CAST.forEach(function (c, i) {
+								if (alphaNode(i) <= 0.01) return
+								var b = base(i, r),
+									x = b[0],
+									y = b[1]
+								var d = Math.hypot(mx - x, my - y),
+									hr = Math.max(radius(i) * 1.8, 30)
+								if (d < hr && d < bd) {
+									best = i
+									bd = d
+								}
+							})
+							hover = best === hover ? -1 : best
+							if (!running) draw()
+						})
+					}
+
+					colors()
+					fit()
+					metrics()
+					draw()
+					window.addEventListener("resize", function () {
+						fit()
+						metrics()
+						if (!running) draw()
+					})
+					document.addEventListener("nf-theme", function () {
+						requestAnimationFrame(function () {
+							colors()
+							if (!running) draw()
+						})
+					})
+					if (
+						"IntersectionObserver" in window &&
+						opts.animate &&
+						!reduce
+					) {
+						new IntersectionObserver(
+							function (es) {
+								es.forEach(function (en) {
+									en.isIntersecting ? start() : stop()
+								})
+							},
+							{ threshold: 0.05 },
+						).observe(canvas)
+					}
+					return {
+						setPos: function (p) {
+							pos = p
+							if (!running) draw()
+						},
+						redraw: function () {
+							if (!running) draw()
+						},
+					}
+				}
+
+				var hero = makeGraph(document.getElementById("graph"), {
+					pos: 140,
+					animate: true,
+					interactive: true,
+				})
+				makeGraph(document.getElementById("graphMini"), {
+					pos: 312,
+					animate: false,
+					interactive: false,
+					scale: 0.72,
+				})
+
+				var gbSlider = document.getElementById("gbSlider")
+				var gbPos = document.getElementById("gbPos")
+				var gbCount = document.getElementById("gbCount")
+				function gbUpdate() {
+					var p = parseInt(gbSlider.value, 10)
+					var chars = 0,
+						bonds = 0
+					CAST.forEach(function (c) {
+						if (c.first <= p) chars++
+					})
+					BONDS.forEach(function (e) {
+						if (
+							e[3] <= p &&
+							CAST[e[0]].first <= p &&
+							CAST[e[1]].first <= p
+						)
+							bonds++
+					})
+					gbPos.textContent = "Ch. " + p
+					gbCount.textContent =
+						chars + " characters · " + bonds + " bonds"
+					if (hero) hero.setPos(p)
+				}
+				if (gbSlider) {
+					gbSlider.addEventListener("input", gbUpdate)
+					gbUpdate()
+				}
+
+				/* ═══════════════ LIVE READER DEMO ═══════════════ */
 				var phone = document.getElementById("demoPhone")
 				var body = document.getElementById("demoBody")
 				var chipsT = document.getElementById("demoThemes")
@@ -2404,15 +3452,14 @@
 							cs[i].dataset[key] === id ? "true" : "false",
 						)
 				}
-
-				THEMES.forEach(function (t, idx) {
+				THEMES.forEach(function (t) {
 					var b = document.createElement("button")
 					b.type = "button"
 					b.className = "chip"
 					b.dataset.theme = t.id
-					b.setAttribute("aria-pressed", idx === 0 ? "true" : "false")
+					b.setAttribute("aria-pressed", "false")
 					b.innerHTML =
-						'<span class="sw" style="background:' +
+						'<span class="swx" style="background:' +
 						t.sw +
 						'"></span>' +
 						t.name
@@ -2423,7 +3470,6 @@
 					})
 					chipsT.appendChild(b)
 				})
-
 				FONTS.forEach(function (f, idx) {
 					var b = document.createElement("button")
 					b.type = "button"
@@ -2431,7 +3477,7 @@
 					b.dataset.font = f.id
 					b.setAttribute("aria-pressed", idx === 0 ? "true" : "false")
 					b.innerHTML =
-						'<span class="fx" style="font-family:' +
+						'<span style="font-family:' +
 						f.fam.replace(/"/g, "&quot;") +
 						'">Aa</span>' +
 						f.name
@@ -2441,14 +3487,11 @@
 					})
 					chipsF.appendChild(b)
 				})
-
-				/* keep demo chips in sync when theme is changed from the topbar */
 				function syncDemoToSite(id) {
 					if (!phone) return
 					phone.setAttribute("data-theme", id)
 					pressOnly(chipsT, id, "theme")
 				}
-
 				var fs = document.getElementById("fsSlider"),
 					fsOut = document.getElementById("fsOut")
 				var lh = document.getElementById("lhSlider"),
@@ -2463,9 +3506,9 @@
 					lhOut.textContent = v + "\u00d7"
 				})
 
-				/* ── Reading-progress bar ────────────────────────────────────── */
-				var bar = document.getElementById("progress")
-				var ticking = false
+				/* ═══════════════ PROGRESS + REVEALS ═══════════════ */
+				var bar = document.getElementById("progress"),
+					ticking = false
 				function paintProgress() {
 					var h = document.documentElement
 					var max = h.scrollHeight - h.clientHeight
@@ -2485,10 +3528,6 @@
 				)
 				paintProgress()
 
-				/* ── Scroll reveals ──────────────────────────────────────────── */
-				var reduce = window.matchMedia(
-					"(prefers-reduced-motion: reduce)",
-				).matches
 				if (!reduce && "IntersectionObserver" in window) {
 					var io = new IntersectionObserver(
 						function (entries) {
@@ -2510,15 +3549,10 @@
 					})
 				}
 
-				/* ── Restore saved theme, then run the hero entrance ─────────── */
-				var saved = store.get("nf-theme")
-				if (saved) {
-					applySiteTheme(saved)
-					syncDemoToSite(saved)
-				} else {
-					refreshMenuPressed("paper")
-				}
-
+				/* restore theme into the chrome, then run the entrance */
+				var current = root.getAttribute("data-theme") || "navy"
+				applySiteTheme(current)
+				syncDemoToSite(current)
 				requestAnimationFrame(function () {
 					document.body.classList.add("loaded")
 				})
