@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="navy">
+<html lang="en" data-theme="paper">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,10 +32,10 @@
 			name="twitter:description"
 			content="Spoiler-safe character codex, relationship graph, full-text search, neural TTS. Free, open source, no accounts."
 		/>
-		<meta name="theme-color" id="metaTheme" content="#0f1a2b" />
+		<meta name="theme-color" id="metaTheme" content="#faf6ee" />
 		<link
 			rel="icon"
-			href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%230f1a2b"/><path d="M9 7h8.5a5 5 0 0 1 0 10H9zM9 17h10.5a4.5 4.5 0 0 1 0 9H9z" fill="none" stroke="%235ea7ee" stroke-width="2.4" stroke-linejoin="round"/></svg>'
+			href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%23faf6ee"/><rect x="0.5" y="0.5" width="31" height="31" rx="6.5" fill="none" stroke="%23e7dfcd"/><text x="5" y="23.5" font-family="Georgia,serif" font-weight="700" font-size="17" fill="%23211d18">N</text><path d="M26 5.5 C22.8 4.8 21.6 7.6 21.6 10.6 L21.6 21.4 C21.6 25.2 19.9 27.6 16.2 27.2" fill="none" stroke="%230d7268" stroke-width="2.3" stroke-linecap="round"/><path d="M17.6 15.5 L25.6 15.5" stroke="%230d7268" stroke-width="2" stroke-linecap="round"/></svg>'
 		/>
 
 		<!-- Fraunces carries the display voice; Literata and JetBrains Mono ship
@@ -1640,11 +1640,7 @@
    systems get Paper, everyone else gets Navy. */
 			;(function () {
 				try {
-					var t = localStorage.getItem("nf-theme")
-					if (!t)
-						t = matchMedia("(prefers-color-scheme: light)").matches
-							? "paper"
-							: "navy"
+					var t = localStorage.getItem("nf-theme") || "paper"
 					document.documentElement.setAttribute("data-theme", t)
 				} catch (e) {}
 			})()
@@ -1665,7 +1661,7 @@
 				<details class="theme-pop" id="themePop">
 					<summary aria-label="Change page theme">
 						<span class="dot" aria-hidden="true"></span>
-						<span id="themeName">Navy</span>
+						<span id="themeName">Paper</span>
 					</summary>
 					<div class="theme-menu" role="menu">
 						<div class="tm-label">Page theme · from the app</div>
@@ -2232,7 +2228,7 @@
 				<div
 					class="phone themed"
 					id="demoPhone"
-					data-theme="navy"
+					data-theme="paper"
 					style="max-width: 360px"
 				>
 					<div class="screen">
@@ -2874,7 +2870,7 @@
 				function findTheme(id) {
 					for (var i = 0; i < THEMES.length; i++)
 						if (THEMES[i].id === id) return THEMES[i]
-					return THEMES[9] /* navy */
+					return THEMES[0] /* paper */
 				}
 
 				var themeNameEl = document.getElementById("themeName")
