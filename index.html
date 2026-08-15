@@ -6,10 +6,9 @@
 		<title>NovelForge — the Android reader that never loses the plot</title>
 		<meta
 			name="description"
-			content="A free, open-source Android EPUB reader built for long series: a spoiler-safe character codex, relationship graph, full-text library search, neural text-to-speech, eleven themes, and zero accounts, ads, or tracking."
+			content="A free, open-source Android reader built for long series: a spoiler-safe character codex, relationship graph, full-text library search, neural text-to-speech, eleven themes, and zero accounts, ads, or tracking. Reads EPUB, TXT, and Markdown."
 		/>
-		<link rel="canonical" href="https://novelforge.app/" />
-		<!-- replace with your real domain -->
+		<link rel="canonical" href="https://novelforge-abhinavxt.vercel.app/" />
 		<meta name="robots" content="index,follow" />
 
 		<meta
@@ -21,7 +20,10 @@
 			content="Spoiler-safe character codex, relationship graph, full-text search, neural TTS, eleven themes. Free, open source, no accounts."
 		/>
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://novelforge.app/" />
+		<meta
+			property="og:url"
+			content="https://novelforge-abhinavxt.vercel.app/"
+		/>
 		<meta property="og:site_name" content="NovelForge" />
 		<meta name="twitter:card" content="summary" />
 		<meta
@@ -57,9 +59,9 @@
 				"@context": "https://schema.org",
 				"@type": "SoftwareApplication",
 				"name": "NovelForge",
-				"operatingSystem": "Android 8.0+",
+				"operatingSystem": "Android 7.0+",
 				"applicationCategory": "BooksAndReference",
-				"description": "Free, open-source Android EPUB reader for long series: spoiler-safe character codex, relationship graph, full-text library search, neural text-to-speech, eleven reading themes, offline-first, no accounts or ads.",
+				"description": "Free, open-source Android reader for long series: spoiler-safe character codex, relationship graph, full-text library search, neural text-to-speech, eleven reading themes, offline-first, no accounts or ads. Reads EPUB, TXT, and Markdown.",
 				"offers": {
 					"@type": "Offer",
 					"price": "0",
@@ -104,7 +106,7 @@
 						"name": "What books can I read in NovelForge?",
 						"acceptedAnswer": {
 							"@type": "Answer",
-							"text": "Any EPUB file you own. Import it and the cover, chapters, and metadata are extracted automatically. The app doesn't host, fetch, or sell content."
+							"text": "Any EPUB file you own, plus plain text and Markdown files. Import one and the cover, chapters, and metadata are extracted automatically. You can also add web sources to read from. NovelForge does not host, store, or distribute content itself, and anything in your library exports back out as a clean EPUB."
 						}
 					},
 					{
@@ -2302,9 +2304,12 @@
 					<p>
 						The pronunciation dictionary fixes the words your engine
 						keeps mangling — character names, place names, invented
-						terms. Save it as JSON, load it on another device. And
-						when a book deserves a run or a commute, generate a
-						proper M4B audiobook with chapter markers.
+						terms — and can silence the ones you'd rather it skipped
+						entirely, like the stray asterisks and scene-break marks
+						that come out as "asterisk". Save it as JSON, load it on
+						another device. And when a book deserves a run or a
+						commute, generate a proper M4B audiobook with chapter
+						markers.
 					</p>
 					<ul class="ticks">
 						<li>System TTS plus Piper and Kokoro neural voices</li>
@@ -2479,12 +2484,13 @@
 		<div class="shelf">
 			<div class="shelf-card reveal">
 				<span class="shelf-tag">Library</span>
-				<h3>EPUB in, EPUB out.</h3>
+				<h3>EPUB, text, or Markdown in. EPUB out.</h3>
 				<p>
-					Import any .epub — cover, chapters, metadata extracted
-					automatically. Export any book back to a clean EPUB for
-					archiving or another reader. Your files never stop being
-					yours.
+					Import any .epub, .txt, or .md — cover, chapters, and
+					metadata extracted automatically, with chapter breaks
+					detected from headings, chapter lines, or scene breaks.
+					Export any book back to a clean EPUB for archiving or
+					another reader. Your files never stop being yours.
 				</p>
 			</div>
 			<div class="shelf-card reveal">
@@ -2588,8 +2594,8 @@
 				</div> -->
 				<h2>Free. Open. <em>Yours.</em></h2>
 				<p class="lede">
-					Android 8.0 or later. Android only — an iOS build isn't
-					planned.
+					Android 7.0 or later, on 64-bit devices. Android only — an
+					iOS build isn't planned.
 				</p>
 				<a
 					class="btn"
@@ -2598,8 +2604,8 @@
 					>Get it on GitHub</a
 				>
 				<div class="dl-meta">
-					Android 8.0+ · Free APK on GitHub Releases · No ads or
-					in-app purchases
+					Android 7.0+ (64-bit) · Free APK on GitHub Releases · No ads
+					or in-app purchases
 				</div>
 			</div>
 		</section>
@@ -2649,11 +2655,14 @@
 					<details>
 						<summary>What books can I read in it?</summary>
 						<div class="a">
-							Anything you have as an EPUB. Import it and the
-							cover, chapters, and metadata are extracted
-							automatically. The app doesn't host, fetch, or sell
-							content — it's a reader for the files you already
-							own, and it can export them back out as EPUB too.
+							Anything you have as an EPUB, plus plain text and
+							Markdown files — import one and the cover, chapters,
+							and metadata are extracted automatically. You can
+							also add web sources to read from, the same pages
+							your browser would load. NovelForge doesn't host,
+							store, or distribute any content itself, and
+							anything in your library exports back out as a clean
+							EPUB.
 						</div>
 					</details>
 					<details>
@@ -2719,7 +2728,7 @@
 					>
 					<a
 						href="https://github.com/abhinavxt/novelforge/blob/main/LICENSE"
-						>License (MIT)</a
+						>License (GPL-3.0)</a
 					>
 				</div>
 				<div class="foot-col">
@@ -2735,8 +2744,10 @@
 				Literata and JetBrains Mono — two of the eight faces that ship
 				in the app — and its palette is whichever of the app's eleven
 				reader themes you picked up top. The relationship graph in the
-				hero runs the same layout algorithm as the app. Open source, MIT
-				licensed. Android 8.0+, free on GitHub.
+				hero runs the same layout algorithm as the app. Open source,
+				GPL-3.0. The source layer is derived from
+				<a href="https://github.com/LagradOst/QuickNovel">QuickNovel</a
+				>, also GPL-3.0. Android 7.0+, free on GitHub.
 			</div>
 		</footer>
 
